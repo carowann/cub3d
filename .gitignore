@@ -55,5 +55,5 @@ dkms.conf
 *.dwo
 
 .vscode
-
-cub3d
+minilibx-linux
+cub3D

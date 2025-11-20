@@ -6,56 +6,57 @@
 #    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2025/11/20 17:52:30 by giomastr         ###   ########.fr        #
+#    Updated: 2025/11/20 18:01:01 by giomastr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-MAKEFLAGS += --no-print-directory
-#-I. is used to include the header files in the current directory
-
-
 NAME		= cub3D
-INC			= -I./libft
-CC 			= cc
-CFLAGS		= -Wall -Werror -Wextra -g -I.
-RM 			= rm -f
 
-MLX_DIR		= minilibx-linux
-MLX_LIBS	= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
-MLX_URL		= https://github.com/42Paris/minilibx-linux.git
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS 		= cubed.c \
-			  parser.c \
+MLX_DIR = minilibx-linux
+MLX_LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+MLX_URL = https://github.com/42Paris/minilibx-linux.git
 
+INCLUDES = -I./includes -I./$(LIBFT_DIR)
+
+SRCS	= cubed.c \
+	parser.c
+
+CFLAGS = -g -Wall -Werror -Wextra
 
 #	RULES	#
 
 all: mlx_setup $(NAME)
 
-mlx_setup:
+mlx_setup: $(MLX_DIR)/libmlx.a
+
+$(MLX_DIR)/libmlx.a:
 	@if [ ! -d "$(MLX_DIR)" ]; then \
 		echo "MiniLibX not found. Downloading..."; \
 		git clone $(MLX_URL) $(MLX_DIR); \
 		echo "MiniLibX downloaded successfully!"; \
 	fi
-	@if [ ! -f "$(MLX_DIR)/libmlx.a" ]; then \
-		echo "Building MiniLibX..."; \
-		$(MAKE) -C $(MLX_DIR) --no-print-directory; \
-	fi
+	@echo "Building MiniLibX..."; \
+	$(MAKE) -C $(MLX_DIR) --no-print-directory
 
-$(NAME): $(SRCS)
-		make -C libft
-		$(CC) $(CFLAGS) -Ilibft $(SRCS) $(MLX_LIBS) -Llibft -lft -o $(NAME) || { $(MAKE) err_art; exit 1; }
-		@$(MAKE) text
-		@$(MAKE) luna
+$(LIBFT):
+	@make --no-print-directory -C $(LIBFT_DIR)
+
+$(NAME): $(LIBFT) $(SRCS)
+	@cc $(SRCS) $(INCLUDES) $(CFLAGS) $(LIBFT) $(MLX_LIBS) -o $(NAME)
+	@$(MAKE) luna
 
 
 clean:
-		@$(MAKE) txtcln
+	@make --no-print-directory -C $(LIBFT_DIR) clean
+	@$(MAKE) txtcln
 
 fclean: clean
-		$(RM) $(NAME)
-		@$(MAKE) txtfcln
+	@make --no-print-directory -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME)
+	@$(MAKE) txtfcln
 
 re: fclean all
 
