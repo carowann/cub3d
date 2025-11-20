@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 19:01:00 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/20 16:23:25 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/11/20 16:39:31 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ int	key_press(int keysym, t_cubed *cubd)
 		//move camera to the left
 	else if (keysym == XK_Right)//65363
 		//move camera to the right
-	else if (keysym == XK_Up)//65362
-		cubd->shifty += step;
-	else if (keysym == XK_Down)//65364
-		cubd->shifty -= step;
-	else if (keysym == (XK_plus | plus))
-		cubd->iter_def += 10;
 	else if (keysym == (XK_minus | minus))
 		cubd->iter_def -= 10;
 	else if(keysym == C)
