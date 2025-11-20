@@ -1,8 +1,8 @@
 #ifndef CUBED_H
 # define CUBED_H
 
-# include "libft/libft.h"
-# include "minilibx-linux/mlx.h"
+# include "../libft/libft.h"
+# include "../minilibx-linux/mlx.h"
 
 
 # define INPUT_ERR "Give me proper Input >:"

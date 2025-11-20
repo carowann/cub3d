@@ -6,11 +6,12 @@
 #    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 16:55:24 by giomastr          #+#    #+#              #
-#    Updated: 2025/01/23 14:46:21 by giomastr         ###   ########.fr        #
+#    Updated: 2025/11/20 18:09:10 by giomastr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #-I. is used to include the header files in the current directory
+MAKEFLAGS += --no-print-directory
 
 NAME		= libft.a
 CC 			= cc
@@ -27,7 +28,7 @@ MNDT 		= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 			ft_tolower.c ft_toupper.c \
 			ft_putnbr_base_fd.c ft_put_ptr.c ft_printf.c\
 
-			
+
 MNDT_OBJ	=	$(MNDT:.c=.o)
 
 #	RULES	#
@@ -52,7 +53,7 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-.SILENT: 
+.SILENT:
 
 text:
 	@echo -e '\033[1;95m🌙In the name of the moon, compile $(NAME) ✨\033[0m'

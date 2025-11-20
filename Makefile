@@ -6,10 +6,11 @@
 #    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2025/11/20 18:01:01 by giomastr         ###   ########.fr        #
+#    Updated: 2025/11/20 18:09:55 by giomastr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+MAKEFLAGS += --no-print-directory
 NAME		= cub3D
 
 LIBFT_DIR = libft
@@ -21,8 +22,7 @@ MLX_URL = https://github.com/42Paris/minilibx-linux.git
 
 INCLUDES = -I./includes -I./$(LIBFT_DIR)
 
-SRCS	= cubed.c \
-	parser.c
+SRCS	= src/cubed.c \
 
 CFLAGS = -g -Wall -Werror -Wextra
 
@@ -42,7 +42,7 @@ $(MLX_DIR)/libmlx.a:
 	$(MAKE) -C $(MLX_DIR) --no-print-directory
 
 $(LIBFT):
-	@make --no-print-directory -C $(LIBFT_DIR)
+# 	@make --no-print-directory -C $(LIBFT_DIR)
 
 $(NAME): $(LIBFT) $(SRCS)
 	@cc $(SRCS) $(INCLUDES) $(CFLAGS) $(LIBFT) $(MLX_LIBS) -o $(NAME)
@@ -50,11 +50,11 @@ $(NAME): $(LIBFT) $(SRCS)
 
 
 clean:
-	@make --no-print-directory -C $(LIBFT_DIR) clean
+# 	@make --no-print-directory -C $(LIBFT_DIR) clean
 	@$(MAKE) txtcln
 
 fclean: clean
-	@make --no-print-directory -C $(LIBFT_DIR) fclean
+# 	@make --no-print-directory -C $(LIBFT_DIR) fclean
 	@rm -f $(NAME)
 	@$(MAKE) txtfcln
 
