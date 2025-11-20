@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 17:47:53 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
+/*   Created: 2024/12/08 18:31:17 by giomastr          #+#    #+#             */
+/*   Updated: 2025/01/16 19:16:00 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(const char *s, int fd)
 {
-	int	len;
-
-	if (s == NULL)
-		return (ft_putstr_fd("(null)", fd));
-	len = ft_strlen(s);
-	while (*s)
-	{
-		ft_putchar_fd(*s, fd);
-		s++;
-	}
-	return (len);
+	if (!s)
+		return (write(fd, "(null)", 6));
+	return (write(fd, s, ft_strlen(s)));
 }
+// int main()
+// {
+// 	char s[] = "diomialaccio";
+// 	ft_putstr_fd(s, 1);
+// 	return 0;
+
+// }

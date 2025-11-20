@@ -3,99 +3,88 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+         #
+#    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/02/15 15:51:55 by cwannhed          #+#    #+#              #
-#    Updated: 2025/11/08 12:45:37 by cwannhed         ###   ########.fr        #
+#    Created: 2024/11/18 16:55:24 by giomastr          #+#    #+#              #
+#    Updated: 2025/01/23 14:46:21 by giomastr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+#-I. is used to include the header files in the current directory
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
-AR = ar rcs
-RM = rm -f
-HDR = libft.h
-OBJ_DIR = objs
+NAME		= libft.a
+CC 			= cc
+CFLAGS		= -Wall -Werror -Wextra -g -I.
+RM 			= rm -f
+LIBCMP		= ar -rcs
+MNDT 		= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
+			ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c \
+			ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c \
+			ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
+			ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c \
+			ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c \
+			ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c \
+			ft_tolower.c ft_toupper.c \
+			ft_putnbr_base_fd.c ft_put_ptr.c ft_printf.c\
 
-SRCS = \
-		ft_isalnum.c			\
-		ft_isalpha.c			\
-		ft_isascii.c			\
-		ft_isdigit.c			\
-		ft_isprint.c			\
-		ft_isupper.c			\
-		ft_strlen.c			\
-		ft_tolower.c			\
-		ft_toupper.c			\
-		ft_calloc.c			\
-		ft_memset.c			\
-		ft_bzero.c			\
-		ft_memcpy.c			\
-		ft_memmove.c			\
-		ft_memchr.c			\
-		ft_memcmp.c			\
-		ft_strchr.c			\
-		ft_strcmp.c			\
-		ft_strrchr.c			\
-		ft_strncmp.c			\
-		ft_strnstr.c			\
-		ft_strlcpy.c			\
-		ft_strlcat.c			\
-		ft_strdup.c			\
-		ft_substr.c			\
-		ft_strjoin.c			\
-		ft_strjoin3.c			\
-		ft_strtrim.c			\
-		ft_split.c			\
-		ft_atoi.c			\
-		ft_itoa.c			\
-		ft_strmapi.c			\
-		ft_striteri.c			\
-		ft_putchar_fd.c			\
-		ft_putstr_fd.c			\
-		ft_putendl_fd.c			\
-		ft_putnbr_fd.c			\
-		ft_putnbr_hex_fd.c		\
-		ft_putptr_fd.c			\
-		ft_putnbr_u_fd.c		\
-		ft_lstnew_bonus.c		\
-		ft_lstadd_front_bonus.c		\
-		ft_lstsize_bonus.c		\
-		ft_lstlast_bonus.c		\
-		ft_lstdelone_bonus.c		\
-		ft_lstadd_back_bonus.c		\
-		ft_lstclear_bonus.c		\
-		ft_lstiter_bonus.c		\
-		ft_lstmap_bonus.c		\
-		ft_printf.c			\
-		ft_isspace.c			\
-		ft_strndup.c			\
-		get_next_line.c			\
-		get_next_line_bonus.c		\
-		ft_printfd.c			\
-		ft_atol.c
+			
+MNDT_OBJ	=	$(MNDT:.c=.o)
 
-OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
+#	RULES	#
+%.o: %.c
+		$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
-
-$(OBJ_DIR)/%.o: %.c $(HDR) | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(NAME): $(OBJS)
-	@$(AR) $(NAME) $(OBJS)
+$(NAME): $(MNDT_OBJ)
+		$(LIBCMP) $(NAME) $(MNDT_OBJ)
+		@$(MAKE) text
+		@$(MAKE) luna
 
 clean:
-	@rm -rf $(OBJ_DIR)
+		$(RM) $(MNDT_OBJ)
+		@$(MAKE) txtcln
 
 fclean: clean
-	@$(RM) $(NAME)
+		$(RM) $(NAME)
+		@$(MAKE) txtfcln
 
 re: fclean all
 
 .PHONY: all clean fclean re
+.SILENT: 
+
+text:
+	@echo -e '\033[1;95m🌙In the name of the moon, compile $(NAME) ✨\033[0m'
+
+txtcln:
+	@echo -e '\033[1;94mPartially cleaned $(NAME)🧼 \033[0m'
+
+txtfcln:
+	@echo -e '\033[1;91mFully cleaned $(NAME)🧽 \033[0m'
+
+luna:
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣤⣤⣤⣤⣤⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠻⠿⢿⣿⣿⣿⣿⣿⣶⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣷⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⣙⢿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠻⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⡟⠹⠿⠟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⠋⡬⢿⣿⣷⣤⣤⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⡇⢸⡇⢸⣿⣿⣿⠟⠁⢀⣬⢽⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣧⣈⣛⣿⣿⣿⡇⠀⠀⣾⠁⢀⢻⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣧⣄⣀⠙⠷⢋⣼⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇'
+	@echo '⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇'
+	@echo '⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁'
+	@echo '⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀'
+	@echo '⠸⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀'
+	@echo '⠀⢹⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀'
+	@echo '⠀⠀⠹⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀'
+	@echo '⠀⠀⠀⠙⣿⣿⣿⣿⣿⣶⣤⣀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀'
+	@echo '⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠉⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀'
+	@echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠛⠛⠛⠛⠛⠛⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀'

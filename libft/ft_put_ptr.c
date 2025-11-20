@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_put_ptr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/20 16:05:46 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/20 16:06:32 by cwannhed         ###   ########.fr       */
+/*   Created: 2025/01/15 17:37:25 by giomastr          #+#    #+#             */
+/*   Updated: 2025/01/23 16:39:02 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include "../libft/libft.h"
+int	ft_put_ptr(uintptr_t ptr)
+{
+	int	count;
 
-# define RED	"\033[0;31m"
-# define YELLOW "\033[0;33m"
-# define RESET "\033[0m"
-# define GREEN	"\033[0;32m"
-# define BOLD	"\033[1m"
-
-
-#endif
+	count = 0;
+	if (!ptr)
+		count += ft_putstr_fd("(nil)", 1);
+	if (ptr)
+	{
+		count += ft_putstr_fd("0x", 1);
+		count += ft_putnbr_base_fd(ptr, BASE16, 1);
+	}
+	return (count);
+}

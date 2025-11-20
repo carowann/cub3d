@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 18:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
+/*   Created: 2024/11/20 18:21:51 by giomastr          #+#    #+#             */
+/*   Updated: 2024/12/13 21:24:54 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,44 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	dst_len;
-	size_t	src_len;
 	size_t	i;
+	size_t	dstlen;
+	size_t	srclen;
 
-	dst_len = 0;
-	src_len = ft_strlen(src);
-	while (size > dst_len && dst[dst_len])
-		dst_len++;
-	if (size <= dst_len)
-		return (size + src_len);
+	dstlen = ft_strlen(dst);
+	srclen = ft_strlen(src);
+	if (size == 0)
+		return (srclen);
+	if (size <= dstlen)
+		return (size + srclen);
 	i = 0;
-	while ((size - 1 > dst_len + i) && src[i])
+	while (dstlen + i < size - 1 && src[i] != '\0')
 	{
-		dst[dst_len + i] = src[i];
+		dst[dstlen + i] = src[i];
 		i++;
 	}
-	if (dst_len + i < size)
-		dst[dst_len + i] = '\0';
-	return (src_len + dst_len);
+	if (dstlen + i < size)
+		dst[dstlen + i] = '\0';
+	return (dstlen + srclen);
 }
+/* 
+void test_strlcat(char *dst, const char *src, size_t size) {
+    char buffer[100];
+    strcpy(buffer, dst);
+    size_t result = ft_strlcat(buffer, src, size);
+    printf("dst=\"%s\", src=\"%s\", size=%zu -> result=%zu, 
+	buffer=\"%s\"\n", dst, src, size, result, buffer);
+}
+int main() {
+    // Test cases
+    test_strlcat("Hello", " World", 0);
+    test_strlcat("Hello", " World", 5);
+    test_strlcat("Hello", " World", 10);
+    test_strlcat("Hello", " World", 15);
+    test_strlcat("", "World", 5);
+    test_strlcat("Hello", "", 10);
+    test_strlcat("", "", 5);
+    test_strlcat("Hello", " World", 11);
+
+    return 0;
+} */

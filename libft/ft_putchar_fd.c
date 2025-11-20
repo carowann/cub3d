@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 17:17:28 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
+/*   Created: 2024/12/08 18:55:14 by giomastr          #+#    #+#             */
+/*   Updated: 2025/01/16 19:00:45 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 int	ft_putchar_fd(char c, int fd)
 {
-	write (fd, &c, sizeof(c));
-	return (1);
+	return (write(fd, &c, 1));
 }

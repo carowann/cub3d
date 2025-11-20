@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 18:05:06 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
+/*   Created: 2024/11/25 16:18:12 by giomastr          #+#    #+#             */
+/*   Updated: 2024/12/13 18:15:36 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,43 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
+	size_t			i;
 	unsigned char	*ptr;
-	unsigned char	chr;
 
+	i = 0;
 	ptr = (unsigned char *)s;
-	chr = (unsigned char)c;
-	while (n > 0)
+	c = (unsigned char)c;
+	if (n > 0)
 	{
-		if (*ptr == chr)
-			return ((void *)ptr);
-		ptr++;
-		n--;
+		while (i < n)
+		{
+			if (*ptr == c)
+			{
+				return (ptr);
+			}
+			ptr++;
+			i++;
+		}
 	}
 	return (NULL);
 }
+
+/* int main(void)
+{
+	const char str[] = "";
+	char *result;
+	
+	//existing char
+	result = ft_memchr(str, 'w', sizeof(str));
+	if (result != NULL)
+		printf("Character found: %c\n", *result);
+	else
+		printf("Character not found\n");
+	//non existing char
+	result = ft_memchr(str, 'z', sizeof(str));
+	if (result != NULL)
+		printf("Character found: %c\n", *result);
+	else
+		printf("Character not found\n");
+	return 0;
+} */

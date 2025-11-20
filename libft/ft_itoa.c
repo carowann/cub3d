@@ -3,78 +3,102 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 17:32:50 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
+/*   Created: 2024/12/09 17:11:29 by giomastr          #+#    #+#             */
+/*   Updated: 2024/12/13 18:23:05 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	size_t	get_n_len(int n, int div)
+int	n_len(int n)
 {
-	size_t	len;
+	int	count;
 
-	len = 0;
-	if (n < 0)
+	count = 0;
+	if (n <= 0)
+		count++;
+	while (n != 0)
 	{
-		len++;
-		n *= -1;
+		n /= 10;
+		count++;
 	}
-	while (div > 0)
-	{
-		len++;
-		div /= 10;
-	}
-	return (len);
-}
-
-static size_t	get_div(int n)
-{
-	size_t	div;
-
-	div = 1;
-	if (n < 0)
-		n *= -1;
-	while (n / div >= 10)
-		div *= 10;
-	return (div);
-}
-
-static	void	ft_itoa_helper(char *str, int n, int div)
-{
-	if (n < 0)
-	{
-		*str = '-';
-		n *= -1;
-		str++;
-	}
-	while (div >= 1)
-	{
-		*str = (n / div) + '0';
-		n = n % div;
-		div /= 10;
-		str++;
-	}
-	*str = '\0';
+	return (count);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	char	*start;
-	size_t	len;
-	int		div;
+	int		nlen;
+	long	nb;
+	char	*result;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	div = get_div(n);
-	len = get_n_len(n, div);
-	str = (char *)ft_calloc(len + 1, sizeof(char));
-	if (!str)
+	nb = n;
+	nlen = n_len(n);
+	result = (char *)ft_calloc ((nlen + 1), sizeof(char));
+	if (!result)
 		return (NULL);
-	start = str;
-	ft_itoa_helper(str, n, div);
-	return (start);
+	if (nb < 0)
+	{
+		result[0] = '-';
+		nb = -nb;
+	}
+	while (nlen > 0)
+	{
+		if (result[nlen - 1] == '-')
+			break ;
+		result[nlen - 1] = (nb % 10) + 48;
+		nb = nb / 10;
+		nlen--;
+	}
+	return (result);
 }
+/* 
+int main()
+{
+	// int n = 776;
+	// //printf("%i\n", n_len(n));
+	// printf("%s\n", ft_itoa(n));
+
+	// Test 1: Positive number
+    int n1 = 12345;
+    char *result1 = ft_itoa(n1);
+    printf("Test 1: Positive number\n");
+    printf("Input: %d\n", n1);
+    printf("Output: %s\n\n", result1);
+    free(result1);
+
+	    // Test 2: Negative number
+    int n2 = -12345;
+    char *result2 = ft_itoa(n2);
+    printf("Test 2: Negative number\n");
+    printf("Input: %d\n", n2);
+    printf("Output: %s\n\n", result2);
+    free(result2);
+
+    // Test 3: Zero
+    int n3 = 0;
+    char *result3 = ft_itoa(n3);
+    printf("Test 3: Zero\n");
+    printf("Input: %d\n", n3);
+    printf("Output: %s\n\n", result3);
+    free(result3);
+
+    // Test 4: Large number
+    int n4 = 2147483647;
+    char *result4 = ft_itoa(n4);
+    printf("Test 4: Large number\n");
+    printf("Input: %d\n", n4);
+    printf("Output: %s\n\n", result4);
+    free(result4);
+
+    // Test 5: Minimum integer value
+    int n5 = INT_MIN;
+    char *result5 = ft_itoa(n5);
+    printf("Test 5: Minimum integer value\n");
+    printf("Input: %d\n", n5);
+    printf("Output: %s\n\n", result5);
+    free(result5);
+
+    return 0;
+} */

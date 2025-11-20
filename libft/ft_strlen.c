@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 12:18:02 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/09 18:14:57 by cwannhed         ###   ########.fr       */
+/*   Created: 2024/11/19 12:37:14 by giomastr          #+#    #+#             */
+/*   Updated: 2024/12/13 18:16:22 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-	while (*s)
+	while (s[i] != '\0')
 	{
-		s++;
 		i++;
 	}
 	return (i);

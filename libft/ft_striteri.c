@@ -3,21 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 18:13:05 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
+/*   Created: 2024/12/09 18:51:24 by giomastr          #+#    #+#             */
+/*   Updated: 2024/12/10 15:17:13 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+/* 
+void	unosiunono(unsigned int i, char *c)
 {
-	size_t	i;
+	if (i % 2 == 0)
+		*c -= 32;
+} */
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int	i;
 
-	if (!s || !f)
-		return ;
 	i = 0;
 	while (s[i])
 	{
@@ -25,3 +28,12 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		i++;
 	}
 }
+/* 
+int main()
+{
+    char s[] = "bombastic";
+
+    printf("Input: %s\n", s);
+	ft_striteri(s, unosiunono);
+    printf("Output: %s\n", s);
+} */

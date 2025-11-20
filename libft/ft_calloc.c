@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 16:24:12 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/09 18:14:39 by cwannhed         ###   ########.fr       */
+/*   Created: 2024/12/04 16:18:48 by giomastr          #+#    #+#             */
+/*   Updated: 2024/12/04 18:54:29 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,21 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void	*array;
+	void	*alloc;
 	size_t	total_size;
 
-	if (nmemb == 0 || size == 0)
-		return (malloc(1));
-	if (nmemb > SIZE_MAX / size)
-		return (NULL);
 	total_size = nmemb * size;
-	array = malloc(total_size);
-	if (!array)
+	alloc = malloc(total_size);
+	if (!alloc)
 		return (NULL);
-	ft_bzero(array, nmemb * size);
-	return (array);
+	ft_bzero(alloc, total_size);
+	return (alloc);
 }
+
+/* int main()
+{
+	char *str;
+    str = (char *)ft_calloc(10, sizeof(char));
+    printf("First char: %d\n", str[0]); // Should print 0
+    free(str);
+} */

@@ -3,58 +3,124 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 18:18:14 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
+/*   Created: 2025/01/10 17:14:06 by giomastr          #+#    #+#             */
+/*   Updated: 2025/05/09 15:35:02 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	check_param(va_list arg, char c)
+int	format(char c, va_list args)
 {
+	int	print_len;
+
+	print_len = 0;
 	if (c == '%')
-		return (ft_putchar_fd('%', 1));
+		print_len += ft_putchar_fd(c, 1);
 	else if (c == 'c')
-		return (ft_putchar_fd((va_arg(arg, int)), 1));
+		print_len += ft_putchar_fd(va_arg(args, int), 1);
 	else if (c == 's')
-		return (ft_putstr_fd(va_arg(arg, char *), 1));
-	else if (c == 'x')
-		return (ft_putnbr_hex_fd(va_arg(arg, unsigned int), 1, 'a'));
-	else if (c == 'X')
-		return (ft_putnbr_hex_fd(va_arg(arg, unsigned int), 1, 'A'));
+		print_len += ft_putstr_fd(va_arg(args, char *), 1);
 	else if (c == 'p')
-		return (ft_putptr_fd(va_arg(arg, void *), 1));
-	else if (c == 'i' || c == 'd')
-		return (ft_putnbr_fd(va_arg(arg, int), 1));
+		print_len += ft_put_ptr(va_arg(args, uintptr_t));
+	else if (c == 'd' || c == 'i')
+		print_len += ft_putnbr_fd(va_arg(args, int), 1);
 	else if (c == 'u')
-		return (ft_putnbr_u_fd(va_arg(arg, unsigned), 1));
-	return (0);
+		print_len += ft_putnbr_base_fd(va_arg(args, unsigned int), BASE10, 1);
+	else if (c == 'x')
+		print_len += ft_putnbr_base_fd(va_arg(args, unsigned int), BASE16, 1);
+	else if (c == 'X')
+		print_len += ft_putnbr_base_fd(va_arg(args, unsigned int), BASE16UP, 1);
+	return (print_len);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(const char *form, ...)
 {
-	int		count;
-	size_t	i;
-	va_list	arg;
+	int			i;
+	int			count;
+	va_list		args;
 
+	va_start (args, form);
 	i = 0;
 	count = 0;
-	if (format == NULL)
+	if (!form)
 		return (-1);
-	va_start(arg, format);
-	while (format[i])
+	while (form[i] != '\0')
 	{
-		if (format[i] == '%')
-			count += check_param(arg, format[++i]);
+		if (form[i] == '%' && form[i + 1])
+			count += format(form[++i], args);
 		else
-		{
-			write(1, &(format[i]), 1);
-			count++;
-		}
+			count += ft_putchar_fd(form[i], 1);
 		i++;
 	}
-	va_end(arg);
+	va_end(args);
 	return (count);
 }
+
+/*
+int main()
+{
+	char str[] = "virgola";
+	char c  = 's';
+	int	n = 1;
+	int nb = 0;
+	int xs = 42;
+	int dub = 43;
+	const char *ptr = "42";
+	// generic test
+	ft_printf("ciao %cono %s, %cono %d gattin%i\n", c, str, c, n, nb);
+	printf("ciao %cono %s, %cono %d gattin%i\n", c, str, c, n, nb);
+
+	ft_printf("%x l%uks better than %X\n", xs, dub, xs);
+	printf("%x l%uks better than %X\n", xs, dub, xs);
+
+	ft_printf("Hell's address is %p\n", ptr);
+	printf("Hell's address is %p\n", ptr);
+
+	// Limit cases
+	ft_printf("Max int: %d\n", INT_MAX);
+	printf("Max int: %d\n", INT_MAX);
+
+	ft_printf("Min int: %d\n", INT_MIN);
+	printf("Min int: %d\n", INT_MIN);
+
+	ft_printf("Max unsigned int: %u\n", UINT_MAX);
+	printf("Max unsigned int: %u\n", UINT_MAX);
+
+	ft_printf("Null pointer: %p\n", NULL);
+	printf("Null pointer: %p\n", NULL);
+
+	ft_printf("Empty string: %s\n", "");
+	printf("Empty string: %s\n", "");
+
+	ft_printf("Percent sign: %%\n");
+	printf("Percent sign: %%\n");
+
+
+	// NULL and edge cases
+	ft_printf(NULL);
+   	printf(NULL); //skips it
+    ft_printf("");
+    printf(""); //SKIPS IT
+	ft_printf("%s\n", NULL);
+	printf("%s\n", NULL); //prints (NULL)
+    ft_printf("%s\n", "");
+	printf("%s\n", "");//prints empty space
+
+    // Extreme numbers
+    ft_printf("%d\n", INT_MIN); //OK
+    ft_printf("%d\n", INT_MAX); //OK
+    ft_printf("%x\n", UINT_MAX);//OK
+    ft_printf("%X\n", UINT_MAX);//OK
+
+
+    // Multiple % signs
+    ft_printf("%%%%%%%%%%\n");
+	printf("%%%%%%%%%%\n");
+
+    // Zero values
+    ft_printf("%d%x%X%p\n", 0, 0, 0, NULL);
+	printf("%d%x%X%p\n", 0, 0, 0, NULL);
+} */

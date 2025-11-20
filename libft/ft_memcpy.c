@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 11:13:58 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
+/*   Created: 2024/11/25 15:41:28 by giomastr          #+#    #+#             */
+/*   Updated: 2024/12/16 12:47:54 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,38 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
+	size_t			i;
+	unsigned char	*s;
+	unsigned char	*d;
 
-	if (!dest && !src && n > 0)
-		return (NULL);
 	d = (unsigned char *)dest;
 	s = (unsigned char *)src;
-	while (n > 0)
+	i = 0;
+	if (n == 0 || (!dest && !src))
+		return (dest);
+	while (i < n)
 	{
-		*d = *s;
-		d++;
-		s++;
-		n--;
+		d[i] = s[i];
+		i++;
 	}
 	return (dest);
 }
+/* 
+int main()
+{
+    char src[50] = "Hello, World!";
+    char dest[50];
+
+    printf("Source string: %s\n", src);
+
+    // Copy the source string to the destination string
+    ft_memcpy(dest, src, strlen(src) + 1); // +1 to include the null terminator
+    printf("Destination string after memcpy: %s\n", dest);
+
+    // Copy part of the source string to the destination string
+    ft_memcpy(dest, src, 5);
+    dest[5] = '\0'; // Null-terminate the string
+    printf("Destination string after copying 5 characters: %s\n", dest);
+
+    return 0;
+} */
