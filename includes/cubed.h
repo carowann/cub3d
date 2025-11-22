@@ -25,7 +25,7 @@
 /***** STRUCTS *****/
 /////////////////////
 
-typedef struct s_image//struct as required by mlx doc
+typedef struct s_image // struct as required by mlx doc
 {
 	// void	*img_ptr; //points to image struct
 	// char	*pix_ptr; //points to actual pixels
@@ -34,7 +34,7 @@ typedef struct s_image//struct as required by mlx doc
 	// int		line_len; //impo
 } t_image;
 
-typedef struct s_env // environment
+typedef struct s_env // environment appearance
 {
 	char	*no;
 	char    *so;
@@ -45,7 +45,7 @@ typedef struct s_env // environment
 	char    **map;
 }	t_env;
 
-typedef struct	s_cubed
+typedef struct	s_cubed // main struct
 {
 	char	*name;//link to av[1] in main to pass mand o julia check if ess
 	char	*addr;
