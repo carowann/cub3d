@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
+#    By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2025/11/20 18:09:55 by giomastr         ###   ########.fr        #
+#    Updated: 2025/11/22 15:24:49 by cwannhed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ MLX_URL = https://github.com/42Paris/minilibx-linux.git
 
 INCLUDES = -I./includes -I./$(LIBFT_DIR)
 
-SRCS	= src/cubed.c \
+SRCS	= src/main.c \
+	src/parser.c \
 
 CFLAGS = -g -Wall -Werror -Wextra
 
@@ -42,19 +43,19 @@ $(MLX_DIR)/libmlx.a:
 	$(MAKE) -C $(MLX_DIR) --no-print-directory
 
 $(LIBFT):
-# 	@make --no-print-directory -C $(LIBFT_DIR)
+	@make --no-print-directory -C $(LIBFT_DIR)
 
 $(NAME): $(LIBFT) $(SRCS)
 	@cc $(SRCS) $(INCLUDES) $(CFLAGS) $(LIBFT) $(MLX_LIBS) -o $(NAME)
 	@$(MAKE) luna
-
+	@$(MAKE) text
 
 clean:
-# 	@make --no-print-directory -C $(LIBFT_DIR) clean
+	@make -C $(LIBFT_DIR) clean
 	@$(MAKE) txtcln
 
 fclean: clean
-# 	@make --no-print-directory -C $(LIBFT_DIR) fclean
+	@make  -C $(LIBFT_DIR) fclean
 	@rm -f $(NAME)
 	@$(MAKE) txtfcln
 

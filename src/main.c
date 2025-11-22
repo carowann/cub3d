@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 17:25:33 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
+/*   Created: 2025/11/19 17:17:07 by giomastr          #+#    #+#             */
+/*   Updated: 2025/11/22 15:24:26 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-int	ft_isascii(int c)
+int	main(int argc, char **argv)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
+	// void	*mlx;
+	// void	*win;
+
+	//validation  and parsing of arguments
+	check_input(argc, argv);
+	//validation and parsing of map
+	//initialization of mlx and window
+
+	// mlx = mlx_init();
+	// if (!mlx)
+	// 	return (1);
+	// win = mlx_new_window(mlx, 800, 600, "Cub3D");
+	// mlx_loop(mlx);
+
+	//event loop
+	//cleanup and exit
 	return (0);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:57:19 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/19 18:59:51 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/11/22 15:06:17 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "cub3d.h"
 
 // void	init_data(t_cubed *cubd)
 // {
