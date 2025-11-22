@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:17:51 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/22 15:21:48 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/22 15:30:43 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,29 @@ int	check_input(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	return (0);
+}
+
+void	read_map(char *path)
+{
+	int	fd;
+
+	//open file
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_printfd(STDERR_FILENO, "Error\nFailed to open file: %s\n", path);
+		exit(EXIT_FAILURE);
+	}
+	//read line by line
+	//store lines in data structure
+	while (1)
+	{
+		char *line = get_next_line(fd);
+		if (!line)
+			break;
+		//process line (e.g., store in structure)
+		free(line);
+	}
+	//close file
+	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:17:07 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/22 15:24:26 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/22 15:40:27 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 
 	//validation  and parsing of arguments
 	check_input(argc, argv);
+	//parse_scene(argv[1]);
 	//validation and parsing of map
 	//initialization of mlx and window
 
