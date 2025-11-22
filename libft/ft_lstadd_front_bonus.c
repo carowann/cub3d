@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_ptr.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/15 17:37:25 by giomastr          #+#    #+#             */
-/*   Updated: 2025/01/23 16:39:02 by giomastr         ###   ########.fr       */
+/*   Created: 2024/12/03 10:47:41 by cwannhed          #+#    #+#             */
+/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_put_ptr(uintptr_t ptr)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	int	count;
-
-	count = 0;
-	if (!ptr)
-		count += ft_putstr_fd("(nil)", 1);
-	if (ptr)
-	{
-		count += ft_putstr_fd("0x", 1);
-		count += ft_putnbr_base_fd(ptr, BASE16, 1);
-	}
-	return (count);
+	new->next = *lst;
+	*lst = new;
 }

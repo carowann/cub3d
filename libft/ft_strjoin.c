@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 12:59:26 by giomastr          #+#    #+#             */
-/*   Updated: 2025/05/09 15:36:40 by giomastr         ###   ########.fr       */
+/*   Created: 2024/12/02 18:13:15 by cwannhed          #+#    #+#             */
+/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,29 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
+	char	*str;
 	size_t	i;
 	size_t	j;
-	size_t	tot_len;
-	char	*joined;
 
-	if (!s1 || !s2)
-		return (NULL);
-	tot_len = ft_strlen(s1) + ft_strlen(s2);
-	joined = (char *)ft_calloc(tot_len + 1, sizeof(char));
-	if (!joined)
+	if (!s1)
+		return ((ft_strndup(s2, ft_strlen(s2))));
+	if (!s2)
+		return (ft_strndup(s1, ft_strlen(s1)));
+	str = (char *)ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
+	if (!str)
 		return (NULL);
 	i = 0;
-	while (s1[i] != '\0')
+	while (s1[i])
 	{
-		joined[i] = s1[i];
+		str[i] = s1[i];
 		i++;
 	}
 	j = 0;
 	while (s2[j])
 	{
-		joined[i++] = s2[j++];
+		str[i] = s2[j];
+		i++;
+		j++;
 	}
-	joined[i] = '\0';
-	return (joined);
+	return (str);
 }
-/*
-int main()
-{
-	char s1[] = "bella ";
-	char s2[] = "zi0";
-	printf("%s\n", ft_strjoin(s1, s2));
-	return 0;
-} */

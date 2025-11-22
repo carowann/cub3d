@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 17:19:52 by giomastr          #+#    #+#             */
-/*   Updated: 2024/12/16 12:38:02 by giomastr         ###   ########.fr       */
+/*   Created: 2024/11/24 18:06:22 by cwannhed          #+#    #+#             */
+/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,18 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	len;
+	char			*last_ptr;
+	unsigned char	chr;
 
-	len = ft_strlen(s);
-	if (c > 127)
-		c = c % 128;
-	while (len >= 0)
+	last_ptr = NULL;
+	chr = (unsigned char)c;
+	while (*s)
 	{
-		if ((char)c == *(s + len))
-			return ((char *)(s + len));
-		len--;
+		if (*s == chr)
+			last_ptr = (char *)s;
+		s++;
 	}
-	if (c == '\0')
-		return ((char *)(s + len));
-	return (NULL);
+	if (chr == '\0')
+		return ((char *)s);
+	return (last_ptr);
 }
-/* 
-int main()
-{
-	char  s[] = "beluga";
-	printf("%s\n", ft_strrchr(s, 'g'));
-	printf("%s\n", strrchr(s, 'g'));
-
-	printf("%s\n", ft_strrchr(s, 'l'));
-	printf("%s\n", strrchr(s, 'l'));
-
-	printf("%s\n", ft_strrchr(s, 'c'));
-	printf("%s\n", strrchr(s, 'c'));
-	return 0;
-} */

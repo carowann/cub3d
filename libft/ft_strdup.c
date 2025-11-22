@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lzorzit <lzorzit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 19:03:13 by giomastr          #+#    #+#             */
-/*   Updated: 2024/12/03 19:12:24 by giomastr         ###   ########.fr       */
+/*   Created: 2024/12/02 18:12:33 by cwannhed          #+#    #+#             */
+/*   Updated: 2025/09/26 17:57:37 by lzorzit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,19 @@
 
 char	*ft_strdup(const char *s)
 {
+	char	*str;
 	int		i;
-	int		len;
-	char	*dup;
+	size_t	s_len;
 
-	i = 0;
-	len = ft_strlen(s);
-	dup = (char *)malloc((sizeof(char)) * len + 1);
-	if (!dup)
+	s_len = ft_strlen(s);
+	str = (char *)ft_calloc(s_len + 1, sizeof(char));
+	if (!str)
 		return (NULL);
-	while (i < len)
+	i = 0;
+	while (s[i])
 	{
-		dup[i] = s[i];
+		str[i] = s[i];
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	return (str);
 }
-/* int main()
-{
-	char s[] = "cristoddio";
-	printf("%s\n", ft_strdup(s));
-	return 0;
-} */ 

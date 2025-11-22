@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 17:25:33 by cwannhed          #+#    #+#             */
+/*   Created: 2025/03/20 16:58:45 by cwannhed          #+#    #+#             */
 /*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+char	*ft_strndup(const char *s, size_t n)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	char	*str;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	str = (char *)ft_calloc(n + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (s[i] && i < n)
+	{
+		str[i] = s[i];
+		i++;
+	}
+	return (str);
 }

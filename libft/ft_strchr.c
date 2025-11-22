@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/30 19:05:46 by giomastr          #+#    #+#             */
-/*   Updated: 2024/12/16 13:03:55 by giomastr         ###   ########.fr       */
+/*   Created: 2024/11/20 18:13:49 by cwannhed          #+#    #+#             */
+/*   Updated: 2025/04/25 15:19:26 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,18 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	if (c > 127)
-		c = c % 128;
+	unsigned char	chr;
+
+	if (!s)
+		return (NULL);
+	chr = (unsigned char)c;
 	while (*s)
 	{
-		if (*s == (char)c)
+		if (*s == chr)
 			return ((char *)s);
 		s++;
 	}
-	if (c == '\0')
+	if (chr == '\0')
 		return ((char *)s);
 	return (NULL);
 }
-/* 
-int main()
-{
-	char s[] = "diolupetto";
-
-	printf("%s\n", ft_strchr(s, 1024));
-	printf("%s\n", strchr(s, 1024));
-	//printf("%s\n", ft_strchr(s, 'l'));
-	//printf("%s\n", strchr(s, 'l'));
-	//printf("%s\n", ft_strchr(s, 'a'));
-	//printf("%s\n", strchr(s, 'a'));
-	return 0;
-} */
