@@ -6,7 +6,7 @@
 #    By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2025/11/22 15:24:49 by cwannhed         ###   ########.fr        #
+#    Updated: 2025/11/24 16:52:46 by cwannhed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,10 @@ INCLUDES = -I./includes -I./$(LIBFT_DIR)
 
 SRCS	= src/main.c \
 	src/parser.c \
+	src/init.c \
+	src/cleanup.c \
+	src/game_engine.c \
+	src/test_map.c \
 
 CFLAGS = -g -Wall -Werror -Wextra
 

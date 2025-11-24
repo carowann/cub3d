@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   game_engine.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/19 17:17:07 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/24 16:44:20 by cwannhed         ###   ########.fr       */
+/*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
+/*   Updated: 2025/11/24 17:03:12 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(void)
+void	game_engine_loop(t_data *data)
 {
-	t_data	data;
-
-	init_data(&data);
-	init_test_map(&data);  // mappa hardcoded
-	init_mlx(&data);
-	game_engine_loop(&data);
-	cleanup_and_exit(&data, EXIT_SUCCESS, MSG_NONE);
-	return (0);
+	// Placeholder for the main game loop logic
+	// This would typically include rendering, input handling, etc.
+	mlx_hook(data->win,
+		DestroyNotify,
+		SubstructureNotifyMask,
+		cleanup_and_exit,
+		data);
+	mlx_loop(data->mlx);
 }

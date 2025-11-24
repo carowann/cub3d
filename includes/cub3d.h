@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/22 15:23:59 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/24 17:05:44 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+# include <X11/keysym.h>
+# include <X11/X.h>
 
-// # define WIDTH 500
-// # define HEIGHT 500
+# define WINDOW_WIDTH 500
+# define WINDOW_HEIGHT 500
 
 /* ========================= */
 /*           KEYS           */
@@ -35,44 +37,52 @@
 /*        STRUCTURES         */
 /* ========================= */
 
-typedef struct s_image//struct as required by mlx doc
+enum e_msg_codes
 {
-	// void	*img_ptr; //points to image struct
-	// char	*pix_ptr; //points to actual pixels
-	// int		bitxpix; //bits per pixel - says it should be 32
-	// int		endian; //unused?
-	// int		line_len; //impo
-} t_image;
+	MSG_NONE,
+	MSG_N_ARGS,
+	MSG_CUB_EXT,
+	MSG_INIT_MLX,
+	MSG_WINDOW_FAIL,
+	MSG_IMG_FAIL,
+	MSG_ADDR_FAIL
+};
 
-typedef struct s_env // environment
+typedef struct s_data
 {
-	char	*no;
-	char    *so;
-	char    *we;
-	char    *ea;
-	int     floor_color;
-	int     ceiling_color;
-	char    **map;
-}	t_env;
-
-typedef struct	s_cubed
-{
-	char	*name;//link to av[1] in main to pass mand o julia check if ess
+	void	*mlx;
+	void	*win;
+	void	*img;
 	char	*addr;
-	int		iter_def; //for image quality and speed
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 
-	//image struct
-	t_image	img;
-	//mlx actions
-	void	*start_mlx; //connect to mlx init
-	void	*mlx_win; //connect to new window
-} t_cubed;
+	// Mappa
+	int		map[10][10];
+	int		map_width;
+	int		map_height;
+
+	// Player
+	double	player_x;
+	double	player_y;
+	double	player_dir_x;
+	double	player_dir_y;
+	double	plane_x;
+	double	plane_y;
+} t_data;
 
 
 /* ========================= */
 /*       FUNCTIONS           */
 /* ========================= */
 
-int	check_input(int argc, char **argv);
+int		check_input(int argc, char **argv);
+void	read_map(char *path);
+void	init_data(t_data *data);
+void	init_mlx(t_data *data);
+void	init_test_map(t_data *data);
+void	game_engine_loop(t_data *data);
+int		cleanup_and_exit(t_data *data, int exit_code, int msg_code);
 
 #endif

@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/19 17:17:07 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/24 16:44:20 by cwannhed         ###   ########.fr       */
+/*   Created: 2025/11/24 16:43:20 by cwannhed          #+#    #+#             */
+/*   Updated: 2025/11/24 16:43:31 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(void)
+void init_test_map(t_data *data)
 {
-	t_data	data;
+	int	i;
+	int	j;
 
-	init_data(&data);
-	init_test_map(&data);  // mappa hardcoded
-	init_mlx(&data);
-	game_engine_loop(&data);
-	cleanup_and_exit(&data, EXIT_SUCCESS, MSG_NONE);
-	return (0);
+	data->map_width = 10;
+	data->map_height = 10;
+	for (i = 0; i < data->map_height; i++)
+	{
+		for (j = 0; j < data->map_width; j++)
+		{
+			if (i == 0 || i == data->map_height - 1 || j == 0 || j == data->map_width - 1)
+				data->map[i][j] = 1; // Wall
+			else
+				data->map[i][j] = 0; // Empty space
+		}
+	}
 }
