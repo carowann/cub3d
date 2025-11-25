@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 10:39:12 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:03:30 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_data
 int		check_input(int argc, char **argv);
 void	read_map(char *path);
 void	init_data(t_data *data);
-void	init_mlx(t_data *data);
+void	init_mlx(t_mlx *mlx, t_data *data);
 void	init_test_map(t_data *data);
 void	game_loop(t_data *data);
 int		cleanup_and_exit(t_data *data, int exit_code, int msg_code);

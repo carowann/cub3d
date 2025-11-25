@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:27:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 09:49:14 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:08:22 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,21 @@ int	cleanup_and_exit(t_data *data, int exit_code, int msg_code)
 {
 	if (msg_code)
 		print_error_message(msg_code);
-	if (data->img)
+	if (data->mlx && data->mlx->img)
+		mlx_destroy_image(data->mlx->mlx, data->mlx->img);
+	if (data->mlx && data->mlx->win)
+		mlx_destroy_window(data->mlx->mlx, data->mlx->win);
+	if (data->mlx && data->mlx->mlx)
 	{
-		mlx_destroy_image(data->mlx, data->img);
+		mlx_destroy_display(data->mlx->mlx);
+		free(data->mlx->mlx);
 	}
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)
-	{
-		mlx_destroy_display(data->mlx);
 		free(data->mlx);
-	}
+	if (data->map)
+		free(data->map);
+	if (data->player)
+		free(data->player);
 	exit(exit_code);
 }
 
