@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:27:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 12:08:22 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:47:07 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,56 @@ static void	print_error_message(int msg_code)
 		ft_printfd(STDERR_FILENO, "Error\nFailed to get image address.\n");
 	}
 
+static void	free_mlx(t_mlx *mlx)
+{
+	if (mlx->img)
+		mlx_destroy_image(mlx->mlx, mlx->img);
+	if (mlx->win)
+		mlx_destroy_window(mlx->mlx, mlx->win);
+	if (mlx->mlx)
+	{
+		mlx_destroy_display(mlx->mlx);
+		free(mlx->mlx);
+	}
+	free(mlx);
+}
+
+static void	free_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	if (map->grid)
+		free_matrix((void **)map->grid);
+	free(map);
+}
+
+void	free_matrix(void **matrix)
+{
+	int	i;
+
+	i = 0;
+	if (!matrix)
+		return ;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+}
+
 int	cleanup_and_exit(t_data *data, int exit_code, int msg_code)
 {
+	int	i;
+
+	i = 0;
 	if (msg_code)
 		print_error_message(msg_code);
-	if (data->mlx && data->mlx->img)
-		mlx_destroy_image(data->mlx->mlx, data->mlx->img);
-	if (data->mlx && data->mlx->win)
-		mlx_destroy_window(data->mlx->mlx, data->mlx->win);
-	if (data->mlx && data->mlx->mlx)
-	{
-		mlx_destroy_display(data->mlx->mlx);
-		free(data->mlx->mlx);
-	}
 	if (data->mlx)
-		free(data->mlx);
+		free_mlx(data->mlx);
 	if (data->map)
-		free(data->map);
+		free_map(data->map);
 	if (data->player)
 		free(data->player);
 	exit(exit_code);

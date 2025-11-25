@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 12:02:46 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/25 13:53:08 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	init_data(t_data	*data)
 	data->map->width = 0;
 	data->map->height = 0;
 }
-
 
 void init_mlx(t_mlx *mlx, t_data *data)
 {

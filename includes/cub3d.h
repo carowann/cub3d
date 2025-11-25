@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 12:03:30 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/25 17:33:13 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
+	double	time_curr_frame;
+	double	time_last_frame;
 } t_player;
 
 typedef struct s_map
 {
-	int	grid[10][10]; // Example fixed size, adjust as needed
+	int	**grid; // Example fixed size, adjust as needed
 	int	width;
 	int	height;
 	//textures
@@ -85,6 +87,21 @@ typedef struct s_data
 	t_player	*player;
 } t_data;
 
+typedef struct s_ray
+{
+	int		step_x; //step in x direction
+	int		step_y; //step in y direction
+	int		hit; //was there a wall hit?
+	int		side; //was a NS or a EW wall hit?
+	double	camera_x; //x-coordinate in camera space
+	double	ray_dir_x; //ray direction x
+	double	ray_dir_y; //ray direction y
+	double	side_dist_x; //initial side distance in x
+	double	side_dist_y; //initial side distance in y
+	double	delta_dist_x; //length of ray from one x-side to next x-side
+	double	delta_dist_y; //length of ray from one y-side to next y-side
+	double	perp_wall_dist; //perpendicular distance to the wall
+} t_ray;
 
 /* ========================= */
 /*       FUNCTIONS           */
@@ -94,9 +111,13 @@ int		check_input(int argc, char **argv);
 void	read_map(char *path);
 void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
-void	init_test_map(t_data *data);
+void	test_map(t_data *data); // mappa hardcoded
 void	game_loop(t_data *data);
 int		cleanup_and_exit(t_data *data, int exit_code, int msg_code);
 int		handle_close_window(t_data *data);
+void	raycasting(t_data *data);
+void	free_matrix(void **matrix);
+void	test_player(t_player *player); // player hardcoded
+void	draw_vertical_line(t_data *data, int x, int start, int end, int color);
 
 #endif

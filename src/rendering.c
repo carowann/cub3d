@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_loop.c                                        :+:      :+:    :+:   */
+/*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 15:53:30 by cwannhed         ###   ########.fr       */
+/*   Created: 2025/11/25 14:42:35 by cwannhed          #+#    #+#             */
+/*   Updated: 2025/11/25 17:20:58 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	render_frame(t_data *data)
+void	draw_vertical_line(t_data *data, int x, int start, int end, int color)
 {
-	//update player position
-	raycasting(data);
-	mlx_put_image_to_window(data->mlx->mlx, data->mlx->win, data->mlx->img, 0, 0);
-	return (0);
-}
+	int	y;
+	int	*img;
 
-void	game_loop(t_data *data)
-{
-	mlx_hook(data->mlx->win,
-		DestroyNotify,
-		SubstructureNotifyMask,
-		handle_close_window,
-		data);
-	mlx_loop_hook(data->mlx->mlx, render_frame, data);
-	mlx_loop(data->mlx->mlx);
+	img = (int *)data->mlx->addr;
+	y = 0;
+	while (y < WINDOW_HEIGHT)
+	{
+		if (y >= start && y <= end)
+			img[y * (data->mlx->line_length / 4) + x] = color;
+		else
+			img[y * (data->mlx->line_length / 4) + x] = 0x000000; // Black for ceiling and floor
+		y++;
+	}
 }

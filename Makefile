@@ -6,7 +6,7 @@
 #    By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2025/11/25 09:47:59 by cwannhed         ###   ########.fr        #
+#    Updated: 2025/11/25 16:15:06 by cwannhed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRCS	= src/main.c \
 	src/cleanup.c \
 	src/game_loop.c \
 	src/test_map.c \
+	src/raycasting.c \
+	src/rendering.c
 
 CFLAGS = -g -Wall -Werror -Wextra
 
