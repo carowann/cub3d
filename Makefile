@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+         #
+#    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2025/11/22 15:24:49 by cwannhed         ###   ########.fr        #
+#    Updated: 2025/11/22 16:09:15 by giomastr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,8 @@ $(LIBFT):
 
 $(NAME): $(LIBFT) $(SRCS)
 	@cc $(SRCS) $(INCLUDES) $(CFLAGS) $(LIBFT) $(MLX_LIBS) -o $(NAME)
-	@$(MAKE) luna
 	@$(MAKE) text
+	@$(MAKE) luna
 
 clean:
 	@make -C $(LIBFT_DIR) clean
@@ -66,7 +66,7 @@ re: fclean all
 
 
 text:
-	@echo -e '\033[1;95m🌙In the name of the moon, compile $(NAME) ✨\033[0m'
+	@echo -e '\033[1;95m🌙 In the name of the moon, compile $(NAME) ✨\033[0m'
 
 txtcln:
 	@echo -e '\033[1;94mPartially cleaned $(NAME)🧼 \033[0m'

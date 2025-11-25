@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/22 15:23:59 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/24 15:55:55 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@
 /* ========================= */
 /*        STRUCTURES         */
 /* ========================= */
+
+typedef enum e_config
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	FLOOR,
+	CEIL,
+}	t_config;
+
 
 typedef struct s_image//struct as required by mlx doc
 {
