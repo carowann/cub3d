@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/24 15:55:55 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:21:19 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+# include <X11/keysym.h>
+# include <X11/X.h>
 
-// # define WIDTH 500
-// # define HEIGHT 500
+# define WINDOW_WIDTH 500
+# define WINDOW_HEIGHT 500
 
 /* ========================= */
 /*           KEYS           */
@@ -46,44 +48,77 @@ typedef enum e_config
 }	t_config;
 
 
-typedef struct s_image//struct as required by mlx doc
+typedef enum e_config
 {
-	// void	*img_ptr; //points to image struct
-	// char	*pix_ptr; //points to actual pixels
-	// int		bitxpix; //bits per pixel - says it should be 32
-	// int		endian; //unused?
-	// int		line_len; //impo
-} t_image;
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	FLOOR,
+	CEIL,
+}	t_config;
 
-typedef struct s_env // environment
-{
-	char	*no;
-	char    *so;
-	char    *we;
-	char    *ea;
-	int     floor_color;
-	int     ceiling_color;
-	char    **map;
-}	t_env;
 
-typedef struct	s_cubed
+enum e_msg_codes
 {
-	char	*name;//link to av[1] in main to pass mand o julia check if ess
+	MSG_NONE,
+	MSG_N_ARGS,
+	MSG_CUB_EXT,
+	MSG_INIT_MLX,
+	MSG_WINDOW_FAIL,
+	MSG_IMG_FAIL,
+	MSG_ADDR_FAIL
+};
+
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+} t_player;
+
+typedef struct s_map
+{
+	int	grid[10][10]; // Example fixed size, adjust as needed
+	int	width;
+	int	height;
+	//textures
+	//floor and ceiling colors
+} t_map;
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
 	char	*addr;
-	int		iter_def; //for image quality and speed
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+} t_mlx;
 
-	//image struct
-	t_image	img;
-	//mlx actions
-	void	*start_mlx; //connect to mlx init
-	void	*mlx_win; //connect to new window
-} t_cubed;
+typedef struct s_data
+{
+	t_mlx		*mlx;
+	t_map		*map;
+	t_player	*player;
+} t_data;
 
 
 /* ========================= */
 /*       FUNCTIONS           */
 /* ========================= */
 
-int	check_input(int argc, char **argv);
+int		check_input(int argc, char **argv);
+void	read_map(char *path);
+void	init_data(t_data *data);
+void	init_mlx(t_mlx *mlx, t_data *data);
+void	init_test_map(t_data *data);
+void	game_loop(t_data *data);
+int		cleanup_and_exit(t_data *data, int exit_code, int msg_code);
+int		handle_close_window(t_data *data);
 
 #endif

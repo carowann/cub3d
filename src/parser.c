@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:17:51 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/22 15:30:43 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:35:56 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,9 @@ static int	is_cub_file(char *filename)
 int	check_input(int argc, char **argv)
 {
 	if (argc != 2)
-	{
-		ft_printfd(STDERR_FILENO, "Error\nInvalid number of arguments.\n");
-		exit(EXIT_FAILURE);
-	}
+		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_N_ARGS);
 	if (!is_cub_file(argv[1]))
-	{
-		ft_printfd(STDERR_FILENO, "Error\nInvalid file extension. Expected .cub\n");
-		exit(EXIT_FAILURE);
-	}
+		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_CUB_EXT);
 	return (0);
 }
 
@@ -43,7 +37,6 @@ void	read_map(char *path)
 {
 	int	fd;
 
-	//open file
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
@@ -60,6 +53,5 @@ void	read_map(char *path)
 		//process line (e.g., store in structure)
 		free(line);
 	}
-	//close file
 	close(fd);
 }

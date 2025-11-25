@@ -6,7 +6,7 @@
 #    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2025/11/22 16:09:15 by giomastr         ###   ########.fr        #
+#    Updated: 2025/11/25 12:18:01 by giomastr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,10 @@ INCLUDES = -I./includes -I./$(LIBFT_DIR)
 
 SRCS	= src/main.c \
 	src/parser.c \
+	src/init.c \
+	src/cleanup.c \
+	src/game_loop.c \
+	src/test_map.c \
 
 CFLAGS = -g -Wall -Werror -Wextra
 
