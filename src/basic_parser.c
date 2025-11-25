@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   basic_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:17:51 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/24 16:35:56 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:51:04 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,33 @@ static int	is_cub_file(char *filename)
 
 int	check_input(int argc, char **argv)
 {
+	int		fd_map;
+
 	if (argc != 2)
 		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_N_ARGS);
 	if (!is_cub_file(argv[1]))
 		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_CUB_EXT);
-	return (0);
+	// return (0);
+	fd_map = open(argv[1], O_DIRECTORY);
+	if (fd_map > 0)
+	{
+		close(fd_map);
+		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_IS_DIR);
+	}
+	fd_map = open(argv[1], O_RDONLY);
+	if (fd_map < 0)
+		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_OPEN_FAIL);
+	return (fd_map); // CHECK THIS AS FROM SOLONG
 }
-
+// when we get here everything is checked already, we know file can be opend from folder
 void	read_map(char *path)
 {
 	int	fd;
 
 	fd = open(path, O_RDONLY);
-	if (fd < 0)
+	if (fd < 0) // check later whether to remove or not
 	{
-		ft_printfd(STDERR_FILENO, "Error\nFailed to open file: %s\n", path);
+		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_OPEN_FAIL);
 		exit(EXIT_FAILURE);
 	}
 	//read line by line

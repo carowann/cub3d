@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:52 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/22 16:24:43 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:52:14 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,7 @@
 // 	return (0);
 // }
 
-void	floodfill(t_mlx_win *window, char **map_mat, t_coord curr)
-{
-	const char	pos = map_mat[curr.y][curr.x];
 
-	if (pos == '1' || pos == 'G')
-		return ;
-	if (pos == 'C')
-		window->map.prcdio++;
-	if (pos == 'E')
-		window->map.prcmdnna++;
-	map_mat[curr.y][curr.x] = 'G';
-	floodfill(window, map_mat, (t_coord){curr.x, curr.y - 1});
-	floodfill(window, map_mat, (t_coord){curr.x, curr.y + 1});
-	floodfill(window, map_mat, (t_coord){curr.x - 1, curr.y});
-	floodfill(window, map_mat, (t_coord){curr.x + 1, curr.y});
-}
 
 int	ff_check(t_mlx_win *window)
 {
@@ -80,26 +65,6 @@ void	map_checks(t_mlx_win *window, int rows, int cols)
 		ft_exit(window, "Error - OVERFLOODfill", 13);
 }
 
-int	check_if_dir(t_mlx_win *window, int argc, char *argv[])
-{
-	int		fd_map;
-
-	if (argc != 2)
-		ft_exit(window, "Error - What are you doing babe\n", 1);
-	if (basic_check(argv[1]) == 0)
-		ft_exit(window, "Error - Wrong extension\n", 2);
-	fd_map = open(argv[1], O_DIRECTORY);
-	if (fd_map > 0)
-	{
-		close(fd_map);
-		ft_exit(window, "Error - It's a directory\n", 3);
-	}
-	fd_map = open(argv[1], O_RDONLY);
-	if (fd_map < 0)
-		ft_exit(window, "Error - Can't open file\n", 4);
-	return (fd_map);
-}
-
 int	check_lines(int rows, int cols, char **map_mat)//2
 {
 	int	i;
@@ -122,30 +87,7 @@ int	check_lines(int rows, int cols, char **map_mat)//2
 	return (1);
 }
 
-int	check_walls(char **map_mat, int rows, int cols)
-{
-	int	i;
-	int	j;
-	int	last_col;
 
-	i = 0;
-	last_col = cols - 1;
-	while (i < rows)
-	{
-		j = 0;
-		while (j < cols)
-		{
-			if (i == 0 || i == rows - 1 || j == 0 || j == last_col)
-			{
-				if (map_mat[i][j] != '1')
-					return (0);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
 
 int	count_elements(int rows, int cols, char **map, char to_check)
 {

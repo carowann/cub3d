@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:27:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 12:08:22 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:54:29 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ static void	print_error_message(int msg_code)
 		ft_printfd(STDERR_FILENO, "Error\nFailed to create image.\n");
 	else if (msg_code == MSG_ADDR_FAIL)
 		ft_printfd(STDERR_FILENO, "Error\nFailed to get image address.\n");
+	else if (msg_code == MSG_IS_DIR)
+		ft_printfd(STDERR_FILENO, "Error\nIt's a directory.\n");
+	else if (msg_code == MSG_OPEN_FAIL)
+		ft_printfd(STDERR_FILENO, "Error\nCannot open file.\n");
+	else if (msg_code == MSG_MAP_FAIL)
+		ft_printfd(STDERR_FILENO, "Error\nMap issues.\n");
+
 	}
 
 int	cleanup_and_exit(t_data *data, int exit_code, int msg_code)

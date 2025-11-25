@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 12:21:19 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:48:21 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+# include <bits/fcntl-linux.h>
+# include <stdbool.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
 
@@ -37,27 +39,15 @@
 /*        STRUCTURES         */
 /* ========================= */
 
-typedef enum e_config
-{
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
-	FLOOR,
-	CEIL,
-}	t_config;
-
-
-typedef enum e_config
-{
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
-	FLOOR,
-	CEIL,
-}	t_config;
-
+// typedef enum e_config
+// {
+// 	NORTH,
+// 	SOUTH,
+// 	EAST,
+// 	WEST,
+// 	FLOOR,
+// 	CEIL,
+// }	t_config;
 
 enum e_msg_codes
 {
@@ -67,7 +57,11 @@ enum e_msg_codes
 	MSG_INIT_MLX,
 	MSG_WINDOW_FAIL,
 	MSG_IMG_FAIL,
-	MSG_ADDR_FAIL
+	MSG_ADDR_FAIL,
+	MSG_IS_DIR,
+	MSG_OPEN_FAIL
+	// wrong elem in map
+	// wrong_path
 };
 
 typedef struct s_player
