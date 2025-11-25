@@ -14,15 +14,7 @@
 
 void	init_data(t_data *data)
 {
-	data->mlx = NULL;
-	data->win = NULL;
-	data->img = NULL;
-	data->addr = NULL;
-	data->bits_per_pixel = 0;
-	data->line_length = 0;
-	data->endian = 0;
-	data->map_width = 0;
-	data->map_height = 0;
+
 }
 
 void init_mlx(t_data *data)

@@ -6,7 +6,7 @@
 #    By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2025/11/24 16:52:46 by cwannhed         ###   ########.fr        #
+#    Updated: 2025/11/25 09:47:59 by cwannhed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS	= src/main.c \
 	src/parser.c \
 	src/init.c \
 	src/cleanup.c \
-	src/game_engine.c \
+	src/game_loop.c \
 	src/test_map.c \
 
 CFLAGS = -g -Wall -Werror -Wextra

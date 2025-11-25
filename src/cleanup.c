@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:27:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/24 16:42:42 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/25 09:49:14 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,10 @@ int	cleanup_and_exit(t_data *data, int exit_code, int msg_code)
 		free(data->mlx);
 	}
 	exit(exit_code);
+}
+
+int	handle_close_window(t_data *data)
+{
+	cleanup_and_exit(data, EXIT_SUCCESS, MSG_NONE);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/24 17:05:44 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/25 10:39:12 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,26 @@ enum e_msg_codes
 	MSG_ADDR_FAIL
 };
 
-typedef struct s_data
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+} t_player;
+
+typedef struct s_map
+{
+	int	grid[10][10]; // Example fixed size, adjust as needed
+	int	width;
+	int	height;
+	//textures
+	//floor and ceiling colors
+} t_map;
+
+typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
@@ -57,19 +76,13 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+} t_mlx;
 
-	// Mappa
-	int		map[10][10];
-	int		map_width;
-	int		map_height;
-
-	// Player
-	double	player_x;
-	double	player_y;
-	double	player_dir_x;
-	double	player_dir_y;
-	double	plane_x;
-	double	plane_y;
+typedef struct s_data
+{
+	t_mlx		*mlx;
+	t_map		*map;
+	t_player	*player;
 } t_data;
 
 
@@ -82,7 +95,8 @@ void	read_map(char *path);
 void	init_data(t_data *data);
 void	init_mlx(t_data *data);
 void	init_test_map(t_data *data);
-void	game_engine_loop(t_data *data);
+void	game_loop(t_data *data);
 int		cleanup_and_exit(t_data *data, int exit_code, int msg_code);
+int		handle_close_window(t_data *data);
 
 #endif
