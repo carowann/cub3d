@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:43:20 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/27 10:35:56 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/27 12:29:06 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ void test_map(t_data *data)
 			{1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
-	data->map->grid = ft_calloc(data->map->height, sizeof(int *));
+	data->map->grid = ft_calloc(data->map->height + 1, sizeof(int *));
 	if (!data->map->grid)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_NONE);
+		cleanup_and_exit(data, EXIT_FAILURE, NULL);
 	while (i < data->map->height)
 	{
 		int j = 0;
-		data->map->grid[i] = ft_calloc(data->map->width, sizeof(int));
+		data->map->grid[i] = ft_calloc(data->map->width + 1, sizeof(int));
 		if (!data->map->grid[i])
-			cleanup_and_exit(data, EXIT_FAILURE, MSG_NONE);
+			cleanup_and_exit(data, EXIT_FAILURE, NULL);
 		while (j < data->map->width)
 		{
 			data->map->grid[i][j] = world_map[i][j];

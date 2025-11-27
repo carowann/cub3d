@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/26 15:12:46 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:24:42 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,62 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
+# include <sys/time.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+
+/* ========================= */
+/*         DEFINES           */
+/* ========================= */
 
 # define WINDOW_WIDTH 500
 # define WINDOW_HEIGHT 500
 
-/* ========================= */
-/*           KEYS           */
-/* ========================= */
+// # define XK_w 0x0077  /* Move up */
+// # define XK_a 0x0061  /* Move Left */
+// # define XK_s 0x0073  /* Move down */
+// # define XK_d 0x0064  /* Move Right */
+// # define XK_Left 0xff51  /* Camera move left */
+// # define XK_Right 0xff53  /* Camera move right */
+// # define XK_Escape 0xff1b
 
-# define XK_w 0x0077  /* Move up */
-# define XK_a 0x0061  /* Move Left */
-# define XK_s 0x0073  /* Move down */
-# define XK_d 0x0064  /* Move Right */
-# define XK_Left 0xff51  /* Camera move left */
-# define XK_Right 0xff53  /* Camera move right */
-# define XK_Escape 0xff1b
+# define MOVEMENT_SPEED_MULTIPLIER 5.0
+# define ROTATION_SPEED_MULTIPLIER 3.0
+
+# define WALL	1
+# define EMPTY	0
+
+# define UP	1
+# define DOWN	-1
+# define LEFT	-1
+# define RIGHT	1
+
+//Raycasting magic numbers
+# define DELTA_DIST_INFINITY 1e30
+# define STEP_X_LEFT -1
+# define STEP_X_RIGHT 1
+# define STEP_Y_UP -1
+# define STEP_Y_DOWN 1
+
+# define NS_WALL_SIDE	0
+# define EW_WALL_SIDE	1
+
+# define MSG_N_ARGS	"Error\nInvalid number of arguments.\n"
+# define MSG_CUB_EXT	"Error\nInvalid file extension. Expected .cub\n"
+# define MSG_INIT_MLX	"Error\nFailed to initialize MLX.\n"
+# define MSG_WINDOW_FAIL	"Error\nFailed to create window.\n"
+# define MSG_IMG_FAIL	"Error\nFailed to create image.\n"
+# define MSG_ADDR_FAIL	"Error\nFailed to get image address.\n"
+# define MSG_TIME_FAIL	"Error\nFailed to get current time.\n"
 
 /* ========================= */
 /*        STRUCTURES         */
 /* ========================= */
 
-enum e_msg_codes
+enum e_code
 {
-	MSG_NONE,
-	MSG_N_ARGS,
-	MSG_CUB_EXT,
-	MSG_INIT_MLX,
-	MSG_WINDOW_FAIL,
-	MSG_IMG_FAIL,
-	MSG_ADDR_FAIL
+	SUCCESS,
+	FAILURE
 };
 
 typedef struct s_player
@@ -59,14 +84,16 @@ typedef struct s_player
 	double	plane_y;
 	double	time_curr_frame;
 	double	time_last_frame;
+	double	move_speed;
+	double	rot_speed;
 } t_player;
 
 typedef struct s_map
 {
-	int	**grid; // Example fixed size, adjust as needed
+	int	**grid;
 	int	width;
 	int	height;
-	int	no_color; //later on change to texture paths
+	int	no_color;	//later on change to texture paths
 	int	so_color;	//later on change to texture paths
 	int	ea_color;	//later on change to texture paths
 	int	we_color;	//later on change to texture paths
@@ -123,11 +150,15 @@ void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
 void	test_map(t_data *data); // mappa hardcoded
 void	game_loop(t_data *data);
-int		cleanup_and_exit(t_data *data, int exit_code, int msg_code);
+int		cleanup_and_exit(t_data *data, int exit_code, char *msg);
 int		handle_close_window(t_data *data);
 void	raycasting(t_data *data);
 void	free_matrix(void **matrix);
 void	test_player(t_player *player); // player hardcoded
 void	draw_vertical_line(t_data *data, int x, int start, int end, int color);
+size_t	get_current_time(t_data *data);
+void	set_delta_distances(t_ray *ray);
+void	set_step_and_initial_side_distances(t_ray *ray, t_player *player);
+void	set_perpendicular_wall_distance(t_ray *ray, t_player *player);
 
 #endif

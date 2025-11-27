@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/26 15:14:34 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/27 16:54:05 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,22 @@
 
 void	init_data(t_data	*data)
 {
-	data->map = malloc(sizeof(t_map));
-	data->player = malloc(sizeof(t_player));
-	data->mlx = malloc(sizeof(t_mlx));
+	data->map = ft_calloc(1, sizeof(t_map));
+	data->player = ft_calloc(1, sizeof(t_player));
+	data->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!data->map || !data->player || !data->mlx)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_NONE);
-	// Initialize player position and direction
-	data->player->x = 5.0;
-	data->player->y = 5.0;
-	data->player->dir_x = -1.0;
+		cleanup_and_exit(data, EXIT_FAILURE, NULL);
+	init_mlx(data->mlx, data);
+	data->player->x = 0.0;
+	data->player->y = 0.0;
+	data->player->dir_x = 0.0;
 	data->player->dir_y = 0.0;
 	data->player->plane_x = 0.0;
-	data->player->plane_y = 0.66;
-	data->mlx->mlx = NULL;
-	data->mlx->win = NULL;
-	data->mlx->img = NULL;
-	data->mlx->addr = NULL;
-	data->mlx->bits_per_pixel = 0;
-	data->mlx->line_length = 0;
-	data->mlx->endian = 0;
+	data->player->plane_y = 0.0;
+	data->player->time_curr_frame = get_current_time(data);
+	data->player->time_last_frame = data->player->time_curr_frame;
+	data->player->move_speed = 0.0;
+	data->player->rot_speed = 0.0;
 	data->map->width = 0;
 	data->map->height = 0;
 }

@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/19 17:17:07 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/27 12:39:03 by cwannhed         ###   ########.fr       */
+/*   Created: 2025/11/27 12:35:52 by cwannhed          #+#    #+#             */
+/*   Updated: 2025/11/27 12:36:06 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(void)
+size_t	get_current_time(t_data *data)
 {
-	t_data	data;
+	struct timeval	tv;
 
-	//parse arguments and map file
-	init_data(&data);
-	test_map(&data);  // mappa hardcoded
-	test_player(data.player); // player hardcoded
-	game_loop(&data);
-	return (0);
+	if (gettimeofday(&tv, NULL) != SUCCESS)
+		cleanup_and_exit(data, EXIT_FAILURE, MSG_TIME_FAIL);
+	return (tv.tv_sec);
 }

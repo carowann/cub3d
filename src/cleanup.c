@@ -6,27 +6,16 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:27:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 14:47:07 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/27 14:07:28 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	print_error_message(int msg_code)
+static void	print_error_message(char *msg)
 {
-	if (msg_code == MSG_N_ARGS)
-		ft_printfd(STDERR_FILENO, "Error\nInvalid number of arguments.\n");
-	else if (msg_code == MSG_CUB_EXT)
-		ft_printfd(STDERR_FILENO, "Error\nInvalid file extension. Expected .cub\n");
-	else if (msg_code == MSG_INIT_MLX)
-		ft_printfd(STDERR_FILENO, "Error\nFailed to initialize MLX.\n");
-	else if (msg_code == MSG_WINDOW_FAIL)
-		ft_printfd(STDERR_FILENO, "Error\nFailed to create window.\n");
-	else if (msg_code == MSG_IMG_FAIL)
-		ft_printfd(STDERR_FILENO, "Error\nFailed to create image.\n");
-	else if (msg_code == MSG_ADDR_FAIL)
-		ft_printfd(STDERR_FILENO, "Error\nFailed to get image address.\n");
-	}
+	ft_printfd(STDERR_FILENO, "%s", msg);
+}
 
 static void	free_mlx(t_mlx *mlx)
 {
@@ -67,13 +56,13 @@ void	free_matrix(void **matrix)
 	free(matrix);
 }
 
-int	cleanup_and_exit(t_data *data, int exit_code, int msg_code)
+int	cleanup_and_exit(t_data *data, int exit_code, char *msg)
 {
 	int	i;
 
 	i = 0;
-	if (msg_code)
-		print_error_message(msg_code);
+	if (msg)
+		print_error_message(msg);
 	if (data->mlx)
 		free_mlx(data->mlx);
 	if (data->map)
@@ -85,6 +74,6 @@ int	cleanup_and_exit(t_data *data, int exit_code, int msg_code)
 
 int	handle_close_window(t_data *data)
 {
-	cleanup_and_exit(data, EXIT_SUCCESS, MSG_NONE);
+	cleanup_and_exit(data, EXIT_SUCCESS, NULL);
 	return (0);
 }
