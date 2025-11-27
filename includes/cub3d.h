@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 17:33:13 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/26 15:12:46 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+# include <math.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
 
@@ -65,8 +66,12 @@ typedef struct s_map
 	int	**grid; // Example fixed size, adjust as needed
 	int	width;
 	int	height;
-	//textures
-	//floor and ceiling colors
+	int	no_color; //later on change to texture paths
+	int	so_color;	//later on change to texture paths
+	int	ea_color;	//later on change to texture paths
+	int	we_color;	//later on change to texture paths
+	int	floor_color;
+	int	ceiling_color;
 } t_map;
 
 typedef struct s_mlx
@@ -93,6 +98,11 @@ typedef struct s_ray
 	int		step_y; //step in y direction
 	int		hit; //was there a wall hit?
 	int		side; //was a NS or a EW wall hit?
+	int		map_x; //current square of the map in x
+	int		map_y; //current square of the map in y
+	int		draw_start; //start of the line to draw
+	int		draw_end; //end of the line to draw
+	int		line_height; //height of the line to draw
 	double	camera_x; //x-coordinate in camera space
 	double	ray_dir_x; //ray direction x
 	double	ray_dir_y; //ray direction y
