@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/28 13:12:16 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:32:36 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 // # define XK_Right 0xff53  /* Camera move right */
 // # define XK_Escape 0xff1b
 
-# define MOVEMENT_SPEED_MULTIPLIER 5.0
-# define ROTATION_SPEED_MULTIPLIER 3.0
+# define MOVEMENT_SPEED_MULTIPLIER 3.0
+# define ROTATION_SPEED_MULTIPLIER 2.0
 
 # define WALL	1
 # define EMPTY	0
@@ -50,7 +50,8 @@
 # define LEFT	-1
 # define RIGHT	1
 
-//Raycasting magic numbers
+# define WALL_MARGIN 0.2
+
 # define DELTA_DIST_INFINITY 1e30
 # define STEP_X_LEFT -1
 # define STEP_X_RIGHT 1
@@ -166,5 +167,6 @@ void	set_step_and_initial_side_distances(t_ray *ray, t_player *player);
 void	set_perpendicular_wall_distance(t_ray *ray, t_player *player);
 void	move_forward_or_backward(t_map *map, t_player *player, int direction);
 void	rotate_left_or_right(t_player *player, int direction);
+void	print_error_message(char *msg);
 
 #endif

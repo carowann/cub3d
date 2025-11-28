@@ -6,16 +6,11 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:27:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/27 14:07:28 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:32:20 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-static void	print_error_message(char *msg)
-{
-	ft_printfd(STDERR_FILENO, "%s", msg);
-}
 
 static void	free_mlx(t_mlx *mlx)
 {

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:27:10 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/28 12:04:29 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:31:49 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void perform_dda(t_ray *ray, t_map *map)
 	ray->hit = 0;		  // was there a wall hit?
 	while (ray->hit == 0) // perform DDA
 	{
-		// jump to next map square, either in x-direction, or in y-direction
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->side_dist_x += ray->delta_dist_x;
@@ -32,24 +31,20 @@ static void perform_dda(t_ray *ray, t_map *map)
 			ray->map_y += ray->step_y;
 			ray->side = EW_WALL_SIDE;
 		}
-		// Check bounds FIRST
 		if (ray->map_x < 0 || ray->map_x >= map->width ||
 			ray->map_y < 0 || ray->map_y >= map->height)
 		{
-			ray->hit = 1; // Tratta come muro
+			ray->hit = 1;
 			break;
 		}
-		// Then check wall
-		if (map->grid[ray->map_y][ray->map_x] == 1) // Nota: [y][x] non [x][y]!
+		if (map->grid[ray->map_y][ray->map_x] == 1)
 			ray->hit = 1;
 	}
 }
 
 static void get_line_to_draw(t_ray *ray)
 {
-	//Calculate height of line to draw on screen
 	ray->line_height = (int)(WINDOW_HEIGHT / ray->perp_wall_dist);
-	//calculate lowest and highest pixel to fill in current stripe
 	ray->draw_start = -ray->line_height / 2 + WINDOW_HEIGHT / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;

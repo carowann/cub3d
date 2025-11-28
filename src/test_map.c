@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:43:20 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/28 12:15:24 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:34:33 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void test_map(t_data *data)
 		}
 		i++;
 	}
+	data->map->ceiling_color = 0x87CEEB; // Sky blue
+	data->map->floor_color = 0x228B22;   // Forest green
 }
 
 void	test_player(t_player *player)

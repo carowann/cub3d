@@ -6,11 +6,16 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:35:52 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/28 12:59:29 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:32:24 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	print_error_message(char *msg)
+{
+	ft_printfd(STDERR_FILENO, "%s", msg);
+}
 
 double	get_current_time(t_data *data)
 {
