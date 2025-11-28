@@ -6,7 +6,7 @@
 #    By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2025/11/27 14:43:28 by cwannhed         ###   ########.fr        #
+#    Updated: 2025/11/28 11:40:33 by cwannhed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS	= src/main.c \
 	src/raycasting.c \
 	src/rendering.c \
 	src/raycasting_data.c \
-	src/utils.c
+	src/utils.c \
+	src/movements.c \
 
 CFLAGS = -g -Wall -Werror -Wextra
 

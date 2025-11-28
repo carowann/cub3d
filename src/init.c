@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/27 16:54:05 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/28 12:46:39 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_data(t_data	*data)
 	data->player->plane_x = 0.0;
 	data->player->plane_y = 0.0;
 	data->player->time_curr_frame = get_current_time(data);
-	data->player->time_last_frame = data->player->time_curr_frame;
+	data->player->time_last_frame = 0.0;
 	data->player->move_speed = 0.0;
 	data->player->rot_speed = 0.0;
 	data->map->width = 0;

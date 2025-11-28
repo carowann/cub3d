@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/27 18:24:42 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/28 13:12:16 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 
+# include <stdio.h> //to remove
+
 /* ========================= */
 /*         DEFINES           */
 /* ========================= */
 
 # define WINDOW_WIDTH 500
 # define WINDOW_HEIGHT 500
+
+# define FRAME_TIME_SEC 0.01666667 // Approx 60 FPS
 
 // # define XK_w 0x0077  /* Move up */
 // # define XK_a 0x0061  /* Move Left */
@@ -78,8 +82,8 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
-	double	dir_x;
-	double	dir_y;
+	double	dir_x; //direction vector x
+	double	dir_y; //direction vector y
 	double	plane_x;
 	double	plane_y;
 	double	time_curr_frame;
@@ -156,9 +160,11 @@ void	raycasting(t_data *data);
 void	free_matrix(void **matrix);
 void	test_player(t_player *player); // player hardcoded
 void	draw_vertical_line(t_data *data, int x, int start, int end, int color);
-size_t	get_current_time(t_data *data);
+double	get_current_time(t_data *data);
 void	set_delta_distances(t_ray *ray);
 void	set_step_and_initial_side_distances(t_ray *ray, t_player *player);
 void	set_perpendicular_wall_distance(t_ray *ray, t_player *player);
+void	move_forward_or_backward(t_map *map, t_player *player, int direction);
+void	rotate_left_or_right(t_player *player, int direction);
 
 #endif

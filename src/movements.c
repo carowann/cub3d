@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/27 18:42:16 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/28 13:18:11 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	move_forward_or_backward(t_map *map, t_player *player, int direction)
 {
-	int	x_increment;
-	int	y_increment;
-	int	new_x;
-	int	new_y;
+	double	x_increment;
+	double	y_increment;
+	double	new_x;
+	double	new_y;
 
-	x_increment = (int)(player->dir_x * player->move_speed * direction);
-	y_increment = (int)(player->dir_y * player->move_speed * direction);
-	new_x = (int)(player->x + x_increment);
-	new_y = (int)(player->y + y_increment);
-	if (map->grid[(int)(player->y)][new_x] != WALL)
+	x_increment = (player->dir_x * player->move_speed * direction);
+	y_increment = (player->dir_y * player->move_speed * direction);
+	new_x = (player->x + x_increment);
+	new_y = (player->y + y_increment);
+	if (map->grid[(int)(player->y)][(int)new_x] != WALL)
 		player->x += x_increment;
-	if (map->grid[new_y][(int)(player->x)] != WALL)
+	if (map->grid[(int)new_y][(int)(player->x)] != WALL)
 		player->y += y_increment;
 }
 
-void	rotate_left_or_right(t_map *map, t_player *player, int direction)
+void	rotate_left_or_right(t_player *player, int direction)
 {
 	double	old_dir_x;
 	double	old_plane_x;
