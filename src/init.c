@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/28 12:46:39 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:41:50 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ void	init_data(t_data	*data)
 	data->map->height = 0;
 }
 
+/*
+** Initializes all MLX components needed for graphics rendering.
+** Sets up the MLX instance, creates a window, and prepares an image buffer.
+** The addr pointer is crucial: it's where we write pixel colors directly.
+** Instead of using slow mlx_pixel_put for each pixel, we modify addr directly
+** and then display the entire image at once with mlx_put_image_to_window.
+*/
 void init_mlx(t_mlx *mlx, t_data *data)
 {
 	mlx->mlx = mlx_init();

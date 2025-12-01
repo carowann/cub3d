@@ -6,12 +6,40 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/28 15:19:19 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:30:47 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/cub3d.h"
 
+/*
+** Moves the player forward or backward along their current direction.
+**
+** Movement calculation:
+** new_position = current_position + direction_vector * speed * direction
+** - direction_vector (dir_x, dir_y): where player is facing
+** - speed: calculated based on frame time (consistent across all FPS)
+** - direction: +1 for forward (W/Up), -1 for backward (S/Down)
+**
+** Collision detection with safety margin:
+** Instead of checking just the player's exact position, we check a small
+** area around them (margin) to prevent getting too close to walls.
+**
+** We check 4 corners around the player:
+** 1. Top-left:     (new_x - margin, new_y - margin)
+** 2. Top-right:    (new_x + margin, new_y - margin)
+** 3. Bottom-left:  (new_x - margin, new_y + margin)
+** 4. Bottom-right: (new_x + margin, new_y + margin)
+**
+** If ANY corner would enter a wall, movement is blocked.
+** This creates a "collision box" around the player, preventing:
+** - Clipping through walls
+** - Getting stuck in corners
+** - Walking too close to walls (sliding effect)
+**
+** Boundary checks:
+** Also prevents player from leaving the map bounds entirely.
+*/
 void move_forward_or_backward(t_map *map, t_player *player, int direction)
 {
 	double new_x;
@@ -33,6 +61,28 @@ void move_forward_or_backward(t_map *map, t_player *player, int direction)
 	player->y = new_y;
 }
 
+
+/*
+** Rotates the player's view left or right.
+**
+** We need to rotate TWO vectors:
+** 1. Direction vector (dir_x, dir_y):  where player is looking
+** 2. Camera plane (plane_x, plane_y):  defines the field of view (FOV)
+**
+** Both must rotate together to maintain correct perspective!
+**
+** 2D Rotation matrix formula:
+** Given a point (x, y) and angle θ:
+** new_x = x * cos(θ) - y * sin(θ)
+** new_y = x * sin(θ) + y * cos(θ)
+**
+** Direction parameter:
+** - LEFT  (A key): direction = -1 → negative angle (counterclockwise)
+** - RIGHT (D key): direction = +1 → positive angle (clockwise)
+**
+** The rotation_angle is already scaled by frame time (rot_speed),
+** ensuring smooth, consistent rotation regardless of FPS.
+*/
 void	rotate_left_or_right(t_player *player, int direction)
 {
 	double	old_dir_x;

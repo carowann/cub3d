@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/28 15:32:36 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/01 11:03:25 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@
 # define WINDOW_HEIGHT 500
 
 # define FRAME_TIME_SEC 0.01666667 // Approx 60 FPS
-
-// # define XK_w 0x0077  /* Move up */
-// # define XK_a 0x0061  /* Move Left */
-// # define XK_s 0x0073  /* Move down */
-// # define XK_d 0x0064  /* Move Right */
-// # define XK_Left 0xff51  /* Camera move left */
-// # define XK_Right 0xff53  /* Camera move right */
-// # define XK_Escape 0xff1b
 
 # define MOVEMENT_SPEED_MULTIPLIER 3.0
 # define ROTATION_SPEED_MULTIPLIER 2.0
@@ -83,8 +75,8 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
-	double	dir_x; //direction vector x
-	double	dir_y; //direction vector y
+	double	dir_x;
+	double	dir_y;
 	double	plane_x;
 	double	plane_y;
 	double	time_curr_frame;
@@ -108,13 +100,13 @@ typedef struct s_map
 
 typedef struct s_mlx
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void	*mlx; //The MLX connection/instance (required for all MLX operations)
+	void	*win; //The window where graphics are displayed
+	void	*img; //The image buffer where we draw each frame
+	char	*addr; //Pointer to the raw pixel data of the image
+	int		bits_per_pixel; //Number of bits used to represent each pixel
+	int		line_length; //Bytes per row in the image (used to calculate pixel positions)
+	int		endian; //Byte order (big/little endian) for color encoding
 } t_mlx;
 
 typedef struct s_data
