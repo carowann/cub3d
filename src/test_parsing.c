@@ -1,34 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/19 17:17:07 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/29 19:07:34 by giomastr         ###   ########.fr       */
+/*   Created: 2025/11/26 16:57:58 by giomastr          #+#    #+#             */
+/*   Updated: 2025/11/26 16:57:59 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
-int	main(int argc, char *argv[])
-{
-	t_data	data;
-	int fd_map;
-
-	fd_map = check_input(argc, argv);
-
-	init_data(&data);
-
-	if (read_cub(&data, fd_map) == -1)
-    {
-		printf("read map error");
-	}
-	// parse input and map
-	// parse arguments and map file
-	init_test_map(&data);  // mappa hardcoded
-	init_mlx(data.mlx, &data);
-	game_loop(&data);
-	return (0);
-}

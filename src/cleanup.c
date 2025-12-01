@@ -6,13 +6,13 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:27:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 14:54:29 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/11/26 17:09:55 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	print_error_message(int msg_code)
+void	print_err_mess(int msg_code)
 {
 	if (msg_code == MSG_N_ARGS)
 		ft_printfd(STDERR_FILENO, "Error\nInvalid number of arguments.\n");
@@ -30,7 +30,7 @@ static void	print_error_message(int msg_code)
 		ft_printfd(STDERR_FILENO, "Error\nIt's a directory.\n");
 	else if (msg_code == MSG_OPEN_FAIL)
 		ft_printfd(STDERR_FILENO, "Error\nCannot open file.\n");
-	else if (msg_code == MSG_MAP_FAIL)
+	else if (msg_code == MSG_MAP_FAIL) // generic to be implemented
 		ft_printfd(STDERR_FILENO, "Error\nMap issues.\n");
 
 	}
@@ -38,7 +38,7 @@ static void	print_error_message(int msg_code)
 int	cleanup_and_exit(t_data *data, int exit_code, int msg_code)
 {
 	if (msg_code)
-		print_error_message(msg_code);
+		print_err_mess(msg_code);
 	if (data->mlx && data->mlx->img)
 		mlx_destroy_image(data->mlx->mlx, data->mlx->img);
 	if (data->mlx && data->mlx->win)

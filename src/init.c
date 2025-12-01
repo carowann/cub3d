@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 12:02:46 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/28 12:53:14 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	init_data(t_data	*data)
 	data->mlx->endian = 0;
 	data->map->width = 0;
 	data->map->height = 0;
+	data->map->grid = 0;
 }
 
 

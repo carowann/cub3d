@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:27:10 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 10:27:11 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:22:04 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	raycasting(t_data *data)
-{
-	// Raycasting logic here
-}
+// void	raycasting(t_data *data)
+// {
+// 	// Raycasting logic here
+// }

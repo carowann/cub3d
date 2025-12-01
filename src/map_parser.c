@@ -6,38 +6,92 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/25 14:52:49 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:58:46 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+// ONLY maze map part
+
 #include "../includes/cub3d.h"
 
-// floodfill will be checking:
-// void	maze_fill(t_mlx_win *window, char **map_mat, t_coord curr)
-// {
-// 	const char	pos = map_mat[curr.y][curr.x];
-
-// 	if (pos == '1' || pos == 'G')
-// 		return ;
-// 	map_mat[curr.y][curr.x] = 'G';
-// 	maze_fill(window, map_mat, (t_coord){curr.x, curr.y - 1});
-// 	maze_fill(window, map_mat, (t_coord){curr.x, curr.y + 1});
-// 	maze_fill(window, map_mat, (t_coord){curr.x - 1, curr.y});
-// 	maze_fill(window, map_mat, (t_coord){curr.x + 1, curr.y});
-// }
-
-bool	viable_map(t_data *cubd)
+// Requires passing integer coordinates (x, y) and map dimensions (max_x, max_y)
+int	maze_fill(char **map, int x, int y, int max_x, int max_y)
 {
-	maze_fill();
-	//cleanup
-	if (viable)
-		return (true);
-	else
-		return (false);
+	if (x < 0 || y < 0 || x >= max_x || y >= max_y)
+		return (0); // out of bound
+
+	char pos = map[y][x];
+	if (pos == '1' || pos == 'V')
+		return (1); // visiting ALL spaces
+	if (pos == ' ')
+		return (print_err_mess(MSG_MAP_FAIL), 2); // leaked space
+	map[y][x] = 'V'; // Visited
+	if (!maze_fill(map, x, y - 1, max_x, max_y)) // North
+		return (0);
+	if (!maze_fill(map, x, y + 1, max_x, max_y)) // South
+		return (0);
+	if (!maze_fill(map, x - 1, y, max_x, max_y)) // West
+		return (0);
+	if (!maze_fill(map, x + 1, y, max_x, max_y)) // East
+		return (0);
+	return (1); // Success
 }
 
+int	map_elements(int rows, int cols, t_map *game, t_player *player) // give the position of player
+{
+	char	**map;
+	int		i;
+	int		j;
 
-int	check_lines(int rows, int cols, char **map_mat)//2
+	map = game->grid;
+	i = -1;
+	while (++i < rows)
+	{
+		j = -1;
+		while (++j < cols)
+		{
+			if (map[i][j] != 'P' && map[i][j] != '1' && map[i][j] != '0') // check if player, walls, spaces exist
+				return (0);
+			if (map[i][j] == 'P')
+			{
+				player->x = j;
+				player->y = i;
+			}
+			// if (map[i][j] == 'D') // door to use in case of bonus
+			// 	game->map.exit = (t_coord){j, i};
+		}
+	}
+	return (1);
+}
+
+// bool	viable_map(t_data *cubd) // is the map playable?
+// {
+// 	maze_fill();
+// 	//cleanup
+// 	if (viable)
+// 		return (true);
+// 	else
+// 		return (false);
+// }
+
+
+
+// void	map_health(t_map *window, int rows, int cols)
+// {
+// 	rows = window->size.y;
+// 	cols = window->size.x;
+// 	if (check_lines(rows, cols, window->map.map_mat) == 0) // LINES
+// 		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_MAP_FAIL);
+// 	if (check_elements(rows, cols, window) == 0) // ELEMENTS
+// 		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_MAP_FAIL);
+// 	if (count_elements(rows, cols, window->map.map_mat, 'P') != 1) // RED?
+// 		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_MAP_FAIL);
+// 	if (!ff_check(window)) // FLOODFILL CHECK
+// 		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_MAP_FAIL);
+// }
+
+int	check_lines(int rows, int cols, char **map_mat)// do padding thing with empty spaces?
 {
 	int	i;
 	int	row_len;
@@ -45,55 +99,16 @@ int	check_lines(int rows, int cols, char **map_mat)//2
 	i = 0;
 	if (rows <= 3 || cols <= 3)
 	{
-		return (ft_printf("Map too small, wrong vibes\n", 2), 0);
+		return (print_err_mess(MSG_MAP_FAIL), 0);
 	}
 	while (i < rows)
 	{
 		row_len = ft_strlen(map_mat[i]);
 		if (cols != row_len)
 		{
-			return (ft_printf("different lines, wrong vibes\n", 2), 0);
+			return (print_err_mess(MSG_MAP_FAIL), 0);
 		}
 		i++;
 	}
 	return (1);
 }
-
-int	check_walls(char **map_mat, int rows, int cols) // Should be good
-{
-	int	i;
-	int	j;
-	int	last_col;
-
-	i = 0;
-	last_col = cols - 1;
-	while (i < rows)
-	{
-		j = 0;
-		while (j < cols)
-		{
-			if (i == 0 || i == rows - 1 || j == 0 || j == last_col)
-			{
-				if (map_mat[i][j] != '1')
-					return (0);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-
-
-
-// for ref ONLY
-
-// int	ft_exit(t_mlx_win *window, char *str, int flag)
-// {
-// 	if (str)
-// 		ft_putstr_fd(str, 2);
-// 	ft_putstr_fd("bye", 2);
-// 	free_exit(window, flag);
-// 	exit(flag);
-// }

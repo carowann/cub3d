@@ -6,16 +6,18 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/25 14:48:21 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/11/29 19:07:51 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# define _GNU_SOURCE
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
-# include <bits/fcntl-linux.h>
+# include <stdio.h>
+# include <fcntl.h>
 # include <stdbool.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
@@ -59,10 +61,12 @@ enum e_msg_codes
 	MSG_IMG_FAIL,
 	MSG_ADDR_FAIL,
 	MSG_IS_DIR,
-	MSG_OPEN_FAIL
+	MSG_OPEN_FAIL,
+	MSG_MAP_FAIL
 	// wrong elem in map
 	// wrong_path
 };
+
 
 typedef struct s_player
 {
@@ -76,9 +80,9 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int	grid[10][10]; // Example fixed size, adjust as needed
-	int	width;
-	int	height;
+	char	**grid; // Example fixed size, adjust as needed //map matrix
+	int		width;
+	int		height;
 	//textures
 	//floor and ceiling colors
 } t_map;
@@ -107,12 +111,16 @@ typedef struct s_data
 /* ========================= */
 
 int		check_input(int argc, char **argv);
-void	read_map(char *path);
+// int		read_map(t_data *data, int fd);
+int		read_cub(int fd, t_data *data);
+
 void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
 void	init_test_map(t_data *data);
 void	game_loop(t_data *data);
 int		cleanup_and_exit(t_data *data, int exit_code, int msg_code);
 int		handle_close_window(t_data *data);
+void	print_err_mess(int msg_code);
+
 
 #endif
