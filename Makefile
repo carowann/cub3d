@@ -6,7 +6,7 @@
 #    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2025/11/26 17:17:46 by giomastr         ###   ########.fr        #
+#    Updated: 2025/12/01 17:17:35 by giomastr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,11 @@ SRCS	= src/main.c \
 	src/cleanup.c \
 	src/game_loop.c \
 	src/test_map.c \
+	src/raycasting.c \
+	src/rendering.c \
+	src/raycasting_data.c \
+	src/utils.c \
+	src/movements.c \
 
 CFLAGS = -g -Wall -Werror -Wextra
 

@@ -1,0 +1,103 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movements.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
+/*   Updated: 2025/11/28 17:30:47 by cwannhed         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+# include "../includes/cub3d.h"
+
+/*
+** Moves the player forward or backward along their current direction.
+**
+** Movement calculation:
+** new_position = current_position + direction_vector * speed * direction
+** - direction_vector (dir_x, dir_y): where player is facing
+** - speed: calculated based on frame time (consistent across all FPS)
+** - direction: +1 for forward (W/Up), -1 for backward (S/Down)
+**
+** Collision detection with safety margin:
+** Instead of checking just the player's exact position, we check a small
+** area around them (margin) to prevent getting too close to walls.
+**
+** We check 4 corners around the player:
+** 1. Top-left:     (new_x - margin, new_y - margin)
+** 2. Top-right:    (new_x + margin, new_y - margin)
+** 3. Bottom-left:  (new_x - margin, new_y + margin)
+** 4. Bottom-right: (new_x + margin, new_y + margin)
+**
+** If ANY corner would enter a wall, movement is blocked.
+** This creates a "collision box" around the player, preventing:
+** - Clipping through walls
+** - Getting stuck in corners
+** - Walking too close to walls (sliding effect)
+**
+** Boundary checks:
+** Also prevents player from leaving the map bounds entirely.
+*/
+void move_forward_or_backward(t_map *map, t_player *player, int direction)
+{
+	double new_x;
+	double new_y;
+	double margin;
+
+	margin = WALL_MARGIN; // Safety margin from walls
+	new_x = player->x + player->dir_x * player->move_speed * direction;
+	new_y = player->y + player->dir_y * player->move_speed * direction;
+	if (new_x < margin || new_x >= map->width - margin ||
+		new_y < margin || new_y >= map->height - margin)
+		return;
+	if (map->grid[(int)(new_y - margin)][(int)(new_x - margin)] == WALL ||
+		map->grid[(int)(new_y - margin)][(int)(new_x + margin)] == WALL ||
+		map->grid[(int)(new_y + margin)][(int)(new_x - margin)] == WALL ||
+		map->grid[(int)(new_y + margin)][(int)(new_x + margin)] == WALL)
+		return;
+	player->x = new_x;
+	player->y = new_y;
+}
+
+
+/*
+** Rotates the player's view left or right.
+**
+** We need to rotate TWO vectors:
+** 1. Direction vector (dir_x, dir_y):  where player is looking
+** 2. Camera plane (plane_x, plane_y):  defines the field of view (FOV)
+**
+** Both must rotate together to maintain correct perspective!
+**
+** 2D Rotation matrix formula:
+** Given a point (x, y) and angle θ:
+** new_x = x * cos(θ) - y * sin(θ)
+** new_y = x * sin(θ) + y * cos(θ)
+**
+** Direction parameter:
+** - LEFT  (A key): direction = -1 → negative angle (counterclockwise)
+** - RIGHT (D key): direction = +1 → positive angle (clockwise)
+**
+** The rotation_angle is already scaled by frame time (rot_speed),
+** ensuring smooth, consistent rotation regardless of FPS.
+*/
+void	rotate_left_or_right(t_player *player, int direction)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+	double	rotation_angle;
+
+	rotation_angle = player->rot_speed * direction;
+	old_dir_x = player->dir_x;
+	player->dir_x = player->dir_x * cos(rotation_angle)
+		- player->dir_y * sin(rotation_angle);
+	player->dir_y = old_dir_x * sin(rotation_angle)
+		+ player->dir_y * cos(rotation_angle);
+	old_plane_x = player->plane_x;
+	player->plane_x = player->plane_x * cos(rotation_angle)
+		- player->plane_y * sin(rotation_angle);
+	player->plane_y = old_plane_x * sin(rotation_angle)
+		+ player->plane_y * cos(rotation_angle);
+}

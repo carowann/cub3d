@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/29 19:07:51 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/12/01 17:23:15 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,54 +19,61 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include <math.h>
+# include <sys/time.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+
+# include <stdio.h> //to remove
+
+/* ========================= */
+/*         DEFINES           */
+/* ========================= */
 
 # define WINDOW_WIDTH 500
 # define WINDOW_HEIGHT 500
 
-/* ========================= */
-/*           KEYS           */
-/* ========================= */
+# define FRAME_TIME_SEC 0.01666667 // Approx 60 FPS
 
-# define XK_w 0x0077  /* Move up */
-# define XK_a 0x0061  /* Move Left */
-# define XK_s 0x0073  /* Move down */
-# define XK_d 0x0064  /* Move Right */
-# define XK_Left 0xff51  /* Camera move left */
-# define XK_Right 0xff53  /* Camera move right */
-# define XK_Escape 0xff1b
+# define MOVEMENT_SPEED_MULTIPLIER 3.0
+# define ROTATION_SPEED_MULTIPLIER 2.0
+
+# define WALL	1
+# define EMPTY	0
+
+# define UP	1
+# define DOWN	-1
+# define LEFT	-1
+# define RIGHT	1
+
+# define WALL_MARGIN 0.2
+
+# define DELTA_DIST_INFINITY 1e30
+# define STEP_X_LEFT -1
+# define STEP_X_RIGHT 1
+# define STEP_Y_UP -1
+# define STEP_Y_DOWN 1
+
+# define NS_WALL_SIDE	0
+# define EW_WALL_SIDE	1
+
+# define MSG_N_ARGS	"Error\nInvalid number of arguments.\n"
+# define MSG_CUB_EXT	"Error\nInvalid file extension. Expected .cub\n"
+# define MSG_INIT_MLX	"Error\nFailed to initialize MLX.\n"
+# define MSG_WINDOW_FAIL	"Error\nFailed to create window.\n"
+# define MSG_IMG_FAIL	"Error\nFailed to create image.\n"
+# define MSG_ADDR_FAIL	"Error\nFailed to get image address.\n"
+# define MSG_TIME_FAIL	"Error\nFailed to get current time.\n"
 
 /* ========================= */
 /*        STRUCTURES         */
 /* ========================= */
 
-// typedef enum e_config
-// {
-// 	NORTH,
-// 	SOUTH,
-// 	EAST,
-// 	WEST,
-// 	FLOOR,
-// 	CEIL,
-// }	t_config;
-
 enum e_msg_codes
 {
-	MSG_NONE,
-	MSG_N_ARGS,
-	MSG_CUB_EXT,
-	MSG_INIT_MLX,
-	MSG_WINDOW_FAIL,
-	MSG_IMG_FAIL,
-	MSG_ADDR_FAIL,
-	MSG_IS_DIR,
-	MSG_OPEN_FAIL,
-	MSG_MAP_FAIL
-	// wrong elem in map
-	// wrong_path
+	SUCCESS,
+	FAILURE
 };
-
 
 typedef struct s_player
 {
@@ -76,26 +83,34 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
+	double	time_curr_frame;
+	double	time_last_frame;
+	double	move_speed;
+	double	rot_speed;
 } t_player;
 
 typedef struct s_map
 {
-	char	**grid; // Example fixed size, adjust as needed //map matrix
-	int		width;
-	int		height;
-	//textures
-	//floor and ceiling colors
+	int	**grid;
+	int	width;
+	int	height;
+	int	no_color;	//later on change to texture paths
+	int	so_color;	//later on change to texture paths
+	int	ea_color;	//later on change to texture paths
+	int	we_color;	//later on change to texture paths
+	int	floor_color;
+	int	ceiling_color;
 } t_map;
 
 typedef struct s_mlx
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void	*mlx; //The MLX connection/instance (required for all MLX operations)
+	void	*win; //The window where graphics are displayed
+	void	*img; //The image buffer where we draw each frame
+	char	*addr; //Pointer to the raw pixel data of the image
+	int		bits_per_pixel; //Number of bits used to represent each pixel
+	int		line_length; //Bytes per row in the image (used to calculate pixel positions)
+	int		endian; //Byte order (big/little endian) for color encoding
 } t_mlx;
 
 typedef struct s_data
@@ -105,6 +120,26 @@ typedef struct s_data
 	t_player	*player;
 } t_data;
 
+typedef struct s_ray
+{
+	int		step_x; //step in x direction
+	int		step_y; //step in y direction
+	int		hit; //was there a wall hit?
+	int		side; //was a NS or a EW wall hit?
+	int		map_x; //current square of the map in x
+	int		map_y; //current square of the map in y
+	int		draw_start; //start of the line to draw
+	int		draw_end; //end of the line to draw
+	int		line_height; //height of the line to draw
+	double	camera_x; //x-coordinate in camera space
+	double	ray_dir_x; //ray direction x
+	double	ray_dir_y; //ray direction y
+	double	side_dist_x; //initial side distance in x
+	double	side_dist_y; //initial side distance in y
+	double	delta_dist_x; //length of ray from one x-side to next x-side
+	double	delta_dist_y; //length of ray from one y-side to next y-side
+	double	perp_wall_dist; //perpendicular distance to the wall
+} t_ray;
 
 /* ========================= */
 /*       FUNCTIONS           */
@@ -116,11 +151,22 @@ int		read_cub(int fd, t_data *data);
 
 void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
-void	init_test_map(t_data *data);
+void	test_map(t_data *data); // mappa hardcoded
 void	game_loop(t_data *data);
-int		cleanup_and_exit(t_data *data, int exit_code, int msg_code);
+int		cleanup_and_exit(t_data *data, int exit_code, char *msg);
 int		handle_close_window(t_data *data);
 void	print_err_mess(int msg_code);
 
+void	raycasting(t_data *data);
+void	free_matrix(void **matrix);
+void	test_player(t_player *player); // player hardcoded
+void	draw_vertical_line(t_data *data, int x, int start, int end, int color);
+double	get_current_time(t_data *data);
+void	set_delta_distances(t_ray *ray);
+void	set_step_and_initial_side_distances(t_ray *ray, t_player *player);
+void	set_perpendicular_wall_distance(t_ray *ray, t_player *player);
+void	move_forward_or_backward(t_map *map, t_player *player, int direction);
+void	rotate_left_or_right(t_player *player, int direction);
+void	print_error_message(char *msg);
 
 #endif
