@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/01 11:03:25 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:23:24 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@
 # define MSG_ADDR_FAIL	"Error\nFailed to get image address.\n"
 # define MSG_TIME_FAIL	"Error\nFailed to get current time.\n"
 
+# define KEY_PRESSED 1
+# define KEY_RELEASED 0
+
 /* ========================= */
 /*        STRUCTURES         */
 /* ========================= */
@@ -83,6 +86,10 @@ typedef struct s_player
 	double	time_last_frame;
 	double	move_speed;
 	double	rot_speed;
+	int		key_w;
+	int		key_s;
+	int		key_a;
+	int		key_d;
 } t_player;
 
 typedef struct s_map
@@ -160,5 +167,7 @@ void	set_perpendicular_wall_distance(t_ray *ray, t_player *player);
 void	move_forward_or_backward(t_map *map, t_player *player, int direction);
 void	rotate_left_or_right(t_player *player, int direction);
 void	print_error_message(char *msg);
+void	set_movement_and_rotation_speed(t_data *data, t_player *player);
+void	handle_keyboard_input(t_data *data);
 
 #endif

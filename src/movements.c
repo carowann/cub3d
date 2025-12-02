@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/28 17:30:47 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:22:57 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,17 @@ void	rotate_left_or_right(t_player *player, int direction)
 		- player->plane_y * sin(rotation_angle);
 	player->plane_y = old_plane_x * sin(rotation_angle)
 		+ player->plane_y * cos(rotation_angle);
+}
+
+void	handle_keyboard_input(t_data *data)
+{
+	set_movement_and_rotation_speed(data, data->player);
+	if (data->player->key_w == KEY_PRESSED)
+		move_forward_or_backward(data->map, data->player, UP);
+	if (data->player->key_s == KEY_PRESSED)
+		move_forward_or_backward(data->map, data->player, DOWN);
+	if (data->player->key_a == KEY_PRESSED)
+		rotate_left_or_right(data->player, LEFT);
+	if (data->player->key_d == KEY_PRESSED)
+		rotate_left_or_right(data->player, RIGHT);
 }
