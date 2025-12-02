@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/02 13:23:24 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:53:33 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 
 # define WINDOW_WIDTH 500
 # define WINDOW_HEIGHT 500
+
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
 
 # define FRAME_TIME_SEC 0.01666667 // Approx 60 FPS
 
@@ -114,6 +117,8 @@ typedef struct s_mlx
 	int		bits_per_pixel; //Number of bits used to represent each pixel
 	int		line_length; //Bytes per row in the image (used to calculate pixel positions)
 	int		endian; //Byte order (big/little endian) for color encoding
+	int		screen_width;
+	int		screen_height;
 } t_mlx;
 
 typedef struct s_data

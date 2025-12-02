@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/28 15:41:50 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:51:37 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ void init_mlx(t_mlx *mlx, t_data *data)
 			&mlx->endian);
 	if (!mlx->addr)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_ADDR_FAIL);
+	mlx_get_screen_size(mlx->mlx, &mlx->screen_width, &mlx->screen_height);
 }
