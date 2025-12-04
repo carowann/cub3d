@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/02 13:53:33 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/04 17:50:46 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,6 @@
 # define STEP_Y_UP -1
 # define STEP_Y_DOWN 1
 
-# define NS_WALL_SIDE	0
-# define EW_WALL_SIDE	1
-
 # define MSG_N_ARGS	"Error\nInvalid number of arguments.\n"
 # define MSG_CUB_EXT	"Error\nInvalid file extension. Expected .cub\n"
 # define MSG_INIT_MLX	"Error\nFailed to initialize MLX.\n"
@@ -63,6 +60,7 @@
 # define MSG_IMG_FAIL	"Error\nFailed to create image.\n"
 # define MSG_ADDR_FAIL	"Error\nFailed to get image address.\n"
 # define MSG_TIME_FAIL	"Error\nFailed to get current time.\n"
+# define MSG_FAIL_LOAD_TEX	"Error\nFailed to load textures.\n"
 
 # define KEY_PRESSED 1
 # define KEY_RELEASED 0
@@ -75,6 +73,14 @@ enum e_code
 {
 	SUCCESS,
 	FAILURE
+};
+
+enum e_wall_side
+{
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST
 };
 
 typedef struct s_player
@@ -97,35 +103,44 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int	**grid;
-	int	width;
-	int	height;
-	int	no_color;	//later on change to texture paths
-	int	so_color;	//later on change to texture paths
-	int	ea_color;	//later on change to texture paths
-	int	we_color;	//later on change to texture paths
-	int	floor_color;
-	int	ceiling_color;
+	int		**grid;
+	int		width;
+	int		height;
+	int		floor_color;
+	int		ceiling_color;
 } t_map;
 
 typedef struct s_mlx
 {
-	void	*mlx; //The MLX connection/instance (required for all MLX operations)
-	void	*win; //The window where graphics are displayed
-	void	*img; //The image buffer where we draw each frame
-	char	*addr; //Pointer to the raw pixel data of the image
-	int		bits_per_pixel; //Number of bits used to represent each pixel
-	int		line_length; //Bytes per row in the image (used to calculate pixel positions)
-	int		endian; //Byte order (big/little endian) for color encoding
-	int		screen_width;
-	int		screen_height;
+	void		*mlx; //The MLX connection/instance (required for all MLX operations)
+	void		*win; //The window where graphics are displayed
+	void		*img; //The image buffer where we draw each frame
+	char		*addr; //Pointer to the raw pixel data of the image
+	int			bits_per_pixel; //Number of bits used to represent each pixel
+	int			line_length; //Bytes per row in the image (used to calculate pixel positions)
+	int			endian; //Byte order (big/little endian) for color encoding
+	int			screen_width;
+	int			screen_height;
+	t_textures	textures[4]; //Array of 4 textures for walls
 } t_mlx;
+
+typedef struct s_textures
+{
+	void	*img;
+	int		*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}	t_textures;
 
 typedef struct s_data
 {
 	t_mlx		*mlx;
 	t_map		*map;
 	t_player	*player;
+	char		*textures_path[4];
 } t_data;
 
 typedef struct s_ray
@@ -133,7 +148,7 @@ typedef struct s_ray
 	int		step_x; //step in x direction
 	int		step_y; //step in y direction
 	int		hit; //was there a wall hit?
-	int		side; //was a NS or a EW wall hit?
+	int		wall_side; //was a NS or a EW wall hit?
 	int		map_x; //current square of the map in x
 	int		map_y; //current square of the map in y
 	int		draw_start; //start of the line to draw

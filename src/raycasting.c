@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:27:10 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/11/28 17:14:21 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/04 18:25:55 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,17 @@ static void perform_dda(t_ray *ray, t_map *map)
 		{
 			ray->side_dist_x += ray->delta_dist_x;
 			ray->map_x += ray->step_x;
-			ray->side = NS_WALL_SIDE;
+			if (ray->step_x > 0)
+				ray->wall_side = EAST;
+			ray->wall_side = WEST;
 		}
 		else
 		{
 			ray->side_dist_y += ray->delta_dist_y;
 			ray->map_y += ray->step_y;
-			ray->side = EW_WALL_SIDE;
+			if (ray->step_y > 0)
+				ray->wall_side = NORTH;
+			ray->wall_side = SOUTH;
 		}
 		if (ray->map_x < 0 || ray->map_x >= map->width ||
 			ray->map_y < 0 || ray->map_y >= map->height)
@@ -101,7 +105,7 @@ static void get_line_to_draw(t_ray *ray)
 
 int	get_color(t_ray ray)
 {
-	if (ray.side == 0) //NS wall
+	if (ray.wall_side == NORTH || ray.wall_side == SOUTH) //NS wall
 	{
 		if (ray.ray_dir_x > 0)
 			return (0xFF0000); // Red for East wall
@@ -115,6 +119,20 @@ int	get_color(t_ray ray)
 		else
 			return (0xFFFF00); // Yellow for North wall
 	}
+}
+
+static int **set_pixel_buffer(t_ray *ray, t_map *map, t_player *player)
+{
+	int		tex_id;
+	double	wall_x; //exact value where the wall was hit, not just the integer coordinates of the wall
+
+	tex_id = ray->wall_side;
+	if (ray->wall_side == NORTH || ray->wall_side == SOUTH)
+		wall_x = player->y + ray->perp_wall_dist * ray->ray_dir_y;
+	else
+		wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
+	wall_x -= floor(wall_x);
+	//TODO: continue working on texels
 }
 
 /*
@@ -160,6 +178,7 @@ void	raycasting(t_data *data)
 		// Calculate perpendicular distance to avoid fisheye effect
 		set_perpendicular_wall_distance(&ray, data->player);
 		get_line_to_draw(&ray);
+		set_pixel_buffer(&ray, data->map);
 		draw_vertical_line(data, x, ray.draw_start, ray.draw_end, get_color(ray)); //draw a red vertical line as a placeholder
 		x++;
 	}
