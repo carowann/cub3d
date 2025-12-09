@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:08:54 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/04 17:51:51 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:30:41 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void set_step_and_initial_side_distances(t_ray *ray, t_player *player)
 */
 void set_perpendicular_wall_distance(t_ray *ray, t_player *player)
 {
-	if (ray->wall_side == NORTH || ray->wall_side == SOUTH)
+	if (ray->wall_side == WEST || ray->wall_side == EAST)
 		ray->perp_wall_dist = (ray->map_x - player->x + (1 - ray->step_x) / 2) / ray->ray_dir_x;
 	else
 		ray->perp_wall_dist = (ray->map_y - player->y + (1 - ray->step_y) / 2) / ray->ray_dir_y;

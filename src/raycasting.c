@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:27:10 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/04 18:25:55 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:30:20 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ static void perform_dda(t_ray *ray, t_map *map)
 			ray->side_dist_x += ray->delta_dist_x;
 			ray->map_x += ray->step_x;
 			if (ray->step_x > 0)
+				ray->wall_side = WEST;
+			else
 				ray->wall_side = EAST;
-			ray->wall_side = WEST;
 		}
 		else
 		{
@@ -54,7 +55,8 @@ static void perform_dda(t_ray *ray, t_map *map)
 			ray->map_y += ray->step_y;
 			if (ray->step_y > 0)
 				ray->wall_side = NORTH;
-			ray->wall_side = SOUTH;
+			else
+				ray->wall_side = SOUTH;
 		}
 		if (ray->map_x < 0 || ray->map_x >= map->width ||
 			ray->map_y < 0 || ray->map_y >= map->height)
@@ -67,31 +69,16 @@ static void perform_dda(t_ray *ray, t_map *map)
 	}
 }
 
-/*
-** Calculates the vertical line to draw for this wall slice.
-**
-** Steps:
-** 1. Calculate wall height on screen based on distance
-** 2. Calculate where to start drawing (top of wall)
-** 3. Calculate where to stop drawing (bottom of wall)
-** 4. Clamp values to screen bounds
-**
-** Wall height formula:
-** line_height = WINDOW_HEIGHT / perp_wall_dist
-** - Closer walls (small distance) → taller lines
-** - Farther walls (large distance) → shorter lines
-** - Creates perspective illusion
-**
-** Centering the wall:
-** The wall should be centered vertically on screen.
-** - Middle of screen = WINDOW_HEIGHT / 2
-** - Wall extends line_height/2 above and below center
-**
-** Clamping:
-** Very close walls might extend beyond screen bounds, so we limit:
-** - draw_start to minimum 0 (top of screen)
-** - draw_end to maximum WINDOW_HEIGHT - 1 (bottom of screen)
-*/
+void my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
+		return;
+	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
 static void get_line_to_draw(t_ray *ray)
 {
 	ray->line_height = (int)(WINDOW_HEIGHT / ray->perp_wall_dist);
@@ -103,36 +90,57 @@ static void get_line_to_draw(t_ray *ray)
 		ray->draw_end = WINDOW_HEIGHT - 1;
 }
 
-int	get_color(t_ray ray)
-{
-	if (ray.wall_side == NORTH || ray.wall_side == SOUTH) //NS wall
-	{
-		if (ray.ray_dir_x > 0)
-			return (0xFF0000); // Red for East wall
-		else
-			return (0x00FF00); // Green for West wall
-	}
-	else //EW wall
-	{
-		if (ray.ray_dir_y > 0)
-			return (0x0000FF); // Blue for South wall
-		else
-			return (0xFFFF00); // Yellow for North wall
-	}
-}
-
-static int **set_pixel_buffer(t_ray *ray, t_map *map, t_player *player)
+static void set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int x)
 {
 	int		tex_id;
+	int		tex_x;
+	int		tex_y;
+	int		y;
+	int		color;
 	double	wall_x; //exact value where the wall was hit, not just the integer coordinates of the wall
+	double	step;
+	double	tex_pos;
 
 	tex_id = ray->wall_side;
-	if (ray->wall_side == NORTH || ray->wall_side == SOUTH)
+	if (ray->wall_side == WEST || ray->wall_side == EAST)
 		wall_x = player->y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
 		wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
-	//TODO: continue working on texels
+	tex_x = wall_x * (double)TEXTURE_WIDTH;
+	if (ray->wall_side == WEST || ray->wall_side == EAST)
+	{
+		if (ray->ray_dir_x > 0)
+			tex_x = TEXTURE_WIDTH - tex_x - 1;
+	}
+	else // NORTH or SOUTH
+	{
+		if (ray->ray_dir_y < 0)
+			tex_x = TEXTURE_WIDTH - tex_x - 1;
+	}
+	get_line_to_draw(ray);
+	step = (double)TEXTURE_HEIGHT/(double)ray->line_height;
+	tex_pos = (ray->draw_start - WINDOW_HEIGHT / 2 + ray->line_height / 2) * step;
+	y = 0;
+	while (y < ray->draw_start)
+	{
+		my_mlx_pixel_put(mlx, x, y, map->ceiling_color);
+		y++;
+	}
+	while (y < ray->draw_end)
+	{
+		tex_y = (int)tex_pos & (TEXTURE_HEIGHT - 1);
+		tex_pos += step;
+		color = mlx->textures[ray->wall_side].addr[TEXTURE_WIDTH * tex_y + tex_x];
+		//TODO: maybe add darker color if y side of wall was hit (lodev)
+		my_mlx_pixel_put(mlx, x, y, color);
+		y++;
+	}
+	while (y < WINDOW_HEIGHT)
+	{
+		my_mlx_pixel_put(mlx, x, y, map->floor_color);
+		y++;
+	}
 }
 
 /*
@@ -177,9 +185,7 @@ void	raycasting(t_data *data)
 		perform_dda(&ray, data->map);
 		// Calculate perpendicular distance to avoid fisheye effect
 		set_perpendicular_wall_distance(&ray, data->player);
-		get_line_to_draw(&ray);
-		set_pixel_buffer(&ray, data->map);
-		draw_vertical_line(data, x, ray.draw_start, ray.draw_end, get_color(ray)); //draw a red vertical line as a placeholder
+		set_pixel_buffer(data->mlx, &ray, data->map, data->player, x);
 		x++;
 	}
 }

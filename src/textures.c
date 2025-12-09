@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 10:53:15 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/04 18:02:54 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:52:03 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void set_textures_path(t_data *data)
 
 static int load_single_tex(t_textures *tex, t_mlx *mlx, char *tex_path)
 {
-	tex->img = mlx_xpm_file_to_image(mlx->mlx, tex_path, tex->width, tex->height);
+	tex->img = mlx_xpm_file_to_image(mlx->mlx, tex_path, &tex->width, &tex->height);
 	if (!tex->img)
 		return (FAILURE);
 	tex->addr = (int *)mlx_get_data_addr(tex->img, &tex->bits_per_pixel, &tex->line_length, &tex->endian);

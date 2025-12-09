@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/04 17:50:46 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/09 10:47:59 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,17 @@ typedef struct s_map
 	int		ceiling_color;
 } t_map;
 
+typedef struct s_textures
+{
+	void	*img;
+	int		*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}	t_textures;
+
 typedef struct s_mlx
 {
 	void		*mlx; //The MLX connection/instance (required for all MLX operations)
@@ -123,17 +134,6 @@ typedef struct s_mlx
 	int			screen_height;
 	t_textures	textures[4]; //Array of 4 textures for walls
 } t_mlx;
-
-typedef struct s_textures
-{
-	void	*img;
-	int		*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-}	t_textures;
 
 typedef struct s_data
 {
@@ -189,5 +189,7 @@ void	rotate_left_or_right(t_player *player, int direction);
 void	print_error_message(char *msg);
 void	set_movement_and_rotation_speed(t_data *data, t_player *player);
 void	handle_keyboard_input(t_data *data);
+void	set_textures_path(t_data *data);
+void	load_all_textures(t_data *data, t_mlx *mlx);
 
 #endif
