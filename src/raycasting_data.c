@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:08:54 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/09 11:30:41 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/12 12:00:44 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 **
 ** Used by: perform_dda() to step through the map efficiently
 */
-void set_delta_distances(t_ray *ray)
+void	set_delta_distances(t_ray *ray)
 {
 	// Calculate x delta distance (distance to cross one vertical grid line)
 	if (ray->ray_dir_x == 0)
@@ -72,7 +72,7 @@ void set_delta_distances(t_ray *ray)
 **
 ** This setup allows DDA to efficiently step through the map grid.
 */
-void set_step_and_initial_side_distances(t_ray *ray, t_player *player)
+void	set_step_and_initial_side_distances(t_ray *ray, t_player *player)
 {
 	if (ray->ray_dir_x < 0) //ray going to the left
 	{
@@ -114,10 +114,12 @@ void set_step_and_initial_side_distances(t_ray *ray, t_player *player)
 ** This distance is used to calculate wall height on screen:
 ** taller walls = closer (small distance), shorter walls = farther (large distance)
 */
-void set_perpendicular_wall_distance(t_ray *ray, t_player *player)
+void	set_perpendicular_wall_distance(t_ray *ray, t_player *player)
 {
 	if (ray->wall_side == WEST || ray->wall_side == EAST)
-		ray->perp_wall_dist = (ray->map_x - player->x + (1 - ray->step_x) / 2) / ray->ray_dir_x;
+		ray->perp_wall_dist = (ray->map_x - player->x
+				+ (1 - ray->step_x) / 2) / ray->ray_dir_x;
 	else
-		ray->perp_wall_dist = (ray->map_y - player->y + (1 - ray->step_y) / 2) / ray->ray_dir_y;
+		ray->perp_wall_dist = (ray->map_y - player->y
+				+ (1 - ray->step_y) / 2) / ray->ray_dir_y;
 }

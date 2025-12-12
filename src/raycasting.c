@@ -6,11 +6,17 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:27:10 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/12 11:09:26 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/12 12:11:32 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+static void	check_wall_hit(t_ray *ray, t_map *map)
+{
+	if (map->grid[ray->map_y][ray->map_x] == 1)
+		ray->hit = 1;
+}
 
 /*
 ** Performs the DDA (Digital Differential Analysis) algorithm.
@@ -35,7 +41,7 @@
 ** Safety check:
 ** If ray goes outside map bounds, we treat it as a wall hit to prevent crashes.
 */
-static void perform_dda(t_ray *ray, t_map *map)
+static void	perform_dda(t_ray *ray, t_map *map)
 {
 	ray->hit = 0;
 	while (ray->hit == 0)
@@ -58,11 +64,11 @@ static void perform_dda(t_ray *ray, t_map *map)
 			else
 				ray->wall_side = SOUTH;
 		}
-		if (ray->map_x < 0 || ray->map_x >= map->width ||
-			ray->map_y < 0 || ray->map_y >= map->height)
+		if (ray->map_x < 0 || ray->map_x >= map->width
+			|| ray->map_y < 0 || ray->map_y >= map->height)
 		{
 			ray->hit = 1;
-			break;
+			break ;
 		}
 		if (map->grid[ray->map_y][ray->map_x] == 1)
 			ray->hit = 1;
@@ -131,7 +137,7 @@ static void set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *playe
 	{
 		tex_y = (int)tex_pos & (TEXTURE_HEIGHT - 1);
 		tex_pos += step;
-		color = mlx->textures[ray->wall_side].addr[TEXTURE_WIDTH * tex_y + tex_x];
+		color = mlx->tex[ray->wall_side].addr[TEXTURE_WIDTH * tex_y + tex_x];
 		//TODO: maybe add darker color if y side of wall was hit (lodev)
 		my_mlx_pixel_put(mlx, x, y, color);
 		y++;

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:27:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/12 11:11:07 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:54:52 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static void	free_mlx(t_mlx *mlx)
 	i = 0;
 	if (mlx->img)
 		mlx_destroy_image(mlx->mlx, mlx->img);
-	if (mlx->textures->img)
+	if (mlx->tex->img)
 	{
 		while (i < 4)
 		{
-			if (mlx->textures[i].img)
-				mlx_destroy_image(mlx->mlx, mlx->textures[i].img);
+			if (mlx->tex[i].img)
+				mlx_destroy_image(mlx->mlx, mlx->tex[i].img);
 			i++;
 		}
 	}

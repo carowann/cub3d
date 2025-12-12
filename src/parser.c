@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:17:51 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/24 16:35:56 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:50:09 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,11 @@ void	read_map(char *path)
 		ft_printfd(STDERR_FILENO, "Error\nFailed to open file: %s\n", path);
 		exit(EXIT_FAILURE);
 	}
-	//read line by line
-	//store lines in data structure
 	while (1)
 	{
 		char *line = get_next_line(fd);
 		if (!line)
 			break;
-		//process line (e.g., store in structure)
 		free(line);
 	}
 	close(fd);

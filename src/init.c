@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/04 12:00:41 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:54:52 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	init_data(t_data	*data)
 	data->player->rot_speed = 0.0;
 	data->map->width = 0;
 	data->map->height = 0;
-	data->mlx->textures->height = TEXTURE_HEIGHT;
-	data->mlx->textures->width = TEXTURE_WIDTH;
+	data->mlx->tex->height = TEXTURE_HEIGHT;
+	data->mlx->tex->width = TEXTURE_WIDTH;
 }
 
 /*

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/04 09:45:23 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:50:52 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ int	render_frame(t_data *data)
 {
 	handle_keyboard_input(data);
 	raycasting(data);
-	mlx_put_image_to_window(data->mlx->mlx, data->mlx->win, data->mlx->img, 0, 0);
+	mlx_put_image_to_window(data->mlx->mlx,
+		data->mlx->win,
+		data->mlx->img, 0, 0);
 	return (0);
 }
 
