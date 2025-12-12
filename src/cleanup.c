@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:27:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/04 10:43:51 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:11:07 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,20 @@
 
 static void	free_mlx(t_mlx *mlx)
 {
+	int	i;
+
+	i = 0;
 	if (mlx->img)
 		mlx_destroy_image(mlx->mlx, mlx->img);
+	if (mlx->textures->img)
+	{
+		while (i < 4)
+		{
+			if (mlx->textures[i].img)
+				mlx_destroy_image(mlx->mlx, mlx->textures[i].img);
+			i++;
+		}
+	}
 	if (mlx->win)
 		mlx_destroy_window(mlx->mlx, mlx->win);
 	if (mlx->mlx)
@@ -25,8 +37,6 @@ static void	free_mlx(t_mlx *mlx)
 	}
 	free(mlx);
 }
-
-//TODO: cleanup textures, destroy image for each tex
 
 static void	free_map(t_map *map)
 {

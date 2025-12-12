@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:27:10 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/09 11:30:20 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:09:26 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 */
 static void perform_dda(t_ray *ray, t_map *map)
 {
-	ray->hit = 0;		  // was there a wall hit?
-	while (ray->hit == 0) // perform DDA
+	ray->hit = 0;
+	while (ray->hit == 0)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{

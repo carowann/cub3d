@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/09 10:47:59 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/12 11:14:12 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,50 +20,49 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 
-# include <stdio.h> //to remove
-
 /* ========================= */
 /*         DEFINES           */
 /* ========================= */
 
-# define WINDOW_WIDTH 500
-# define WINDOW_HEIGHT 500
+# define WINDOW_WIDTH	500
+# define WINDOW_HEIGHT	500
 
-# define TEXTURE_WIDTH 64
-# define TEXTURE_HEIGHT 64
+# define TEXTURE_WIDTH	64
+# define TEXTURE_HEIGHT	64
 
-# define FRAME_TIME_SEC 0.01666667 // Approx 60 FPS
+# define FRAME_TIME_SEC	0.01666667 // Approx 60 FPS
 
-# define MOVEMENT_SPEED_MULTIPLIER 3.0
-# define ROTATION_SPEED_MULTIPLIER 2.0
+# define MOVEMENT_SPEED_MULTIPLIER	3.0
+# define ROTATION_SPEED_MULTIPLIER	2.0
 
 # define WALL	1
 # define EMPTY	0
 
-# define UP	1
+# define UP		1
 # define DOWN	-1
 # define LEFT	-1
 # define RIGHT	1
 
-# define WALL_MARGIN 0.2
+# define WALL_MARGIN	0.2
 
-# define DELTA_DIST_INFINITY 1e30
-# define STEP_X_LEFT -1
-# define STEP_X_RIGHT 1
-# define STEP_Y_UP -1
-# define STEP_Y_DOWN 1
+# define DELTA_DIST_INFINITY	1e30
 
-# define MSG_N_ARGS	"Error\nInvalid number of arguments.\n"
-# define MSG_CUB_EXT	"Error\nInvalid file extension. Expected .cub\n"
-# define MSG_INIT_MLX	"Error\nFailed to initialize MLX.\n"
+# define STEP_X_LEFT	-1
+# define STEP_X_RIGHT	1
+# define STEP_Y_UP		-1
+# define STEP_Y_DOWN	1
+
+# define MSG_N_ARGS			"Error\nInvalid number of arguments.\n"
+# define MSG_CUB_EXT		"Error\nInvalid file extension. Expected .cub\n"
+# define MSG_INIT_MLX		"Error\nFailed to initialize MLX.\n"
 # define MSG_WINDOW_FAIL	"Error\nFailed to create window.\n"
-# define MSG_IMG_FAIL	"Error\nFailed to create image.\n"
-# define MSG_ADDR_FAIL	"Error\nFailed to get image address.\n"
-# define MSG_TIME_FAIL	"Error\nFailed to get current time.\n"
+# define MSG_IMG_FAIL		"Error\nFailed to create image.\n"
+# define MSG_ADDR_FAIL		"Error\nFailed to get image address.\n"
+# define MSG_TIME_FAIL		"Error\nFailed to get current time.\n"
 # define MSG_FAIL_LOAD_TEX	"Error\nFailed to load textures.\n"
 
-# define KEY_PRESSED 1
-# define KEY_RELEASED 0
+# define KEY_PRESSED	1
+# define KEY_RELEASED	0
 
 /* ========================= */
 /*        STRUCTURES         */
