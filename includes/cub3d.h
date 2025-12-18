@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/09 14:02:11 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/12/18 16:28:20 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ void	rotate_left_or_right(t_player *player, int direction);
 
 // wip
 int	validate_colours(t_data *data, char *colour);// return completely analysed value
+t_id	get_id_line(char *str);
 
 
 #endif

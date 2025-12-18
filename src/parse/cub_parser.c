@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2025/12/18 16:07:39 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/12/18 17:08:21 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,14 @@ bool	line_is_empty(char *s)
 
 bool	line_is_ids(char *s)
 {
-	while (*s && (*s == ID_NO || *s == ID_SO || *s == ID_EA || *s == ID_WE || *s == ID_FL || *s == ID_CE))
-		return (true);
-	return (false);
+	int	id;
+
+	id = get_id_line(s);
+	if (id == -1)
+		return (false);
+	return (true);
+	// while (*s && (*s == ID_NO || *s == ID_SO || *s == ID_EA || *s == ID_WE || *s == ID_FL || *s == ID_CE))
+	// return (false);
 }
 
 bool	line_is_map(char *s)
@@ -108,7 +113,6 @@ void    read_ids(t_data *data, char *line)
 		data->map->ceiling_color = validate_colours(data, line);
 	else
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL);
-	printf("%s\n", data->textures_path[NORTH] );
 	return ;
 }
 
@@ -128,10 +132,8 @@ void    read_cub(t_data *data, int fd)
 		if (line_is_empty(line))
 			continue ;
 		id =  0;
-		while (line_is_ids(line))
+		if (line_is_ids(line) && id <= 6)
 		{
-			if (line_is_empty(line))
-				continue ;
 			read_ids(data, line);
 			id++;
 		}
