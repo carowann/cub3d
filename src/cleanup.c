@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:27:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/01 17:24:13 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:38:51 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,16 @@ int	cleanup_and_exit(t_data *data, int exit_code, char *msg)
 
 	i = 0;
 	if (msg)
-		print_error_message(msg);
-	if (data->mlx)
+		print_err_mess(msg);
+	if (data)
+	{
+		if (data->mlx)
 		free_mlx(data->mlx);
-	if (data->map)
-		free_map(data->map);
-	if (data->player)
-		free(data->player);
+		if (data->map)
+			free_map(data->map);
+		if (data->player)
+			free(data->player);
+	}
 	exit(exit_code);
 }
 

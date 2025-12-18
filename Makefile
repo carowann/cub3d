@@ -6,7 +6,7 @@
 #    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2025/12/01 17:17:35 by giomastr         ###   ########.fr        #
+#    Updated: 2025/12/05 15:10:44 by giomastr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,10 @@ MLX_URL = https://github.com/42Paris/minilibx-linux.git
 INCLUDES = -I./includes -I./$(LIBFT_DIR)
 
 SRCS	= src/main.c \
-	src/basic_parser.c \
-	src/cub_parser.c \
-	src/map_parser.c \
-	src/test_parsing.c \
+	src/parse/basic_parser.c \
+	src/parse/cub_parser.c \
+	src/parse/map_parser.c \
+	src/parse/test_parsing.c \
 	src/init.c \
 	src/cleanup.c \
 	src/game_loop.c \

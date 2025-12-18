@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: giorgia <giorgia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2025/11/27 18:58:46 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/12/02 20:11:12 by giorgia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,43 +37,6 @@ int	maze_fill(char **map, int x, int y, int max_x, int max_y)
 		return (0);
 	return (1); // Success
 }
-
-int	map_elements(int rows, int cols, t_map *game, t_player *player) // give the position of player
-{
-	char	**map;
-	int		i;
-	int		j;
-
-	map = game->grid;
-	i = -1;
-	while (++i < rows)
-	{
-		j = -1;
-		while (++j < cols)
-		{
-			if (map[i][j] != 'P' && map[i][j] != '1' && map[i][j] != '0') // check if player, walls, spaces exist
-				return (0);
-			if (map[i][j] == 'P')
-			{
-				player->x = j;
-				player->y = i;
-			}
-			// if (map[i][j] == 'D') // door to use in case of bonus
-			// 	game->map.exit = (t_coord){j, i};
-		}
-	}
-	return (1);
-}
-
-// bool	viable_map(t_data *cubd) // is the map playable?
-// {
-// 	maze_fill();
-// 	//cleanup
-// 	if (viable)
-// 		return (true);
-// 	else
-// 		return (false);
-// }
 
 
 

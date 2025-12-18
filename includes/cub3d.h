@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/01 17:23:15 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:02:11 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 
-# include <stdio.h> //to remove
 
 /* ========================= */
 /*         DEFINES           */
@@ -57,13 +56,20 @@
 # define NS_WALL_SIDE	0
 # define EW_WALL_SIDE	1
 
-# define MSG_N_ARGS	"Error\nInvalid number of arguments.\n"
-# define MSG_CUB_EXT	"Error\nInvalid file extension. Expected .cub\n"
-# define MSG_INIT_MLX	"Error\nFailed to initialize MLX.\n"
+# define MSG_N_ARGS			"Error\nInvalid number of arguments.\n"
+# define MSG_CUB_EXT		"Error\nInvalid file extension. Expected .cub\n"
+# define MSG_INIT_MLX		"Error\nFailed to initialize MLX.\n"
 # define MSG_WINDOW_FAIL	"Error\nFailed to create window.\n"
-# define MSG_IMG_FAIL	"Error\nFailed to create image.\n"
-# define MSG_ADDR_FAIL	"Error\nFailed to get image address.\n"
-# define MSG_TIME_FAIL	"Error\nFailed to get current time.\n"
+# define MSG_IMG_FAIL		"Error\nFailed to create image.\n"
+# define MSG_ADDR_FAIL		"Error\nFailed to get image address.\n"
+# define MSG_TIME_FAIL		"Error\nFailed to get current time.\n"
+# define MSG_OPEN_FAIL		"Error\nFailed to open file.\n"
+# define MSG_IS_DIR			"Error\nFile isn't filing. Is directoring.\n"
+# define MSG_MAP_FAIL		"Error\nIssues with map.\n"
+# define MSG_CUB_FAIL		"Error\nIssues with CUB file.\n"
+# define MSG_MALL_FAIL		"Error\nFailed to allocate memory.\n"
+# define MSG_COL_FAIL		"Error\nWrong color format.\n"
+
 
 /* ========================= */
 /*        STRUCTURES         */
@@ -74,6 +80,24 @@ enum e_msg_codes
 	SUCCESS,
 	FAILURE
 };
+
+enum e_wall_side
+{
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST
+};
+
+typedef enum e_id
+{
+    ID_NO,  // North
+    ID_SO,  // South
+    ID_WE,  // West
+    ID_EA,  // East
+    ID_FL,
+	ID_CE
+}   t_id;
 
 typedef struct s_player
 {
@@ -94,12 +118,9 @@ typedef struct s_map
 	int	**grid;
 	int	width;
 	int	height;
-	int	no_color;	//later on change to texture paths
-	int	so_color;	//later on change to texture paths
-	int	ea_color;	//later on change to texture paths
-	int	we_color;	//later on change to texture paths
 	int	floor_color;
 	int	ceiling_color;
+
 } t_map;
 
 typedef struct s_mlx
@@ -118,6 +139,7 @@ typedef struct s_data
 	t_mlx		*mlx;
 	t_map		*map;
 	t_player	*player;
+	char		*textures_path[4];
 } t_data;
 
 typedef struct s_ray
@@ -147,15 +169,14 @@ typedef struct s_ray
 
 int		check_input(int argc, char **argv);
 // int		read_map(t_data *data, int fd);
-int		read_cub(int fd, t_data *data);
-
+void	read_cub(t_data *data, int fd);
 void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
 void	test_map(t_data *data); // mappa hardcoded
 void	game_loop(t_data *data);
 int		cleanup_and_exit(t_data *data, int exit_code, char *msg);
 int		handle_close_window(t_data *data);
-void	print_err_mess(int msg_code);
+void	print_err_mess(char *msg);
 
 void	raycasting(t_data *data);
 void	free_matrix(void **matrix);
@@ -167,6 +188,10 @@ void	set_step_and_initial_side_distances(t_ray *ray, t_player *player);
 void	set_perpendicular_wall_distance(t_ray *ray, t_player *player);
 void	move_forward_or_backward(t_map *map, t_player *player, int direction);
 void	rotate_left_or_right(t_player *player, int direction);
-void	print_error_message(char *msg);
+
+
+// wip
+int	validate_colours(t_data *data, char *colour);// return completely analysed value
+
 
 #endif
