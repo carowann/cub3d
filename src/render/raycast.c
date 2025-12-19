@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:27:10 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/12 12:11:32 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:21:55 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	check_wall_hit(t_ray *ray, t_map *map)
+static void	update_dda_variables(t_ray *ray)
 {
-	if (map->grid[ray->map_y][ray->map_x] == 1)
-		ray->hit = 1;
+	if (ray->side_dist_x < ray->side_dist_y)
+	{
+		ray->side_dist_x += ray->delta_dist_x;
+		ray->map_x += ray->step_x;
+		if (ray->step_x > 0)
+			ray->wall_side = WEST;
+		else
+			ray->wall_side = EAST;
+	}
+	else
+	{
+		ray->side_dist_y += ray->delta_dist_y;
+		ray->map_y += ray->step_y;
+		if (ray->step_y > 0)
+			ray->wall_side = NORTH;
+		else
+			ray->wall_side = SOUTH;
+	}
 }
 
 /*
@@ -46,24 +62,7 @@ static void	perform_dda(t_ray *ray, t_map *map)
 	ray->hit = 0;
 	while (ray->hit == 0)
 	{
-		if (ray->side_dist_x < ray->side_dist_y)
-		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->map_x += ray->step_x;
-			if (ray->step_x > 0)
-				ray->wall_side = WEST;
-			else
-				ray->wall_side = EAST;
-		}
-		else
-		{
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->map_y += ray->step_y;
-			if (ray->step_y > 0)
-				ray->wall_side = NORTH;
-			else
-				ray->wall_side = SOUTH;
-		}
+		update_dda_variables(ray);
 		if (ray->map_x < 0 || ray->map_x >= map->width
 			|| ray->map_y < 0 || ray->map_y >= map->height)
 		{
@@ -72,80 +71,6 @@ static void	perform_dda(t_ray *ray, t_map *map)
 		}
 		if (map->grid[ray->map_y][ray->map_x] == 1)
 			ray->hit = 1;
-	}
-}
-
-void my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
-		return;
-	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-static void get_line_to_draw(t_ray *ray)
-{
-	ray->line_height = (int)(WINDOW_HEIGHT / ray->perp_wall_dist);
-	ray->draw_start = -ray->line_height / 2 + WINDOW_HEIGHT / 2;
-	if (ray->draw_start < 0)
-		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + WINDOW_HEIGHT / 2;
-	if (ray->draw_end >= WINDOW_HEIGHT)
-		ray->draw_end = WINDOW_HEIGHT - 1;
-}
-
-static void set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int x)
-{
-	int		tex_id;
-	int		tex_x;
-	int		tex_y;
-	int		y;
-	int		color;
-	double	wall_x; //exact value where the wall was hit, not just the integer coordinates of the wall
-	double	step;
-	double	tex_pos;
-
-	tex_id = ray->wall_side;
-	if (ray->wall_side == WEST || ray->wall_side == EAST)
-		wall_x = player->y + ray->perp_wall_dist * ray->ray_dir_y;
-	else
-		wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
-	wall_x -= floor(wall_x);
-	tex_x = wall_x * (double)TEXTURE_WIDTH;
-	if (ray->wall_side == WEST || ray->wall_side == EAST)
-	{
-		if (ray->ray_dir_x > 0)
-			tex_x = TEXTURE_WIDTH - tex_x - 1;
-	}
-	else // NORTH or SOUTH
-	{
-		if (ray->ray_dir_y < 0)
-			tex_x = TEXTURE_WIDTH - tex_x - 1;
-	}
-	get_line_to_draw(ray);
-	step = (double)TEXTURE_HEIGHT/(double)ray->line_height;
-	tex_pos = (ray->draw_start - WINDOW_HEIGHT / 2 + ray->line_height / 2) * step;
-	y = 0;
-	while (y < ray->draw_start)
-	{
-		my_mlx_pixel_put(mlx, x, y, map->ceiling_color);
-		y++;
-	}
-	while (y < ray->draw_end)
-	{
-		tex_y = (int)tex_pos & (TEXTURE_HEIGHT - 1);
-		tex_pos += step;
-		color = mlx->tex[ray->wall_side].addr[TEXTURE_WIDTH * tex_y + tex_x];
-		//TODO: maybe add darker color if y side of wall was hit (lodev)
-		my_mlx_pixel_put(mlx, x, y, color);
-		y++;
-	}
-	while (y < WINDOW_HEIGHT)
-	{
-		my_mlx_pixel_put(mlx, x, y, map->floor_color);
-		y++;
 	}
 }
 

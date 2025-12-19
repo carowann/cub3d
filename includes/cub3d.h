@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/12 11:14:12 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/19 15:13:05 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 /*         DEFINES           */
 /* ========================= */
 
-# define WINDOW_WIDTH	500
-# define WINDOW_HEIGHT	500
+# define WINDOW_WIDTH	800
+# define WINDOW_HEIGHT	800
 
 # define TEXTURE_WIDTH	64
 # define TEXTURE_HEIGHT	64
@@ -102,14 +102,14 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int		**grid;
-	int		width;
-	int		height;
-	int		floor_color;
-	int		ceiling_color;
+	int	**grid;
+	int	width;
+	int	height;
+	int	floor_color;
+	int	ceiling_color;
 } t_map;
 
-typedef struct s_textures
+typedef struct s_tex
 {
 	void	*img;
 	int		*addr;
@@ -118,20 +118,20 @@ typedef struct s_textures
 	int		endian;
 	int		width;
 	int		height;
-}	t_textures;
+}	t_tex;
 
 typedef struct s_mlx
 {
-	void		*mlx; //The MLX connection/instance (required for all MLX operations)
-	void		*win; //The window where graphics are displayed
-	void		*img; //The image buffer where we draw each frame
-	char		*addr; //Pointer to the raw pixel data of the image
-	int			bits_per_pixel; //Number of bits used to represent each pixel
-	int			line_length; //Bytes per row in the image (used to calculate pixel positions)
-	int			endian; //Byte order (big/little endian) for color encoding
-	int			screen_width;
-	int			screen_height;
-	t_textures	textures[4]; //Array of 4 textures for walls
+	void	*mlx; //The MLX connection/instance (required for all MLX operations)
+	void	*win; //The window where graphics are displayed
+	void	*img; //The image buffer where we draw each frame
+	char	*addr; //Pointer to the raw pixel data of the image
+	int		bits_per_pixel; //Number of bits used to represent each pixel
+	int		line_length; //Bytes per row in the image (used to calculate pixel positions)
+	int		endian; //Byte order (big/little endian) for color encoding
+	int		screen_width;
+	int		screen_height;
+	t_tex	tex[4]; //Array of 4 tex for walls
 } t_mlx;
 
 typedef struct s_data
@@ -139,7 +139,7 @@ typedef struct s_data
 	t_mlx		*mlx;
 	t_map		*map;
 	t_player	*player;
-	char		*textures_path[4];
+	char		*tex_path[4];
 } t_data;
 
 typedef struct s_ray
@@ -177,8 +177,6 @@ int		cleanup_and_exit(t_data *data, int exit_code, char *msg);
 int		handle_close_window(t_data *data);
 void	raycasting(t_data *data);
 void	free_matrix(void **matrix);
-void	test_player(t_player *player); // player hardcoded
-void	draw_vertical_line(t_data *data, int x, int start, int end, int color);
 double	get_current_time(t_data *data);
 void	set_delta_distances(t_ray *ray);
 void	set_step_and_initial_side_distances(t_ray *ray, t_player *player);
@@ -188,7 +186,8 @@ void	rotate_left_or_right(t_player *player, int direction);
 void	print_error_message(char *msg);
 void	set_movement_and_rotation_speed(t_data *data, t_player *player);
 void	handle_keyboard_input(t_data *data);
-void	set_textures_path(t_data *data);
-void	load_all_textures(t_data *data, t_mlx *mlx);
+void	set_tex_path(t_data *data);
+void	load_all_tex(t_data *data, t_mlx *mlx);
+void set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int x);
 
 #endif
