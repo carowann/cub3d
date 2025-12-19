@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/19 15:13:05 by cwannhed         ###   ########.fr       */
+/*   Updated: 2025/12/19 15:14:01 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,6 @@ void	set_movement_and_rotation_speed(t_data *data, t_player *player);
 void	handle_keyboard_input(t_data *data);
 void	set_tex_path(t_data *data);
 void	load_all_tex(t_data *data, t_mlx *mlx);
-void set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int x);
+void	set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int x);
 
 #endif
