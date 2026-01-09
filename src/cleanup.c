@@ -6,11 +6,13 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:27:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/09 14:38:51 by giomastr         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:50:30 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+//TODO list_cleanup
 
 static void	free_mlx(t_mlx *mlx)
 {

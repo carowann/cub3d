@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2025/12/18 17:08:21 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/09 17:36:36 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 // 2. examine identifiers and paths
 // 3. parse map
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 #include <stdbool.h>
 
 // TO-DO FILE CUB_UTILS
@@ -45,15 +45,14 @@ bool	line_is_ids(char *s)
 	if (id == -1)
 		return (false);
 	return (true);
-	// while (*s && (*s == ID_NO || *s == ID_SO || *s == ID_EA || *s == ID_WE || *s == ID_FL || *s == ID_CE))
-	// return (false);
 }
 
 bool	line_is_map(char *s)
 {
 	int	 i = 0;
-
-	while (s[i] && (s[0] == '1' || s[1] == '1' || s[2] == '1'))
+	while (s[i] && ft_isspace(s[i]))
+		i++;
+	if (s[i] && (s[i] == '1'))
 		return (true);
 	return (false);
 }
@@ -124,25 +123,27 @@ void    read_cub(t_data *data, int fd)
 	line = 0;
 	if (fd < 0 || !data || !data->map)
 		return ;
+	id =  0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (line_is_empty(line))
+		if (line_is_empty(line) && id < 6)
+		{
+			free(line);
 			continue ;
-		id =  0;
-		if (line_is_ids(line) && id <= 6)
+		}
+		if (id < 6 && line_is_ids(line))
 		{
 			read_ids(data, line);
 			id++;
 		}
-		// if (id == 6 && line_is_map(line))
-		// 	read_grid(data, fd);
-		// else
-		// 	cleanup_and_exit(data, 	EXIT_FAILURE, MSG_CUB_FAIL)
+		else if (id == 6 && line_is_map(line))
+			add_line(line, data);
+		free(line);
 	}
-	// printf("polletti\n");
-
+	allocate_map(data, data->map->lines);
+	// print_map_debug(data);
 	close(fd);
 }

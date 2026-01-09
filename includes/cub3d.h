@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/18 16:28:20 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/07 18:00:27 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,12 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int	**grid;
-	int	width;
-	int	height;
-	int	floor_color;
-	int	ceiling_color;
+	t_list		*lines;
+	char		**grid;
+	int			width; // strlen
+	int			height; // node count
+	int			floor_color;
+	int			ceiling_color;
 
 } t_map;
 
@@ -193,6 +194,9 @@ void	rotate_left_or_right(t_player *player, int direction);
 // wip
 int	validate_colours(t_data *data, char *colour);// return completely analysed value
 t_id	get_id_line(char *str);
+void	add_line(char *line, t_data *data);
+void	allocate_map(t_data *data, t_list *lines);
+void	print_map_debug(t_data *data);
 
 
 #endif

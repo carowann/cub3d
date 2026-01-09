@@ -1,11 +1,11 @@
 # TODO PARSING MAP - cub3D
 
 **Flow generale:**
-1. Leggi file e salva ogni riga map in un nodo della lista
-2. Conta nodi (= numero righe) e trova riga più lunga (= numero colonne)
-3. Alloca matrice con dimensioni corrette
-4. Copia contenuto lista nella matrice (con padding se necessario)
-5. Free della lista temporanea
+1. Leggi file e salva ogni riga map in un nodo della lista ✅
+2. Conta nodi (= numero righe) e trova riga più lunga (= numero colonne) ✅
+3. Alloca matrice con dimensioni corrette ✅
+4. Copia contenuto lista nella matrice (con padding se necessario) ✅
+5. Free della lista temporanea ✅
 6. Valida la matrice
 
 ---
