@@ -8,6 +8,49 @@
 5. Free della lista temporanea ✅
 6. Valida la matrice
 
+
+**Valida la matrice**
+La validazione della matrice è la fase in cui verifichi che la mappa sia effettivamente "giocabile" secondo le regole di cub3D. Il fatto che tu l'abbia copiata in una matrice non significa che sia corretta.
+
+Ecco i controlli fondamentali che devi fare al punto 6:
+
+1. Caratteri Permessi
+Devi scorrere tutta la matrice e assicurarti che ogni carattere sia uno di questi:
+
+1 (Muro)
+
+0 (Pavimento)
+
+N, S, E, W (Posizione iniziale del player)
+
+(Spazio vuoto/Padding)
+
+2. Controllo del Player
+Presenza: Deve esserci almeno una posizione di partenza (N, S, E o W).
+
+Unicità: Non possono esserci due o più player. Se ne trovi un secondo, devi dare errore.
+
+3. Mappa Chiusa (Il controllo più difficile)
+La mappa deve essere completamente circondata da muri (1). Qualsiasi 0 o posizione del player non deve mai "toccare" l'esterno o uno spazio vuoto.
+
+Ci sono due modi comuni per farlo:
+
+A. Il controllo dei vicini (Semplice)
+Per ogni 0 o Player nella matrice:
+
+Controlla sopra, sotto, a destra e a sinistra.
+
+Se un vicino è uno spazio vuoto ( ) o è fuori dai bordi della matrice, la mappa è aperta -> ERRORE.
+
+B. Flood Fill (Robusto)
+È l'algoritmo che usa il secchiello di Paint:
+
+Parti dalla posizione del player.
+
+Ti espandi ricorsivamente su tutti gli 0 adiacenti.
+
+Se durante l'espansione tocchi il bordo della matrice o uno spazio vuoto, significa che l'aria "scappa" e la mappa è aperta.
+
 ---
 
 ## 📋 FASE 1: Struttura dati

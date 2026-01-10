@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/09 17:36:36 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/10 16:02:27 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ bool	line_is_ids(char *s)
 		return (false);
 	return (true);
 }
-
+//line_is_map: Ti consiglio di non usarla come condizione stretta.
+//Una volta che hai trovato i 6 identificatori (NO, SO, WE, EA, F, C), tutto ciò che segue ed è composto da 01NSEW è mappa.
 bool	line_is_map(char *s)
 {
 	int	 i = 0;

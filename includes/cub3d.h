@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:05:18 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/07 18:00:27 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/10 15:32:56 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@
 # define MSG_CUB_FAIL		"Error\nIssues with CUB file.\n"
 # define MSG_MALL_FAIL		"Error\nFailed to allocate memory.\n"
 # define MSG_COL_FAIL		"Error\nWrong color format.\n"
+# define MSG_PLAYER			"Error\nCheck player count\n"
+# define MSG_ELEM_FAIL		"Error\nCheck elements in map\n"
 
 
 /* ========================= */
@@ -197,6 +199,6 @@ t_id	get_id_line(char *str);
 void	add_line(char *line, t_data *data);
 void	allocate_map(t_data *data, t_list *lines);
 void	print_map_debug(t_data *data);
-
+void	check_map_elements(t_data *data);
 
 #endif
