@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/01 17:24:23 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 16:11:23 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	init_data(t_data	*data)
 	data->player->rot_speed = 0.0;
 	data->map->width = 0;
 	data->map->height = 0;
-	data->map->grid = 0;
+	data->mlx->tex->height = TEXTURE_HEIGHT;
+	data->mlx->tex->width = TEXTURE_WIDTH;
 }
 
 /*
@@ -59,4 +60,5 @@ void init_mlx(t_mlx *mlx, t_data *data)
 			&mlx->endian);
 	if (!mlx->addr)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_ADDR_FAIL);
+	mlx_get_screen_size(mlx->mlx, &mlx->screen_width, &mlx->screen_height);
 }

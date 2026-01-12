@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 16:27:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/22 16:50:30 by giomastr         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2026/01/12 16:10:46 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/cub3d.h"
 
@@ -16,8 +17,20 @@
 
 static void	free_mlx(t_mlx *mlx)
 {
+	int	i;
+
+	i = 0;
 	if (mlx->img)
 		mlx_destroy_image(mlx->mlx, mlx->img);
+	if (mlx->tex->img)
+	{
+		while (i < 4)
+		{
+			if (mlx->tex[i].img)
+				mlx_destroy_image(mlx->mlx, mlx->tex[i].img);
+			i++;
+		}
+	}
 	if (mlx->win)
 		mlx_destroy_window(mlx->mlx, mlx->win);
 	if (mlx->mlx)

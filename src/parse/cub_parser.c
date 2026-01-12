@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/12 15:39:45 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 16:13:31 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,13 @@ char 	*clean_path(t_data *data, char *s)
 void    read_ids(t_data *data, char *line)
 {
 	if (line && ft_strncmp(line, "NO", 2) == 0)
-		data->textures_path[NORTH] = clean_path(data, line);
+		data->tex_path[NORTH] = clean_path(data, line);
 	else if (line && ft_strncmp(line, "SO", 2) == 0)
-		data->textures_path[SOUTH] = clean_path(data, line);
+		data->tex_path[SOUTH] = clean_path(data, line);
 	else if (line && ft_strncmp(line, "WE", 2) == 0)
-		data->textures_path[WEST] = clean_path(data, line);
+		data->tex_path[WEST] = clean_path(data, line);
 	else if (line && ft_strncmp(line, "EA", 2) == 0)
-		data->textures_path[EAST] = clean_path(data, line);
+		data->tex_path[EAST] = clean_path(data, line);
 	else if (line && ft_strncmp(line, "F", 1) == 0)
 		data->map->floor_color = validate_colours(data, line);
 	else if (line && ft_strncmp(line, "C", 1) == 0)

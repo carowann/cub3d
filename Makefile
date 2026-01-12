@@ -5,10 +5,11 @@
 #                                                     +:+ +:+         +:+      #
 #    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2026/01/12 15:58:58 by giomastr         ###   ########.fr        #
+#    Created: Invalid date        by                   #+#    #+#              #
+#    Updated: 2026/01/12 16:15:46 by giomastr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 MAKEFLAGS += --no-print-directory
 NAME		= cub3D
@@ -26,17 +27,17 @@ SRCS	= src/main.c \
 	src/parse/basic_parser.c \
 	src/parse/cub_parser.c \
 	src/parse/map_parser.c \
-	src/parse/test_parsing.c \
-	src/parse/init_sample.c \
+	src/parse/map_handler.c \
 	src/init.c \
 	src/cleanup.c \
-	src/game_loop.c \
-	src/test_map.c \
-	src/raycasting.c \
-	src/rendering.c \
-	src/raycasting_data.c \
 	src/utils.c \
-	src/movements.c \
+	src/test_map.c \
+	src/render/raycast.c \
+	src/render/game_loop.c \
+	src/render/render.c \
+	src/render/raycast_data.c \
+	src/render/movements.c \
+	src/render/textures.c
 
 CFLAGS = -g -Wall -Werror -Wextra
 
