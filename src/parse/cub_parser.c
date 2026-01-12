@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/10 16:02:27 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 15:39:45 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void    read_cub(t_data *data, int fd)
 		free(line);
 	}
 	allocate_map(data, data->map->lines);
-	// print_map_debug(data);
+	print_map_debug(data);
+	validate_map(data);
 	close(fd);
 }

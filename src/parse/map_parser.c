@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/10 16:02:01 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 16:01:48 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,6 @@
 // ONLY maze map part
 
 #include "../../includes/cub3d.h"
-
-void check_map_elements(t_data *data)
-{
-	int	y;
-	int	x;
-	int	player_count;
-
-	player_count = 0;
-	y = 0;
-	while (data->map->grid[y])
-	{
-		x = 0;
-		while (data->map->grid[y][x])
-		{
-			char c = data->map->grid[y][x];
-			if (!ft_strchr("01NSEW ", c)) // lo spazio non e' un errore
-				cleanup_and_exit(data, EXIT_FAILURE, MSG_ELEM_FAIL);
-			if (ft_strchr("NSEW", c)) // ??
-			{
-				player_count++;
-				// Salva qui la posizione iniziale e la direzione se vuoi
-				data->player->y = y;
-				data->player->x = x;
-			}
-			x++;
-		}
-		y++;
-	}
-	if (player_count != 1)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_PLAYER);
-	return ;
-}
 
 void	add_line(char *line, t_data *data)
 {
@@ -147,7 +115,7 @@ int	maze_fill(char **map, int x, int y, int max_x, int max_y)
 
 int	check_lines(int rows, int cols, char **map_mat)// change into count nodes*
 {
-		int	i;
+	int	i;
 	int	row_len;
 
 	i = 0;
@@ -163,23 +131,4 @@ int	check_lines(int rows, int cols, char **map_mat)// change into count nodes*
 		i++;
 	}
 	return (1);
-}
-
-void validate_map(t_data *data)
-{
-	int		result;
-	char	**temp_grid;
-
-	check_map_elements(data); // prima scorri matrice e controlla elementi
-	temp_grid = copy_matrix(data->map->grid, data->map->height); // duplica per flood
-	if (!temp_grid)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
-
-	// 3. Esecuzione Flood Fill sulla copia
-	// Partiamo dalla posizione del player salvata in check_map_elements
-	result = maze_fill(temp_grid, data->player->x, data->player->y,
-					   data->map->width, data->map->height);
-	free_matrix((void**)temp_grid);
-	if (result != 1)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL);
 }

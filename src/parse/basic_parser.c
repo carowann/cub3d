@@ -6,11 +6,11 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:17:51 by giomastr          #+#    #+#             */
-/*   Updated: 2025/12/09 14:43:24 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 16:02:55 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 // check basic stuff - input, file extension, handle ids
 

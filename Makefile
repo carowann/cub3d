@@ -6,7 +6,7 @@
 #    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/17 17:24:41 by giomastr          #+#    #+#              #
-#    Updated: 2025/12/05 15:10:44 by giomastr         ###   ########.fr        #
+#    Updated: 2026/01/12 15:58:58 by giomastr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS	= src/main.c \
 	src/parse/cub_parser.c \
 	src/parse/map_parser.c \
 	src/parse/test_parsing.c \
+	src/parse/init_sample.c \
 	src/init.c \
 	src/cleanup.c \
 	src/game_loop.c \
