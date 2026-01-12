@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/12 17:28:43 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 18:23:15 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ int	validate_colours(t_data *data, char *colour);// return completely analysed v
 t_id	get_id_line(char *str);
 void	add_line(char *line, t_data *data);
 void	allocate_map(t_data *data, t_list *lines);
-void	print_map_debug(t_data *data);
+void	print_map_debug(t_data *data, t_list *lines);
 void	check_map_elements(t_data *data);
 void	validate_map(t_data *data);
 char	**copy_matrix(char **grid, int height);

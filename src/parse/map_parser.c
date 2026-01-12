@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/12 17:29:30 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 18:24:06 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void    allocate_map(t_data *data, t_list *lines)
 	int len;
 	t_list *tmp = lines;
 
-	// printf("--- INIZIO ALLOCATE_MAP ---\n");
-	// printf("Height attesa: %d, Width attesa: %d\n", data->map->height, data->map->width);
 	data->map->grid = malloc(sizeof(char *) * (data->map->height + 1));
 	y = 0;
 	while (tmp)
@@ -45,7 +43,6 @@ void    allocate_map(t_data *data, t_list *lines)
 		x = 0;
 		char *content = (char *)tmp->content;
 		len = ft_strlen(content);
-		// printf("Riga %d: [%s] (lunghezza originale: %d)\n", y, content, len);
 		data->map->grid[y] = malloc(sizeof(char) * (data->map->width + 1));
 		while (x < len)
 		{
@@ -62,8 +59,8 @@ void    allocate_map(t_data *data, t_list *lines)
 		y++;
 	}
 	data->map->grid[y] = NULL;
+	print_map_debug(data, lines);
 	free_list(lines);
-	// printf("--- FINE ALLOCATE_MAP (y finale: %d) ---\n", y);
 }
 
 char	**copy_matrix(char **grid, int height)

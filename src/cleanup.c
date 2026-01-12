@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/12 17:28:02 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 18:08:59 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,14 @@ int	cleanup_and_exit(t_data *data, int exit_code, char *msg)
 			free_map(data->map);
 		if (data->player)
 			free(data->player);
+		if (data->tex_path[0])
+			free(data->tex_path[0]);
+		if (data->tex_path[1])
+			free(data->tex_path[1]);
+		if (data->tex_path[2])
+			free(data->tex_path[2]);
+		if (data->tex_path[3])
+			free(data->tex_path[3]);
 	}
 	exit(exit_code);
 }

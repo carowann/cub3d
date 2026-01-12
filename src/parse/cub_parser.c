@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/12 17:13:17 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 18:27:04 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ bool	line_is_map(char *s)
 	int	 i = 0;
 	while (s[i] && ft_isspace(s[i]))
 		i++;
-	if (s[i] && (s[i] == '1'))
-		return (true);
+	if (ft_strchr("01NSEW ", s[i]))
+				return (true);
 	return (false);
 }
 
@@ -78,6 +78,7 @@ int	validate_colours(t_data *data, char *colour) // analyse value
 	r = ft_atoi(value[0]);
 	g = ft_atoi(value[1]);
 	b = ft_atoi(value[2]);
+	free_matrix((void**)value);
 	if (r < 0 || r > 255 || (g < 0 || g > 255) || (b < 0 || b > 255))
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_COL_FAIL);
 	return ((r << 16) | (g << 8) | b);
@@ -87,15 +88,18 @@ char 	*clean_path(t_data *data, char *s)
 {
 	int i;
 	char *path;
+	char *temp;
 
 	i = 2;
 	while (s[i] && ft_isspace(s[i]))
 		i++;
 	path = ft_strdup(&s[i]);
+	temp = path;
+	free(path);
 	printf("path popi %s\n", path);
 	if (!path)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
-	path = ft_strtrim(path, "\n");
+	path = ft_strtrim(temp, "\n");
 	if (!path)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
 	printf("path puuuuuuuuuuuuuuuu %s\n", path);
@@ -150,7 +154,7 @@ void    read_cub(t_data *data, int fd)
 		free(line);
 	}
 	allocate_map(data, data->map->lines);
-	print_map_debug(data);
+	// print_map_debug(data, lines);
 	validate_map(data);
 	close(fd);
 }
