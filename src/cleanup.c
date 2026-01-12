@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/12 16:10:46 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 17:28:02 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,25 @@
 #include "../includes/cub3d.h"
 
 //TODO list_cleanup
+
+void free_list(t_list *list)
+{
+    t_list  *current;
+    t_list  *temp;
+    int     count;
+    if (!list)
+        return ;
+    current = list;
+    count = ft_lstsize(list);
+    while (current)
+    {
+        temp = current->next;
+        free(current->content);
+        free(current);
+        current = temp;
+    }
+    list = NULL;
+}
 
 static void	free_mlx(t_mlx *mlx)
 {

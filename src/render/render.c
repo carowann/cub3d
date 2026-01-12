@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/19 15:11:40 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/12 16:50:53 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ void set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int 
 	step = (double)TEXTURE_HEIGHT/(double)ray->line_height;
 	tex_pos = (ray->draw_start - WINDOW_HEIGHT / 2 + ray->line_height / 2) * step;
 	y = 0;
-	while (y < ray->draw_start)
+	while (y < ray->draw_start) // draw ceiling
 	{
 		my_mlx_pixel_put(mlx, x, y, map->ceiling_color);
 		y++;
 	}
-	while (y < ray->draw_end)
+	while (y < ray->draw_end) // draw walls
 	{
 		tex_y = (int)tex_pos & (TEXTURE_HEIGHT - 1);
 		tex_pos += step;
@@ -79,7 +79,7 @@ void set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int 
 		my_mlx_pixel_put(mlx, x, y, color);
 		y++;
 	}
-	while (y < WINDOW_HEIGHT)
+	while (y < WINDOW_HEIGHT) // draw floor
 	{
 		my_mlx_pixel_put(mlx, x, y, map->floor_color);
 		y++;

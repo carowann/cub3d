@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:17:07 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/12 16:15:16 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 17:04:33 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int argc, char *argv[])
 	printf("path: %s", data.tex_path[3]);
 	printf("path: %d", data.map->ceiling_color);
 	printf("path: %d", data.map->floor_color);
+	load_all_tex(&data, data.mlx);
 	game_loop(&data);
 	return (0);
 }

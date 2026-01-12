@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/12 16:13:31 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 17:13:17 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,13 @@ char 	*clean_path(t_data *data, char *s)
 	while (s[i] && ft_isspace(s[i]))
 		i++;
 	path = ft_strdup(&s[i]);
+	printf("path popi %s\n", path);
 	if (!path)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
+	path = ft_strtrim(path, "\n");
+	if (!path)
+		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
+	printf("path puuuuuuuuuuuuuuuu %s\n", path);
 	return (path);
 }
 

@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/12 16:16:26 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/12 17:28:43 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,7 @@ void	set_step_and_initial_side_distances(t_ray *ray, t_player *player);
 void	set_perpendicular_wall_distance(t_ray *ray, t_player *player);
 void	move_forward_or_backward(t_map *map, t_player *player, int direction);
 void	rotate_left_or_right(t_player *player, int direction);
+void	free_list(t_list *list);
 
 
 // wip
@@ -233,5 +234,6 @@ void	handle_keyboard_input(t_data *data);
 void	set_tex_path(t_data *data);
 void	load_all_tex(t_data *data, t_mlx *mlx);
 void	set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int x);
+
 
 #endif
