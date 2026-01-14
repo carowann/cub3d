@@ -1,13 +1,13 @@
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-WE ./textures/west.xpm
-EA ./textures/east.xpm
-F  220,100,0
-C  225,30,0
+NO ./room_pack/north.xpm
+SO ./room_pack/south.xpm
+WE ./room_pack/west.xpm
+EA ./room_pack/east.xpm
+F  104,79,72
+C  216,143,148
 
 111111111111
- 1100001111
- 1100001111
- 000011111
-1000N11
+ 1101111
+ 1101111
+ 100011111
+10N11
  111111

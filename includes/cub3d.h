@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/12 18:23:15 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:01:04 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define WINDOW_WIDTH	800
 # define WINDOW_HEIGHT	800
 
-# define TEXTURE_WIDTH	64
-# define TEXTURE_HEIGHT	64
+# define TEXTURE_WIDTH	128
+# define TEXTURE_HEIGHT	128
 
 # define FRAME_TIME_SEC	0.01666667 // Approx 60 FPS
 
@@ -231,7 +231,7 @@ int		maze_fill(char **map, int x, int y, int max_x, int max_y);
 
 void	set_movement_and_rotation_speed(t_data *data, t_player *player);
 void	handle_keyboard_input(t_data *data);
-void	set_tex_path(t_data *data);
+// void	set_tex_path(t_data *data);
 void	load_all_tex(t_data *data, t_mlx *mlx);
 void	set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int x);
 
