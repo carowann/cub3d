@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/14 18:17:15 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:32:58 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,11 @@ char 	*clean_path(t_data *data, char *s)
 	path = ft_strdup(&s[i]);
 	temp = path;
 	// free(path);
-	printf("path popi %s\n", path);
 	if (!path)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
 	path = ft_strtrim(temp, "\n");
 	if (!path)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
-	printf("path puuuuuuuuuuuuuuuu %s\n", path);
 	return (path);
 }
 

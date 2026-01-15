@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/12 18:24:06 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:33:23 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	add_line(char *line, t_data *data)
 		data->map->width = ft_strlen(new_node->content); // becomes redundant if in alloc?
 	ft_lstadd_back(&data->map->lines, new_node);
 	data->map->height++;
-	printf("add_line check: Height: %d, Width: %d\n", data->map->height, data->map->width);
+	// printf("add_line check: Height: %d, Width: %d\n", data->map->height, data->map->width);
 	return ;
 }
 void    allocate_map(t_data *data, t_list *lines)
