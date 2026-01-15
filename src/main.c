@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:17:07 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/12 18:21:01 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 15:39:47 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	main(int argc, char *argv[])
 	fd_map = check_input(argc, argv);
 	init_data(&data);
 	read_cub(&data, fd_map);
+	init_mlx(data.mlx, &data);
 	printf("path: %s", data.tex_path[0]);
 	printf("path: %s", data.tex_path[1]);
 	printf("path: %s", data.tex_path[2]);

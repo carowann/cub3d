@@ -1,9 +1,3 @@
-NO ./room_pack/north.xpm
-SO ./room_pack/south.xpm
-WE ./room_pack/west.xpm
-EA ./room_pack/east.xpm
-F  104,79,72
-C  216,143,148
 
 111111111111111111111111
 100000000000000000000001
