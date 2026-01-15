@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/12 16:58:46 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 15:12:53 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	check_map_elements(t_data *data)
 				data->player->y = (double)y + 0.5; // +0.5 per metterlo al centro della cella
 				data->player->x = (double)x + 0.5;
 				init_player_direction(data, c); // <--- Chiamata qui
+				data->map->grid[y][x] = '0';
 			}
 			x++;
 		}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
+#    By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2026/01/12 16:15:46 by giomastr         ###   ########.fr        #
+#    Updated: 2026/01/15 15:06:18 by cwannhed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,6 @@ SRCS	= src/main.c \
 	src/init.c \
 	src/cleanup.c \
 	src/utils.c \
-	src/test_map.c \
 	src/render/raycast.c \
 	src/render/game_loop.c \
 	src/render/render.c \

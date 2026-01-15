@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/14 18:01:04 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 15:14:23 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 # define MOVEMENT_SPEED_MULTIPLIER	3.0
 # define ROTATION_SPEED_MULTIPLIER	2.0
 
-# define WALL	1
-# define EMPTY	0
+# define WALL	'1'
+# define EMPTY	'0'
 
 # define UP		1
 # define DOWN	-1
