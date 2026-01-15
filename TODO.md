@@ -45,5 +45,5 @@
 
 ## Da sistemare
 Error - player count -> segfault con mappa incompleta
-
+glide: vettore x-y calcola prima x o y, se puoi andarci aggiorni prima uno o l'altro. es: x rimane fissa, si muove su y -> glida
 

@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/15 14:53:10 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:06:15 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,14 @@ void	check_map_elements(t_data *data)
 				data->player->y = (double)y + 0.5; // +0.5 per metterlo al centro della cella
 				data->player->x = (double)x + 0.5;
 				init_player_direction(data, c); // <--- Chiamata qui
+				data->map->grid[y][x] = '0';
 			}
 			x++;
 		}
 		y++;
 	}
 	if (player_count != 1)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_PLAYER);
+		cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_05);
 }
 
 void validate_map(t_data *data)

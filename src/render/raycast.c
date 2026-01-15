@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/12 16:17:21 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:49:19 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,18 @@ static void	update_dda_variables(t_ray *ray)
 */
 static void	perform_dda(t_ray *ray, t_map *map)
 {
-	ray->hit = 0;
-	while (ray->hit == 0)
+	ray->hit = EMPTY;
+	while (ray->hit == EMPTY)
 	{
 		update_dda_variables(ray);
 		if (ray->map_x < 0 || ray->map_x >= map->width
 			|| ray->map_y < 0 || ray->map_y >= map->height)
 		{
-			ray->hit = 1;
+			ray->hit = WALL;
 			break ;
 		}
-		if (map->grid[ray->map_y][ray->map_x] == 1)
-			ray->hit = 1;
+		if (map->grid[ray->map_y][ray->map_x] == WALL)
+			ray->hit = WALL;
 	}
 }
 

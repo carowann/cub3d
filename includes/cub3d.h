@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/15 14:52:31 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:51:55 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 # define MOVEMENT_SPEED_MULTIPLIER	3.0
 # define ROTATION_SPEED_MULTIPLIER	2.0
 
-# define WALL	1
-# define EMPTY	0
+# define WALL	'1'
+# define EMPTY	'0'
 
 # define UP		1
 # define DOWN	-1
@@ -71,15 +71,19 @@
 # define MSG_IS_DIR			"Error\nFile isn't filing. Is directoring.\n"
 # define MSG_MALL_FAIL		"Error\nFailed to allocate memory.\n"
 # define MSG_FAIL_LOAD_TEX	"Error\nFailed to load textures.\n"
+// cub err mess
+# define MSG_CUB_FAIL_00	"Error\nIssues with CUB file: invalid ids.\n"
+# define MSG_CUB_FAIL_01	"Error\nIssues with CUB file: missing textures.\n"
+# define MSG_CUB_FAIL_02	"Error\nIssues with CUB file: missing colours.\n"
+# define MSG_CUB_FAIL_03	"Error\nIssues with CUB file: too many ids.\n"
 // map err mess
-# define MSG_CUB_FAIL		"Error\nIssues with CUB file.\n"
 # define MSG_COL_FAIL		"Error\nWrong color format.\n"
 # define MSG_MAP_FAIL_00	"Error\nIssues with map: map too small.\n"
 # define MSG_MAP_FAIL_01	"Error\nIssues with map: maze leak.\n"
 # define MSG_MAP_FAIL_02	"Error\nIssues with map: wrong rows.\n"
 # define MSG_MAP_FAIL_03	"Error\nIssues with map: map could not be validated.\n"
-# define MSG_MAP_FAIL_04	"Error\nIssues with map: check elements\n"
-# define MSG_PLAYER			"Error\nCheck player count\n"
+# define MSG_MAP_FAIL_04	"Error\nIssues with map: check elements.\n"
+# define MSG_MAP_FAIL_05	"Error\nIssues with map: missing player.\n"
 
 # define KEY_PRESSED	1
 # define KEY_RELEASED	0
@@ -136,9 +140,10 @@ typedef struct s_map
 	char		**grid;
 	int			width; // strlen
 	int			height; // node count
-	int			floor_color;
-	int			ceiling_color;
-
+	size_t		floor_color;
+	size_t		ceiling_color;
+	bool		floor_color_found;
+	bool		ceiling_color_found;
 } t_map;
 
 typedef struct s_tex

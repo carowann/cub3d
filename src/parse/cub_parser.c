@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/15 14:34:01 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:50:12 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,11 @@ char 	*clean_path(t_data *data, char *s)
 	path = ft_strdup(&s[i]);
 	temp = path;
 	// free(path);
-	printf("path popi %s\n", path);
 	if (!path)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
 	path = ft_strtrim(temp, "\n");
 	if (!path)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
-	printf("path puuuuuuuuuuuuuuuu %s\n", path);
 	return (path);
 }
 
@@ -101,11 +99,17 @@ void    read_ids(t_data *data, char *line)
 	else if (line && ft_strncmp(line, "EA", 2) == 0)
 		data->tex_path[EAST] = clean_path(data, line);
 	else if (line && ft_strncmp(line, "F", 1) == 0)
+	{
 		data->map->floor_color = validate_colours(data, line);
+		data->map->floor_color_found = true;
+	}
 	else if (line && ft_strncmp(line, "C", 1) == 0)
+	{
 		data->map->ceiling_color = validate_colours(data, line);
+		data->map->ceiling_color_found = true;
+	}
 	else
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL);
+		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_00);
 	return ;
 }
 
@@ -128,17 +132,43 @@ void    read_cub(t_data *data, int fd)
 			free(line);
 			continue ;
 		}
-		if (id < 6 && line_is_ids(line))
+		if (line_is_ids(line))
 		{
+			if (id >= 6)
+			{
+				free(line);
+				cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_03);
+			}
 			read_ids(data, line);
 			id++;
 		}
-		else if (id == 6 && line_is_map(line))
+		else if (id >= 6 && line_is_map(line))
 			add_line(line, data);
 		free(line);
 	}
+	if (!data->tex_path[0] || !data->tex_path[1] || !data->tex_path[2] || !data->tex_path[3])
+		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_01);
+	if (!data->map->floor_color_found || !data->map->ceiling_color_found)
+		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_02);
 	allocate_map(data, data->map->lines);
-	// print_map_debug(data, lines);
 	validate_map(data);
+	printf("\n=== DEBUG MAPPA FINALE ===\n");
+	for (int y = 0; y < data->map->height; y++)
+	{
+		printf("Riga %2d: [", y);
+		for (int x = 0; x < data->map->width; x++)
+		{
+			char c = data->map->grid[y][x];
+			if (c == '1')
+				printf("1");
+			else if (c == '0')
+				printf("0");
+			else if (c == ' ')
+				printf("·");
+			else
+				printf("%c", c);
+		}
+		printf("]\n");
+	}
 	close(fd);
 }

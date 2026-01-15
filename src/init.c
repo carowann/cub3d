@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/12 16:11:23 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:36:06 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	init_data(t_data	*data)
 {
+	// qui mettere solo cose da inizializzare con valore, r-data inizializzato a 0 in main
 	data->map = ft_calloc(1, sizeof(t_map));
 	data->player = ft_calloc(1, sizeof(t_player));
 	data->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!data->map || !data->player || !data->mlx)
 		cleanup_and_exit(data, EXIT_FAILURE, NULL);
-	init_mlx(data->mlx, data);
 	data->player->x = 0.0;
 	data->player->y = 0.0;
 	data->player->dir_x = 0.0;
@@ -34,6 +34,11 @@ void	init_data(t_data	*data)
 	data->map->height = 0;
 	data->mlx->tex->height = TEXTURE_HEIGHT;
 	data->mlx->tex->width = TEXTURE_WIDTH;
+	data->tex_path[0] = NULL;
+	data->tex_path[1] = NULL;
+	data->tex_path[2] = NULL;
+	data->tex_path[3] = NULL;
+
 }
 
 /*
