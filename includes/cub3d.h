@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/15 16:51:55 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 19:22:42 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,33 +57,37 @@
 # define STEP_Y_UP		-1
 # define STEP_Y_DOWN	1
 
-# define MSG_N_ARGS			"Error\nInvalid number of arguments.\n"
-# define MSG_CUB_EXT		"Error\nInvalid file extension. Expected .cub\n"
-# define MSG_INIT_MLX		"Error\nFailed to initialize MLX.\n"
-# define MSG_N_ARGS			"Error\nInvalid number of arguments.\n"
-# define MSG_CUB_EXT		"Error\nInvalid file extension. Expected .cub\n"
-# define MSG_INIT_MLX		"Error\nFailed to initialize MLX.\n"
-# define MSG_WINDOW_FAIL	"Error\nFailed to create window.\n"
-# define MSG_IMG_FAIL		"Error\nFailed to create image.\n"
-# define MSG_ADDR_FAIL		"Error\nFailed to get image address.\n"
-# define MSG_TIME_FAIL		"Error\nFailed to get current time.\n"
-# define MSG_OPEN_FAIL		"Error\nFailed to open file.\n"
-# define MSG_IS_DIR			"Error\nFile isn't filing. Is directoring.\n"
-# define MSG_MALL_FAIL		"Error\nFailed to allocate memory.\n"
-# define MSG_FAIL_LOAD_TEX	"Error\nFailed to load textures.\n"
+# define MSG_N_ARGS			"\033[31mError ❌\nInvalid number of arguments.\033[0m\n"
+# define MSG_CUB_EXT		"\033[31mError ❌\nInvalid file extension. Expected .cub\033[0m\n"
+# define MSG_INIT_MLX		"\033[31mError ❌\nFailed to initialize MLX.\033[0m\n"
+# define MSG_WINDOW_FAIL	"\033[31mError ❌\nFailed to create window.\033[0m\n"
+# define MSG_IMG_FAIL		"\033[31mError ❌\nFailed to create image.\033[0m\n"
+# define MSG_ADDR_FAIL		"\033[31mError ❌\nFailed to get image address.\033[0m\n"
+# define MSG_TIME_FAIL		"\033[31mError ❌\nFailed to get current time. \033[0m\n"
+# define MSG_OPEN_FAIL		"\033[31mError ❌\nFailed to open file.\033[0m\n"
+# define MSG_IS_DIR			"\033[31mError ❌\nFile isn't filing. Is directoring.\033[0m\n"
+# define MSG_MALL_FAIL		"\033[31mError ❌\nFailed to allocate memory.\033[0m\n"
+# define MSG_FAIL_LOAD_TEX	"\033[31mError ❌\nFailed to load textures.\033[0m\n"
 // cub err mess
-# define MSG_CUB_FAIL_00	"Error\nIssues with CUB file: invalid ids.\n"
-# define MSG_CUB_FAIL_01	"Error\nIssues with CUB file: missing textures.\n"
-# define MSG_CUB_FAIL_02	"Error\nIssues with CUB file: missing colours.\n"
-# define MSG_CUB_FAIL_03	"Error\nIssues with CUB file: too many ids.\n"
+# define MSG_CUB_FAIL_00	"\033[31mError ❌\nIssues with CUB file: invalid ids.\033[0m\n"
+# define MSG_CUB_FAIL_01	"\033[31mError ❌\nIssues with CUB file: missing textures.\033[0m\n"
+# define MSG_CUB_FAIL_02	"\033[31mError ❌\nIssues with CUB file: missing colours.\033[0m\n"
+# define MSG_CUB_FAIL_03	"\033[31mError ❌\nIssues with CUB file: too many ids.\033[0m\n"
 // map err mess
-# define MSG_COL_FAIL		"Error\nWrong color format.\n"
-# define MSG_MAP_FAIL_00	"Error\nIssues with map: map too small.\n"
-# define MSG_MAP_FAIL_01	"Error\nIssues with map: maze leak.\n"
-# define MSG_MAP_FAIL_02	"Error\nIssues with map: wrong rows.\n"
-# define MSG_MAP_FAIL_03	"Error\nIssues with map: map could not be validated.\n"
-# define MSG_MAP_FAIL_04	"Error\nIssues with map: check elements.\n"
-# define MSG_MAP_FAIL_05	"Error\nIssues with map: missing player.\n"
+# define MSG_COL_FAIL		"\033[31mError ❌\nWrong color format.\033[0m\n"
+# define MSG_MAP_FAIL_00	"\033[31mError ❌\nIssues with map: map too small.\033[0m\n"
+# define MSG_MAP_FAIL_01	"\033[31mError ❌\nIssues with map: maze leak.\033[0m\n"
+# define MSG_MAP_FAIL_02	"\033[31mError ❌\nIssues with map: wrong rows.\033[0m\n"
+# define MSG_MAP_FAIL_03	"\033[31mError ❌\nIssues with map: map could not be validated.\033[0m\n"
+# define MSG_MAP_FAIL_04	"\033[31mError ❌\nIssues with map: check elements.\033[0m\n"
+# define MSG_MAP_FAIL_05	"\033[31mError ❌\nIssues with map: cannot use tab!\033[0m\n"
+# define MSG_MAP_FAIL_06	"\033[31mError ❌\nIssues with map: missing player.\033[0m\n"
+// val ok mess
+# define MSG_MAP_COPY		"\033[32mMap copied successfully ✅ \033[0m\n"
+# define MSG_MLX_INIT		"\033[32mMLX initialised successfully ✅ \033[0m\n"
+// # define MSG_MLX_INIT	"\033[32mMLX initialised successfully ✅ \033[0m\n"
+// # define MSG_MLX_INIT	"\033[32mMLX initialised successfully ✅ \033[0m\n"
+
 
 # define KEY_PRESSED	1
 # define KEY_RELEASED	0
@@ -214,6 +218,8 @@ void	game_loop(t_data *data);
 int		cleanup_and_exit(t_data *data, int exit_code, char *msg);
 int		handle_close_window(t_data *data);
 void	print_err_mess(char *msg);
+void	print_ok_mess(char *msg);
+
 
 void	raycasting(t_data *data);
 void	free_matrix(void **matrix);

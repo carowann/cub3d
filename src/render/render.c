@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/15 18:12:46 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:35:38 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int 
 		my_mlx_pixel_put(mlx, x, y, map->ceiling_color);
 		y++;
 	}
-	if (x == WINDOW_WIDTH /2)
-		printf("wall side: %d\n", ray->wall_side);
+	// if (x == WINDOW_WIDTH /2)
+	// 	printf("wall side: %d\n", ray->wall_side);
 	while (y < ray->draw_end) // draw walls
 	{
 		tex_y = (int)tex_pos & (TEXTURE_HEIGHT - 1);

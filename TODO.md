@@ -44,6 +44,8 @@
 - [ ] Gestione errori con cleanup appropriato
 
 ## Da sistemare
-Error - player count -> segfault con mappa incompleta
+Error ❌
+Issues with map: maze leak. --- con righe vuote in mezzo, con spazi vuoti in mezzo. Apre window comunque --> fixed
+Issues with map: tab --> fixed
 glide: vettore x-y calcola prima x o y, se puoi andarci aggiorni prima uno o l'altro. es: x rimane fissa, si muove su y -> glida
 

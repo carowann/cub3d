@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/15 17:25:25 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:39:07 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void init_mlx(t_mlx *mlx, t_data *data)
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_INIT_MLX);
+	print_ok_mess(MSG_MLX_INIT);
 	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
 	if (!mlx->win)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_WINDOW_FAIL);

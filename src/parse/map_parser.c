@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/15 15:46:48 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 19:09:08 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	maze_fill(char **map, int x, int y, int max_x, int max_y)
 	if (pos == '1' || pos == 'V')
 		return (1); // visiting ALL spaces
 	if (pos == ' ')
-		return (print_err_mess(MSG_MAP_FAIL_01), 2); // leaked space
+		return (0); // leaked space
 	map[y][x] = 'V'; // Visited
 	if (!maze_fill(map, x, y - 1, max_x, max_y)) // North
 		return (0);

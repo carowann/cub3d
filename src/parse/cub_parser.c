@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/15 17:58:46 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:39:34 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,23 +152,24 @@ void    read_cub(t_data *data, int fd)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_02);
 	allocate_map(data, data->map->lines);
 	validate_map(data);
-	printf("\n=== DEBUG MAPPA FINALE ===\n");
-	for (int y = 0; y < data->map->height; y++)
-	{
-		printf("Riga %2d: [", y);
-		for (int x = 0; x < data->map->width; x++)
-		{
-			char c = data->map->grid[y][x];
-			if (c == '1')
-				printf("1");
-			else if (c == '0')
-				printf("0");
-			else if (c == ' ')
-				printf("·");
-			else
-				printf("%c", c);
-		}
-		printf("]\n");
-	}
+	////////////////////////////////////
+	// printf("\n=== DEBUG MAPPA FINALE ===\n");
+	// for (int y = 0; y < data->map->height; y++)
+	// {
+	// 	printf("Riga %2d: [", y);
+	// 	for (int x = 0; x < data->map->width; x++)
+	// 	{
+	// 		char c = data->map->grid[y][x];
+	// 		if (c == '1')
+	// 			printf("1");
+	// 		else if (c == '0')
+	// 			printf("0");
+	// 		else if (c == ' ')
+	// 			printf("·");
+	// 		else
+	// 			printf("%c", c);
+	// 	}
+	// 	printf("]\n");
+	// }
 	close(fd);
 }
