@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/14 18:01:04 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:52:31 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,22 @@
 # define MSG_CUB_EXT		"Error\nInvalid file extension. Expected .cub\n"
 # define MSG_INIT_MLX		"Error\nFailed to initialize MLX.\n"
 # define MSG_WINDOW_FAIL	"Error\nFailed to create window.\n"
-# define MSG_IMG_FAIL			"Error\nFailed to create image.\n"
-# define MSG_ADDR_FAIL			"Error\nFailed to get image address.\n"
-# define MSG_TIME_FAIL			"Error\nFailed to get current time.\n"
+# define MSG_IMG_FAIL		"Error\nFailed to create image.\n"
+# define MSG_ADDR_FAIL		"Error\nFailed to get image address.\n"
+# define MSG_TIME_FAIL		"Error\nFailed to get current time.\n"
 # define MSG_OPEN_FAIL		"Error\nFailed to open file.\n"
 # define MSG_IS_DIR			"Error\nFile isn't filing. Is directoring.\n"
-# define MSG_MAP_FAIL		"Error\nIssues with map.\n"
-# define MSG_CUB_FAIL		"Error\nIssues with CUB file.\n"
 # define MSG_MALL_FAIL		"Error\nFailed to allocate memory.\n"
-# define MSG_COL_FAIL		"Error\nWrong color format.\n"
-# define MSG_PLAYER			"Error\nCheck player count\n"
-# define MSG_ELEM_FAIL		"Error\nCheck elements in map\n"
-
 # define MSG_FAIL_LOAD_TEX	"Error\nFailed to load textures.\n"
+// map err mess
+# define MSG_CUB_FAIL		"Error\nIssues with CUB file.\n"
+# define MSG_COL_FAIL		"Error\nWrong color format.\n"
+# define MSG_MAP_FAIL_00	"Error\nIssues with map: map too small.\n"
+# define MSG_MAP_FAIL_01	"Error\nIssues with map: maze leak.\n"
+# define MSG_MAP_FAIL_02	"Error\nIssues with map: wrong rows.\n"
+# define MSG_MAP_FAIL_03	"Error\nIssues with map: map could not be validated.\n"
+# define MSG_MAP_FAIL_04	"Error\nIssues with map: check elements\n"
+# define MSG_PLAYER			"Error\nCheck player count\n"
 
 # define KEY_PRESSED	1
 # define KEY_RELEASED	0

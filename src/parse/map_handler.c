@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/12 16:58:46 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:53:10 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	check_map_elements(t_data *data)
 		{
 			char c = data->map->grid[y][x];
 			if (!ft_strchr("01NSEW ", c))
-				cleanup_and_exit(data, EXIT_FAILURE, MSG_ELEM_FAIL);
+				cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_04);
 			if (ft_strchr("NSEW", c))
 			{
 				player_count++;
@@ -86,5 +86,5 @@ void validate_map(t_data *data)
 					   data->map->width, data->map->height);
 	free_matrix((void**)temp_grid);
 	if (result != 1)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL);
+		cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_03);
 }

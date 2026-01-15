@@ -6,13 +6,12 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/12 18:24:06 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:37:42 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 // ONLY maze map part
-
 #include "../../includes/cub3d.h"
 
 void	add_line(char *line, t_data *data)
@@ -98,7 +97,7 @@ int	maze_fill(char **map, int x, int y, int max_x, int max_y)
 	if (pos == '1' || pos == 'V')
 		return (1); // visiting ALL spaces
 	if (pos == ' ')
-		return (print_err_mess(MSG_MAP_FAIL), 2); // leaked space
+		return (print_err_mess(MSG_MAP_FAIL_01), 2); // leaked space
 	map[y][x] = 'V'; // Visited
 	if (!maze_fill(map, x, y - 1, max_x, max_y)) // North
 		return (0);
@@ -119,13 +118,13 @@ int	check_lines(int rows, int cols, char **map_mat)// change into count nodes*
 	i = 0;
 	if (rows <= 3 || cols <= 3)
 	{
-		return (print_err_mess(MSG_MAP_FAIL), 0);
+		return (print_err_mess(MSG_MAP_FAIL_00), 0);
 	}
 	while (i < rows)
 	{
 		row_len = ft_strlen(map_mat[i]);
 		if (cols != row_len)
-			return (print_err_mess(MSG_MAP_FAIL), 0);
+			return (print_err_mess(MSG_MAP_FAIL_02), 0);
 		i++;
 	}
 	return (1);

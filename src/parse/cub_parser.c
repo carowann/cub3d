@@ -6,25 +6,9 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/14 18:17:15 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:34:01 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-// Open the .cub file.
-// Loop: read each line using get_next_line().
-// Trim newline (\n). - If we haven’t reached the map yet: if line starts with NO, SO, EA, WE, F, C, → store texture/colors later
-// Else if the line looks like a map (starts with '0', '1', or spaces then '0'/'1') → map starts
-// Else skip empty lines
-// If map has started:
-// Save each line into a dynamic array (don’t validate yet).
-// If a non-map line appears after the map → error.
-// Stop reading.
-// Return the list of map lines and the parsed textures/colors.
-
-// 1. check whether .cub file is healthy - are all elements there? Is map at the bottom?
-// 2. examine identifiers and paths
-// 3. parse map
 
 #include "../../includes/cub3d.h"
 #include <stdbool.h>
@@ -46,8 +30,7 @@ bool	line_is_ids(char *s)
 		return (false);
 	return (true);
 }
-//line_is_map: Ti consiglio di non usarla come condizione stretta.
-//Una volta che hai trovato i 6 identificatori (NO, SO, WE, EA, F, C), tutto ciò che segue ed è composto da 01NSEW è mappa.
+
 bool	line_is_map(char *s)
 {
 	int	 i = 0;
@@ -58,7 +41,6 @@ bool	line_is_map(char *s)
 	return (false);
 }
 
-//pseudo - F  (r)220,(g)100, (b)0
 int	validate_colours(t_data *data, char *colour) // analyse value
 {
 	int		r;
