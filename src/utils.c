@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:35:52 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/01 19:01:51 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/16 13:07:18 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_err_mess(char *msg)
 {
-	ft_printfd(STDERR_FILENO, "%s", msg);
+	ft_printfd(STDERR_FILENO, RED "%s" RESET, msg);
 }
 
 /*

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/15 16:51:55 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:24:44 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,18 @@
 # include <sys/time.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include "../minilibx-linux/mlx_int.h"
+
 
 /* ========================= */
 /*         DEFINES           */
 /* ========================= */
+
+# define BOLD	"\033[1m"
+# define BLUE	"\033[0;34m"
+# define RED	"\033[0;31m"
+# define GREEN	"\033[0;32m"
+# define RESET	"\033[0m"
 
 # define WINDOW_WIDTH	800
 # define WINDOW_HEIGHT	800
@@ -108,13 +116,13 @@ enum e_wall_side
 
 typedef enum e_id
 {
-    ID_NO,  // North
-    ID_SO,  // South
-    ID_WE,  // West
-    ID_EA,  // East
-    ID_FL,
+	ID_NO, // North
+	ID_SO, // South
+	ID_WE, // West
+	ID_EA, // East
+	ID_FL,
 	ID_CE
-}   t_id;
+} t_id;
 
 typedef struct s_player
 {
@@ -161,7 +169,7 @@ typedef struct s_mlx
 {
 	void	*mlx; //The MLX connection/instance (required for all MLX operations)
 	void	*win; //The window where graphics are displayed
-	void	*img; //The image buffer where we draw each frame
+	t_img	*img; //The image buffer where we draw each frame
 	char	*addr; //Pointer to the raw pixel data of the image
 	int		bits_per_pixel; //Number of bits used to represent each pixel
 	int		line_length; //Bytes per row in the image (used to calculate pixel positions)

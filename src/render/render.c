@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/15 17:20:21 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:37:01 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int 
 		wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
 	// texture = tex[tex_id];
-	tex_x = wall_x * (double)texture->width;
+	// tex_x = wall_x * (double)texture->width;
+	tex_x = wall_x * (double)TEXTURE_WIDTH;
 	if (ray->wall_side == WEST || ray->wall_side == EAST)
 	{
 		if (ray->ray_dir_x > 0)

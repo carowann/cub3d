@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/15 17:26:10 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:47:04 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char 	*clean_path(t_data *data, char *s)
 		i++;
 	path = ft_strdup(&s[i]);
 	temp = path;
-	free(path);
+	// free(path);
 	if (!path)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
 	path = ft_strtrim(temp, "\n");
@@ -101,11 +101,13 @@ void    read_ids(t_data *data, char *line)
 	else if (line && ft_strncmp(line, "F", 1) == 0)
 	{
 		data->map->floor_color = validate_colours(data, line);
+		ft_printfd(STDOUT_FILENO, GREEN "✅ Validated floor color\n" RESET);
 		data->map->floor_color_found = true;
 	}
 	else if (line && ft_strncmp(line, "C", 1) == 0)
 	{
 		data->map->ceiling_color = validate_colours(data, line);
+		ft_printfd(STDOUT_FILENO, GREEN "✅ Validated ceiling color\n" RESET);
 		data->map->ceiling_color_found = true;
 	}
 	else
@@ -150,25 +152,8 @@ void    read_cub(t_data *data, int fd)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_01);
 	if (!data->map->floor_color_found || !data->map->ceiling_color_found)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_02);
+	ft_printfd(STDOUT_FILENO, GREEN "✅ Read .cub file\n" RESET);
 	allocate_map(data, data->map->lines);
 	validate_map(data);
-	printf("\n=== DEBUG MAPPA FINALE ===\n");
-	for (int y = 0; y < data->map->height; y++)
-	{
-		printf("Riga %2d: [", y);
-		for (int x = 0; x < data->map->width; x++)
-		{
-			char c = data->map->grid[y][x];
-			if (c == '1')
-				printf("1");
-			else if (c == '0')
-				printf("0");
-			else if (c == ' ')
-				printf("·");
-			else
-				printf("%c", c);
-		}
-		printf("]\n");
-	}
 	close(fd);
 }

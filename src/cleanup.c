@@ -6,32 +6,30 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/15 15:36:50 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 13:09:09 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/cub3d.h"
 
-//TODO list_cleanup
-
-void free_list(t_list *list)
+void	free_list(t_list *list)
 {
-    t_list  *current;
-    t_list  *temp;
-    int     count;
-    if (!list)
-        return ;
-    current = list;
-    count = ft_lstsize(list);
-    while (current)
-    {
-        temp = current->next;
-        free(current->content);
-        free(current);
-        current = temp;
-    }
-    list = NULL;
+	t_list	*current;
+	t_list	*temp;
+	int		count;
+
+	if (!list)
+		return ;
+	current = list;
+	count = ft_lstsize(list);
+	while (current)
+	{
+		temp = current->next;
+		free(current->content);
+		free(current);
+		current = temp;
+	}
+	list = NULL;
 }
 
 static void	free_mlx(t_mlx *mlx)

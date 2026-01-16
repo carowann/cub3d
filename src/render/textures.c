@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 10:53:15 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/14 17:44:00 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:29:19 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-// void	set_tex_path(t_data *data)
-// {
-// 	data->tex_path[0] = "gem_pack/north.xpm";
-// 	data->tex_path[1] = "gem_pack/south.xpm";
-// 	data->tex_path[2] = "gem_pack/west.xpm";
-// 	data->tex_path[3] = "gem_pack/east.xpm";
-// }
 
 static int	load_single_tex(t_tex *tex, t_mlx *mlx, char *tex_path)
 {
@@ -30,6 +22,7 @@ static int	load_single_tex(t_tex *tex, t_mlx *mlx, char *tex_path)
 			&tex->bits_per_pixel, &tex->line_length, &tex->endian);
 	if (!tex->addr)
 		return (FAILURE);
+	ft_printfd(STDOUT_FILENO, GREEN "✅ Created mlx image for %s\n" RESET, tex_path);
 	return (SUCCESS);
 }
 
