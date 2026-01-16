@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/15 18:39:07 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:52:38 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_data(t_data	*data)
 	data->tex_path[1] = NULL;
 	data->tex_path[2] = NULL;
 	data->tex_path[3] = NULL;
-
+	ft_printfd(STDOUT_FILENO, GREEN "✅ Initialised data\n" RESET);
 }
 
 /*
@@ -57,9 +57,11 @@ void init_mlx(t_mlx *mlx, t_data *data)
 	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
 	if (!mlx->win)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_WINDOW_FAIL);
+	ft_printfd(STDOUT_FILENO, GREEN "✅ Created new window\n" RESET);
 	mlx->img = mlx_new_image(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!mlx->img)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_IMG_FAIL);
+	ft_printfd(STDOUT_FILENO, GREEN "✅ Created new image\n" RESET);
 	mlx->addr = mlx_get_data_addr(mlx->img,
 			&mlx->bits_per_pixel,
 			&mlx->line_length,

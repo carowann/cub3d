@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/12 16:08:55 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:26:05 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ static int	is_cub_file(char *filename)
 
 int	check_input(int argc, char **argv)
 {
-	int		fd_map;
+	int	fd_map;
 
 	if (argc != 2)
 		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_N_ARGS);
-
 	if (!is_cub_file(argv[1]))
 		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_CUB_EXT);
-
 	fd_map = open(argv[1], O_DIRECTORY);
 	if (fd_map > 0)
 	{
@@ -47,8 +45,8 @@ int	check_input(int argc, char **argv)
 	fd_map = open(argv[1], O_RDONLY);
 	if (fd_map < 0)
 		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_OPEN_FAIL);
+	ft_printfd(STDOUT_FILENO, GREEN "✅ Valid input\n" RESET);
 	return (fd_map);
-
 }
 
 t_id	get_id_line(char *str)

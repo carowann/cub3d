@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/16 15:31:28 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:33:25 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ static void	init_player_direction(t_data *data, char c)
 
 void	check_map_elements(t_data *data)
 {
-	int	y;
-	int	x;
-	int	player_count;
+	int		y;
+	int		x;
+	int		player_count;
+	char	c;
 
 	player_count = 0;
 	y = 0;
@@ -51,7 +52,7 @@ void	check_map_elements(t_data *data)
 		x = 0;
 		while (data->map->grid[y][x])
 		{
-			char c = data->map->grid[y][x];
+			c = data->map->grid[y][x];
 			if (ft_strchr("\t", c))
 				cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_05);
 			if (!ft_strchr("01NSEW ", c))
@@ -63,6 +64,7 @@ void	check_map_elements(t_data *data)
 				data->player->x = (double)x + 0.5;
 				init_player_direction(data, c); // <--- Chiamata qui
 				data->map->grid[y][x] = '0';
+				ft_printfd(STDOUT_FILENO, GREEN "✅ Saved player coordinates y = %d, x = %d with orientation %c\n" RESET, y, x, c);
 			}
 			x++;
 		}
@@ -77,14 +79,14 @@ void validate_map(t_data *data)
 	int		result;
 	char	**temp_grid;
 
-	check_map_elements(data); // prima scorri matrice e controlla elementi
+	check_map_elements(data);									 // prima scorri matrice e controlla elementi
 	temp_grid = copy_matrix(data->map->grid, data->map->height); // duplica per flood
 	if (!temp_grid)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
 	print_ok_mess(MSG_MAP_COPY);
 	result = maze_fill(temp_grid, data->player->x, data->player->y,
-					   data->map->width, data->map->height);
-	free_matrix((void**)temp_grid);
+						data->map->width, data->map->height);
+	free_matrix((void **)temp_grid);
 	if (result != 1)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_01);
 }

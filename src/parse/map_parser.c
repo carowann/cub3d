@@ -6,12 +6,10 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/15 19:28:48 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:33:55 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-// ONLY maze map part
 #include "../../includes/cub3d.h"
 
 void	add_line(char *line, t_data *data)
@@ -25,7 +23,6 @@ void	add_line(char *line, t_data *data)
 		data->map->width = ft_strlen(new_node->content); // becomes redundant if in alloc?
 	ft_lstadd_back(&data->map->lines, new_node);
 	data->map->height++;
-	// printf("add_line check: Height: %d, Width: %d\n", data->map->height, data->map->width);
 	return ;
 }
 void	allocate_map(t_data *data, t_list *lines)
@@ -60,6 +57,7 @@ void	allocate_map(t_data *data, t_list *lines)
 	}
 	data->map->grid[y] = NULL;
 	// print_map_debug(data, lines);
+	ft_printfd(STDOUT_FILENO, GREEN "✅ Created map grid\n" RESET);
 	free_list(lines);
 }
 
