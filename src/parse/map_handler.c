@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/15 19:22:58 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:31:28 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static void	init_player_direction(t_data *data, char c)
 
 void	check_map_elements(t_data *data)
 {
-	int y;
-	int x;
-	int player_count;
+	int	y;
+	int	x;
+	int	player_count;
 
 	player_count = 0;
 	y = 0;
@@ -52,10 +52,10 @@ void	check_map_elements(t_data *data)
 		while (data->map->grid[y][x])
 		{
 			char c = data->map->grid[y][x];
+			if (ft_strchr("\t", c))
+				cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_05);
 			if (!ft_strchr("01NSEW ", c))
 				cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_04);
-			if (!ft_strchr("\t", c))
-				cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_05);
 			if (ft_strchr("NSEW", c))
 			{
 				player_count++;

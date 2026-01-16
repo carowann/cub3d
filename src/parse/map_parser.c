@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/15 19:09:08 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/15 19:28:48 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ void	add_line(char *line, t_data *data)
 	// printf("add_line check: Height: %d, Width: %d\n", data->map->height, data->map->width);
 	return ;
 }
-void    allocate_map(t_data *data, t_list *lines)
+void	allocate_map(t_data *data, t_list *lines)
 {
-	int x;
-	int y;
-	int len;
-	t_list *tmp = lines;
+	int		x;
+	int		y;
+	int		len;
+	t_list	*tmp;
 
+	tmp = lines;
 	data->map->grid = malloc(sizeof(char *) * (data->map->height + 1));
 	y = 0;
 	while (tmp)
@@ -58,7 +59,7 @@ void    allocate_map(t_data *data, t_list *lines)
 		y++;
 	}
 	data->map->grid[y] = NULL;
-	print_map_debug(data, lines);
+	// print_map_debug(data, lines);
 	free_list(lines);
 }
 
