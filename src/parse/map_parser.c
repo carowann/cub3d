@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/16 14:55:08 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:33:55 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ void	add_line(char *line, t_data *data)
 	data->map->height++;
 	return ;
 }
-void    allocate_map(t_data *data, t_list *lines)
+void	allocate_map(t_data *data, t_list *lines)
 {
-	int x;
-	int y;
-	int len;
-	t_list *tmp = lines;
+	int		x;
+	int		y;
+	int		len;
+	t_list	*tmp;
 
+	tmp = lines;
 	data->map->grid = malloc(sizeof(char *) * (data->map->height + 1));
 	y = 0;
 	while (tmp)
