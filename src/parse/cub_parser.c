@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/16 18:25:00 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 18:28:34 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void	read_cub(t_data *data, int fd)
 			id++;
 		}
 		else if (id < 6 && !line_is_ids(line))
-			cleanup_and_exit(data, EXIT_FAILURE, "id cacca\n");
+			cleanup_and_exit(data, EXIT_FAILURE, "id cacca\n"); //se text dentro mappa o dopo o mancante
 		else if (id == 6 && line_is_map(line))
 			add_line(line, data);
 		free(line);
