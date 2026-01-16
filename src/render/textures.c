@@ -6,12 +6,11 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 10:53:15 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/16 14:29:19 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:56:00 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
 static int	load_single_tex(t_tex *tex, t_mlx *mlx, char *tex_path)
 {
 	tex->img = mlx_xpm_file_to_image(mlx->mlx,

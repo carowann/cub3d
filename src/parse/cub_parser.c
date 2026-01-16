@@ -6,14 +6,12 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/16 14:47:04 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:54:25 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-#include <stdbool.h>
 
-// TO-DO FILE CUB_UTILS
 bool	line_is_empty(char *s)
 {
 	while (*s && ft_isspace(*s))

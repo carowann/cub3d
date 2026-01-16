@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:35:52 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/16 13:07:18 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:53:24 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 void	print_err_mess(char *msg)
 {
 	ft_printfd(STDERR_FILENO, RED "%s" RESET, msg);
+}
+
+void	print_ok_mess(char *msg)
+{
+	ft_printfd(STDOUT_FILENO, GREEN "%s" RESET, msg);
 }
 
 /*

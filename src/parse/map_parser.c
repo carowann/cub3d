@@ -6,12 +6,10 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/16 14:26:35 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:55:08 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-// ONLY maze map part
 #include "../../includes/cub3d.h"
 
 void	add_line(char *line, t_data *data)
@@ -97,7 +95,7 @@ int	maze_fill(char **map, int x, int y, int max_x, int max_y)
 	if (pos == '1' || pos == 'V')
 		return (1); // visiting ALL spaces
 	if (pos == ' ')
-		return (print_err_mess(MSG_MAP_FAIL_01), 2); // leaked space
+		return (0); // leaked space
 	map[y][x] = 'V'; // Visited
 	if (!maze_fill(map, x, y - 1, max_x, max_y)) // North
 		return (0);

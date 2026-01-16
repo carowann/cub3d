@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/16 14:26:28 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:54:52 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	check_map_elements(t_data *data)
 			c = data->map->grid[y][x];
 			if (!ft_strchr("01NSEW ", c))
 				cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_04);
+			if (!ft_strchr("\t", c))
+				cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_05);
 			if (ft_strchr("NSEW", c))
 			{
 				player_count++;
@@ -69,7 +71,7 @@ void	check_map_elements(t_data *data)
 		y++;
 	}
 	if (player_count != 1)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_05);
+		cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_06);
 }
 
 void validate_map(t_data *data)
@@ -81,12 +83,10 @@ void validate_map(t_data *data)
 	temp_grid = copy_matrix(data->map->grid, data->map->height); // duplica per flood
 	if (!temp_grid)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
-	// printf("map copied succesfully!\n"); // remove later
-	// 3. Esecuzione Flood Fill sulla copia
-	// Partiamo dalla posizione del player salvata in check_map_elements
+	print_ok_mess(MSG_MAP_COPY);
 	result = maze_fill(temp_grid, data->player->x, data->player->y,
 						data->map->width, data->map->height);
 	free_matrix((void **)temp_grid);
 	if (result != 1)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_03);
+		cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_01);
 }

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/16 14:37:01 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:55:39 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,12 @@ void set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int 
 		wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
 	// texture = tex[tex_id];
-	// tex_x = wall_x * (double)texture->width;
 	tex_x = wall_x * (double)TEXTURE_WIDTH;
-	if (ray->wall_side == WEST || ray->wall_side == EAST)
-	{
-		if (ray->ray_dir_x > 0)
+	// tex_x = wall_x * (double)texture->width;
+	if (ray->wall_side == EAST)
 			tex_x = TEXTURE_WIDTH - tex_x - 1;
-	}
-	else // NORTH or SOUTH
-	{
-		if (ray->ray_dir_y < 0)
+	else if (ray->wall_side == NORTH)// NORTH or SOUTH
 			tex_x = TEXTURE_WIDTH - tex_x - 1;
-	}
 	get_line_to_draw(ray);
 	step = (double)TEXTURE_HEIGHT/(double)ray->line_height;
 	tex_pos = (ray->draw_start - WINDOW_HEIGHT / 2 + ray->line_height / 2) * step;
@@ -72,6 +66,8 @@ void set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int 
 		my_mlx_pixel_put(mlx, x, y, map->ceiling_color);
 		y++;
 	}
+	// if (x == WINDOW_WIDTH /2)
+	// 	printf("wall side: %d\n", ray->wall_side);
 	while (y < ray->draw_end) // draw walls
 	{
 		tex_y = (int)tex_pos & (TEXTURE_HEIGHT - 1);
