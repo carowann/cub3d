@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/16 14:52:38 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 17:12:48 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	init_data(t_data	*data)
 	data->player->rot_speed = 0.0;
 	data->map->width = 0;
 	data->map->height = 0;
-	data->mlx->tex->height = TEXTURE_HEIGHT;
-	data->mlx->tex->width = TEXTURE_WIDTH;
 	data->tex_path[0] = NULL;
 	data->tex_path[1] = NULL;
 	data->tex_path[2] = NULL;
@@ -54,11 +52,13 @@ void init_mlx(t_mlx *mlx, t_data *data)
 	if (!mlx->mlx)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_INIT_MLX);
 	print_ok_mess(MSG_MLX_INIT);
-	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
+	mlx_get_screen_size(mlx->mlx, &mlx->screen_width, &mlx->screen_height);
+	ft_printfd(STDOUT_FILENO, GREEN "✅ Screen size = %d x %d\n" RESET, mlx->screen_width, mlx->screen_height);
+	mlx->win = mlx_new_window(mlx->mlx, mlx->screen_width, mlx->screen_height, "Cub3D");
 	if (!mlx->win)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_WINDOW_FAIL);
 	ft_printfd(STDOUT_FILENO, GREEN "✅ Created new window\n" RESET);
-	mlx->img = mlx_new_image(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx->img = mlx_new_image(mlx->mlx, mlx->screen_width, mlx->screen_height);
 	if (!mlx->img)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_IMG_FAIL);
 	ft_printfd(STDOUT_FILENO, GREEN "✅ Created new image\n" RESET);
@@ -68,5 +68,4 @@ void init_mlx(t_mlx *mlx, t_data *data)
 			&mlx->endian);
 	if (!mlx->addr)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_ADDR_FAIL);
-	mlx_get_screen_size(mlx->mlx, &mlx->screen_width, &mlx->screen_height);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/02 13:22:57 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:40:30 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 /*
 ** Moves the player forward or backward along their current direction.
@@ -40,27 +40,26 @@
 ** Boundary checks:
 ** Also prevents player from leaving the map bounds entirely.
 */
-void move_forward_or_backward(t_map *map, t_player *player, int direction)
+void	move_forward_or_backward(t_map *map, t_player *player, int direction)
 {
-	double new_x;
-	double new_y;
-	double margin;
+	double	new_x;
+	double	new_y;
+	double	margin;
 
 	margin = WALL_MARGIN; // Safety margin from walls
 	new_x = player->x + player->dir_x * player->move_speed * direction;
 	new_y = player->y + player->dir_y * player->move_speed * direction;
-	if (new_x < margin || new_x >= map->width - margin ||
-		new_y < margin || new_y >= map->height - margin)
-		return;
-	if (map->grid[(int)(new_y - margin)][(int)(new_x - margin)] == WALL ||
-		map->grid[(int)(new_y - margin)][(int)(new_x + margin)] == WALL ||
-		map->grid[(int)(new_y + margin)][(int)(new_x - margin)] == WALL ||
-		map->grid[(int)(new_y + margin)][(int)(new_x + margin)] == WALL)
-		return;
+	if (new_x < margin || new_x >= map->width - margin
+		|| new_y < margin || new_y >= map->height - margin)
+		return ;
+	if (map->grid[(int)(new_y - margin)][(int)(new_x - margin)] == WALL
+		|| map->grid[(int)(new_y - margin)][(int)(new_x + margin)] == WALL
+		|| map->grid[(int)(new_y + margin)][(int)(new_x - margin)] == WALL
+		|| map->grid[(int)(new_y + margin)][(int)(new_x + margin)] == WALL)
+		return ;
 	player->x = new_x;
 	player->y = new_y;
 }
-
 
 /*
 ** Rotates the player's view left or right.

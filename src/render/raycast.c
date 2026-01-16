@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/16 14:41:49 by cwannhed         ###   ########.fr       */
+/*   Created: 2026/01/16 15:42:45 by cwannhed          #+#    #+#             */
+/*   Updated: 2026/01/16 17:13:17 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/cub3d.h"
 
@@ -79,7 +78,7 @@ static void	perform_dda(t_ray *ray, t_map *map)
 ** Main raycasting function - casts one ray per screen column.
 **
 ** Raycasting algorithm overview:
-** For each vertical column of the screen (x = 0 to WINDOW_WIDTH):
+** For each vertical column of the screen (x = 0 to data->mlx->screen_width):
 **   1. Calculate the ray direction for that column
 **   2. Use DDA to find which wall the ray hits
 **   3. Calculate the distance to that wall
@@ -99,13 +98,13 @@ void	raycasting(t_data *data)
 	t_ray	ray;
 
 	x = 0;
-	while (x < WINDOW_WIDTH) // Cast one ray per screen column
+	while (x < data->mlx->screen_width) // Cast one ray per screen column
 	{
 		ray.map_x = (int)(data->player->x); // Initialize ray starting position (player's current map square)
 		ray.map_y = (int)(data->player->y); // Initialize ray starting position (player's current map square)
 		// Convert screen x-coordinate to camera space [-1, 1]
 		// Left edge = -1, center = 0, right edge = 1
-		ray.camera_x = 2 * x / (double)WINDOW_WIDTH - 1;
+		ray.camera_x = 2 * x / (double)data->mlx->screen_width - 1;
 		// Calculate ray direction by combining:
 		// - Player's direction vector (where they're facing)
 		// - Camera plane vector (FOV/field of view)

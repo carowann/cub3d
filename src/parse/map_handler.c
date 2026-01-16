@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/16 14:54:52 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 16:02:12 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	check_map_elements(t_data *data)
 		while (data->map->grid[y][x])
 		{
 			c = data->map->grid[y][x];
+			if (ft_strchr("\t", c))
+				cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_05);
 			if (!ft_strchr("01NSEW ", c))
 				cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_04);
-			if (!ft_strchr("\t", c))
-				cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_05);
 			if (ft_strchr("NSEW", c))
 			{
 				player_count++;

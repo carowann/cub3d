@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/16 14:51:51 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 17:13:31 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@
 # define RED	"\033[0;31m"
 # define GREEN	"\033[0;32m"
 # define RESET	"\033[0m"
-
-# define WINDOW_WIDTH	800
-# define WINDOW_HEIGHT	800
-
-# define TEXTURE_WIDTH	128
-# define TEXTURE_HEIGHT	128
 
 # define FRAME_TIME_SEC	0.01666667 // Approx 60 FPS
 
