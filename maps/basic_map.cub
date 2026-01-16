@@ -1,12 +1,18 @@
-
-NO ./text_packs/gem_pack/north.xpm
-SO ./text_packs/gem_pack/south.xpm
 WE ./text_packs/gem_pack/west.xpm
+ NO ./text_packs/gem_pack/north.xpm
+SO ./text_packs/gem_pack/south.xpm
 EA ./text_packs/gem_pack/east.xpm
-F  220,100,0
-C  225,30,0
+F  81,48,94
+ C  253,253,183
 
-111111
-100001
-1000N1
-111111
+
+111
+11
+101
+101
+
+
+1S1
+101
+111
+

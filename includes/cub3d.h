@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/16 17:13:31 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 17:54:39 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@
 # define MSG_MAP_FAIL_03	"\033[31mError ❌\nIssues with map: map could not be validated.\033[0m\n"
 # define MSG_MAP_FAIL_04	"\033[31mError ❌\nIssues with map: check elements.\033[0m\n"
 # define MSG_MAP_FAIL_05	"\033[31mError ❌\nIssues with map: cannot use tab!\033[0m\n"
-# define MSG_MAP_FAIL_06	"\033[31mError ❌\nIssues with map: missing player.\033[0m\n"
+# define MSG_MAP_FAIL_06	"\033[31mError ❌\nIssues with map: incorrect player count.\033[0m\n"
 // val ok mess
 # define MSG_MAP_COPY		"\033[32mMap copied successfully ✅ \033[0m\n"
 # define MSG_MLX_INIT		"\033[32mMLX initialised successfully ✅ \033[0m\n"
@@ -215,7 +215,6 @@ int		check_input(int argc, char **argv);
 void	read_cub(t_data *data, int fd);
 void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
-void	test_map(t_data *data); // mappa hardcoded
 void	game_loop(t_data *data);
 int		cleanup_and_exit(t_data *data, int exit_code, char *msg);
 int		handle_close_window(t_data *data);
@@ -232,6 +231,7 @@ void	set_perpendicular_wall_distance(t_ray *ray, t_player *player);
 void	move_forward_or_backward(t_map *map, t_player *player, int direction);
 void	rotate_left_or_right(t_player *player, int direction);
 void	free_list(t_list *list);
+void	skip_spaces(char **line);
 
 
 // wip

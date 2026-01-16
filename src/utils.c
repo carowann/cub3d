@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:35:52 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/16 14:53:24 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 17:48:11 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,10 @@ double	get_current_time(t_data *data)
 	if (gettimeofday(&tv, NULL) != SUCCESS)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_TIME_FAIL);
 	return (tv.tv_sec + tv.tv_usec / 1000000.0);
+}
+
+void	skip_spaces(char **line)
+{
+	while (*line && **line && ft_isspace(**line))
+		(*line)++;
 }

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/16 14:54:25 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 18:25:00 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 
 bool	line_is_empty(char *s)
 {
-	while (*s && ft_isspace(*s))
-		return (true);
-	return (false);
+	// while (*s && ft_isspace(*s))
+	// 	return (true);
+	// return (false);
+	while (s && *s)
+	{
+		if (!ft_isspace(*s))
+			return (false);
+		s++;
+	}
+	return (true);
 }
 
 bool	line_is_ids(char *s)
 {
 	int	id;
 
+	skip_spaces(&s);
 	id = get_id_line(s);
 	if (id == -1)
 		return (false);
@@ -86,8 +94,9 @@ char 	*clean_path(t_data *data, char *s)
 	return (path);
 }
 
-void    read_ids(t_data *data, char *line)
+void	read_ids(t_data *data, char *line)
 {
+	skip_spaces(&line);
 	if (line && ft_strncmp(line, "NO", 2) == 0)
 		data->tex_path[NORTH] = clean_path(data, line);
 	else if (line && ft_strncmp(line, "SO", 2) == 0)
@@ -113,7 +122,7 @@ void    read_ids(t_data *data, char *line)
 	return ;
 }
 
-void    read_cub(t_data *data, int fd)
+void	read_cub(t_data *data, int fd)
 {
 	char *line;
 	int id;
@@ -142,7 +151,9 @@ void    read_cub(t_data *data, int fd)
 			read_ids(data, line);
 			id++;
 		}
-		else if (id >= 6 && line_is_map(line))
+		else if (id < 6 && !line_is_ids(line))
+			cleanup_and_exit(data, EXIT_FAILURE, "id cacca\n");
+		else if (id == 6 && line_is_map(line))
 			add_line(line, data);
 		free(line);
 	}
@@ -151,6 +162,7 @@ void    read_cub(t_data *data, int fd)
 	if (!data->map->floor_color_found || !data->map->ceiling_color_found)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_02);
 	ft_printfd(STDOUT_FILENO, GREEN "✅ Read .cub file\n" RESET);
+	print_map_debug(data, data->map->lines);
 	allocate_map(data, data->map->lines);
 	validate_map(data);
 	close(fd);
