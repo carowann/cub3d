@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/12 16:18:39 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/19 19:02:39 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	render_frame(t_data *data)
 	return (0);
 }
 
+// TODO: rotate with left/right arrow, move with WASD
 static int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)

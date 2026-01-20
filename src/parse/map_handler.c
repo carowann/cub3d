@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/16 15:33:25 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:54:18 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	check_map_elements(t_data *data)
 				data->player->x = (double)x + 0.5;
 				init_player_direction(data, c); // <--- Chiamata qui
 				data->map->grid[y][x] = '0';
+				// print_ok_mess(MSG_COORD_OK);
 				ft_printfd(STDOUT_FILENO, GREEN "✅ Saved player coordinates y = %d, x = %d with orientation %c\n" RESET, y, x, c);
 			}
 			x++;

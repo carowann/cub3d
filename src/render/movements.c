@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it>   +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2025/12/02 13:22:57 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:57:51 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cub3d.h"
+# include "../../includes/cub3d.h"
+
+bool	is_out_of_bounds(t_map *map, int y, int x)
+{
+	float	margin;
+
+	margin = 0; // remove wall_margin for incorrect behaviour - we can pt it back here
+ 	if (x < margin || x >= map->width - margin ||
+		y < margin || y >= map->height - margin)
+		return (false);
+	return (map->grid[(int)(y - margin)][(int)(x - margin)] == WALL ||
+		map->grid[(int)(y - margin)][(int)(x + margin)] == WALL ||
+		map->grid[(int)(y + margin)][(int)(x - margin)] == WALL ||
+		map->grid[(int)(y + margin)][(int)(x + margin)] == WALL);
+}
 
 /*
 ** Moves the player forward or backward along their current direction.
@@ -47,6 +61,26 @@ void move_forward_or_backward(t_map *map, t_player *player, int direction)
 	double margin;
 
 	margin = WALL_MARGIN; // Safety margin from walls
+	new_y = player->y;
+	new_x = player->x + player->dir_x * player->move_speed * direction;
+	if (is_out_of_bounds(map, new_y, new_x))
+		new_x = player->x;
+	new_y = player->y + player->dir_y * player->move_speed * direction;
+	if (is_out_of_bounds(map, new_y, new_x))
+		new_y = player->y;
+	player->x = new_x;
+	player->y = new_y;
+}
+
+
+/*
+void move_forward_or_backward(t_map *map, t_player *player, int direction)
+{
+	double new_x;
+	double new_y;
+	double margin;
+
+	margin = WALL_MARGIN; // Safety margin from walls
 	new_x = player->x + player->dir_x * player->move_speed * direction;
 	new_y = player->y + player->dir_y * player->move_speed * direction;
 	if (new_x < margin || new_x >= map->width - margin ||
@@ -60,7 +94,7 @@ void move_forward_or_backward(t_map *map, t_player *player, int direction)
 	player->x = new_x;
 	player->y = new_y;
 }
-
+*/
 
 /*
 ** Rotates the player's view left or right.

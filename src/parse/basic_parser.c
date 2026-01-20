@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/16 14:26:05 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:48:33 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_input(int argc, char **argv)
 	fd_map = open(argv[1], O_RDONLY);
 	if (fd_map < 0)
 		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_OPEN_FAIL);
-	ft_printfd(STDOUT_FILENO, GREEN "✅ Valid input\n" RESET);
+	print_ok_mess(MSG_INPUT_OK);
 	return (fd_map);
 }
 
