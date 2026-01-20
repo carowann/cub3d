@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/16 14:52:06 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/19 18:31:13 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,15 @@ void	free_matrix(void **matrix)
 	}
 	free(matrix);
 }
+// TODO: remove me
+void	kill_get_next_line(int fd);
 
 int	cleanup_and_exit(t_data *data, int exit_code, char *msg)
 {
 	int	i;
 
+	if (data->fd >= 0)
+		kill_get_next_line(data->fd);
 	i = 0;
 	if (msg)
 		print_err_mess(msg);

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/20 12:13:40 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:38:04 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,22 @@
 # define MSG_MAP_FAIL_06	"\033[31mError ❌\nIssues with map: incorrect player count.\033[0m\n"
 // val ok mess
 # define MSG_MAP_COPY		"\033[32mMap copied successfully ✅ \033[0m\n"
+# define MSG_MAP_GRID		"\033[32mCreated map grid ✅ \033[0m\n"
 # define MSG_MLX_INIT		"\033[32mMLX initialised successfully ✅ \033[0m\n"
-// # define MSG_MLX_INIT	"\033[32mMLX initialised successfully ✅ \033[0m\n"
-// # define MSG_MLX_INIT	"\033[32mMLX initialised successfully ✅ \033[0m\n"
-
+# define MSG_INPUT_OK		"\033[32mValid input ✅\033[0m\n"
+# define MSG_DATA_OK		"\033[32mInitialised data  ✅\033[0m\n"
+# define MSG_F_OK			"\033[32mValidated floor color ✅\033[0m\n"
+# define MSG_C_OK			"\033[32mValidated ceiling color ✅\033[0m\n"
+# define MSG_CUB_OK			"\033[32mRead .cub file ✅\033[0m\n"
+// # define MSG_COORD_OK		"\033[32mSaved player coordinates y = %d, x = %d with orientation %c\n", y, x, c  ✅\033[0m\n"
+# define MSG_WIN_OK			"\033[32mCreated new window  ✅\033[0m\n"
+# define MSG_IMG_OK			"\033[32mCreated new image ✅\033[0m\n"
+# define MSG_T0_OK			"\033[32mCreated mlx image for ./text_packs/gem_pack/north.xpm ✅\033[0m\n"
+# define MSG_T1_OK			"\033[32mCreated mlx image for ./text_packs/gem_pack/south.xpm ✅\033[0m\n"
+# define MSG_T2_OK			"\033[32mCreated mlx image for ./text_packs/gem_pack/west.xpm ✅\033[0m\n"
+# define MSG_T3_OK			"\033[32mCreated mlx image for ./text_packs/gem_pack/east.xpm ✅\033[0m\n"
+// # define MSG_	"\033[32m ____ \033[0m\n"
+// # define MSG_	"\033[32m ____ \033[0m\n"
 
 # define KEY_PRESSED	1
 # define KEY_RELEASED	0
@@ -187,6 +199,8 @@ typedef struct s_data
 	t_map		*map;
 	t_player	*player;
 	char		*tex_path[4];
+
+	int			fd;
 } t_data;
 
 typedef struct s_ray
@@ -239,7 +253,7 @@ void	skip_spaces(char **line);
 
 
 // wip
-int	validate_colours(t_data *data, char *colour);// return completely analysed value
+size_t	validate_colours(t_data *data, char *colour);// return completely analysed value
 t_id	get_id_line(char *str);
 void	add_line(char *line, t_data *data);
 void	allocate_map(t_data *data, t_list *lines);

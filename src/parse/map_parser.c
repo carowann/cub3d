@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/16 15:33:55 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:38:01 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	allocate_map(t_data *data, t_list *lines)
 	}
 	data->map->grid[y] = NULL;
 	// print_map_debug(data, lines);
-	ft_printfd(STDOUT_FILENO, GREEN "✅ Created map grid\n" RESET);
+	print_ok_mess(MSG_MAP_GRID);
 	free_list(lines);
 }
 

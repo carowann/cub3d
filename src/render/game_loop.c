@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/16 15:41:38 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:18:25 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	render_frame(t_data *data)
 	return (0);
 }
 
+// TODO: rotate with left/right arrow, move with WASD
 static int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)

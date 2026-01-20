@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/16 18:26:59 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:18:04 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	check_map_elements(t_data *data)
 				data->player->x = (double)x + 0.5;
 				init_player_direction(data, c); // <--- Chiamata qui
 				data->map->grid[y][x] = '0';
+				// print_ok_mess(MSG_COORD_OK);
 				ft_printfd(STDOUT_FILENO, GREEN "✅ Saved player coordinates y = %d, x = %d with orientation %c\n" RESET, y, x, c);
 			}
 			// printf("player count %d in position %d %d with element %c\n", player_count, y, x, c);
