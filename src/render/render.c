@@ -6,10 +6,11 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:19:23 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:32:56 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: REMOVE. NORME: KO
 #include "../../includes/cub3d.h"
 
 static void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)

@@ -5,17 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/20 14:15:27 by giomastr         ###   ########.fr       */
+/*   Created: 2026/01/20 14:24:13 by giomastr          #+#    #+#             */
+/*   Updated: 2026/01/20 14:24:26 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../../includes/cub3d.h"
 
+// TODO: REMOVE. NORME:ok
 // check basic stuff - input, file extension, handle ids
-
 static int	is_cub_file(char *filename)
 {
 	int	len;

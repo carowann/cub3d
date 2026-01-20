@@ -6,10 +6,11 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/16 15:38:01 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:46:50 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: REMOVE. NORME: KO
 #include "../../includes/cub3d.h"
 
 void	add_line(char *line, t_data *data)
@@ -48,7 +49,7 @@ void	allocate_map(t_data *data, t_list *lines)
 		}
 		while (x < data->map->width)
 		{
-			data->map->grid[y][x] = ' '; // Padding con spazio
+			data->map->grid[y][x] = ' ';
 			x++;
 		}
 		data->map->grid[y][x] = '\0';

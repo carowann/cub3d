@@ -6,10 +6,11 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:19:16 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:32:31 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: REMOVE. NORME: KO
 # include "../../includes/cub3d.h"
 
 bool	is_out_of_bounds(t_map *map, int y, int x)

@@ -6,97 +6,12 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/20 14:17:50 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:59:20 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: REMOVE. NORME: KO
 #include "../../includes/cub3d.h"
-
-bool	line_is_empty(char *s)
-{
-	// while (*s && ft_isspace(*s))
-	// 	return (true);
-	// return (false);
-	while (s && *s)
-	{
-		if (!ft_isspace(*s))
-			return (false);
-		s++;
-	}
-	return (true);
-}
-
-bool	line_is_ids(char *s)
-{
-	int	id;
-
-	skip_spaces(&s);
-	id = get_id_line(s);
-	if (id == -1)
-		return (false);
-	return (true);
-}
-
-bool	line_is_map(char *s)
-{
-	int	 i = 0;
-	while (s[i] && ft_isspace(s[i]))
-		i++;
-	if (ft_strchr("01NSEW ", s[i]))
-				return (true);
-	return (false);
-}
-
-size_t	validate_colours(t_data *data, char *colour) // analyse value
-{
-	int		r;
-	int		g;
-	int		b;
-	int		row_count;
-	char	**value;
-	int		i;
-
-	// TODO: DO NOT USE POINTERS PLEASE
-	i = 0;
-	while (!ft_isdigit(colour[i]))
-		i++;
-	value = ft_split(&colour[i], ',');
-	if (!value)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
-	row_count = 0;
-	while (value[row_count] != NULL)
-		row_count++;
-	if (row_count != 3)
-		return (free(colour), cleanup_and_exit(data, EXIT_FAILURE, MSG_COL_FAIL)); // TODO: fix this (leaking `line` from get_next_line)
-	r = ft_atoi(value[0]);
-	g = ft_atoi(value[1]);
-	b = ft_atoi(value[2]);
-	free_matrix((void**)value);
-	if (r < 0 || r > 255 || (g < 0 || g > 255) || (b < 0 || b > 255))
-		return (free(colour), cleanup_and_exit(data, EXIT_FAILURE, MSG_COL_FAIL));
-	return ((r << 16) | (g << 8) | b);
-}
-
-char 	*clean_path(t_data *data, char *s)
-{
-	int i;
-	char *path;
-	char *temp;
-
-	i = 2;
-	while (s[i] && ft_isspace(s[i]))
-		i++;
-	path = ft_strdup(&s[i]); // fix leak for read ids
-	temp = path;
-	// free(path);
-	if (!path)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
-	path = ft_strtrim(temp, "\n");
-	free(temp);
-	if (!path)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
-	return (path);
-}
 
 void	read_ids(t_data *data, char *line)
 {
@@ -128,13 +43,13 @@ void	read_ids(t_data *data, char *line)
 
 void	read_cub(t_data *data, int fd)
 {
-	char *line;
-	int id;
+	int		id;
+	char	*line;
 
 	line = 0;
 	if (fd < 0 || !data || !data->map)
 		return ;
-	id =  0;
+	id = 0;
 	while (1)
 	{
 		line = get_next_line(fd);

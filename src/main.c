@@ -6,10 +6,11 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:17:07 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/19 18:28:11 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:31:58 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: REMOVE. NORME: KO
 #include "../includes/cub3d.h"
 
 void    print_map_debug(t_data *data, t_list *lines)

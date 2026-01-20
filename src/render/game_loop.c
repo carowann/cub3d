@@ -6,10 +6,11 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:18:25 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:32:25 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: REMOVE. NORME: KO
 #include "../../includes/cub3d.h"
 
 /*

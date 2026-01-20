@@ -6,12 +6,13 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:14:59 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:30:51 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+// TODO: REMOVE. NORME: KO
 void	init_data(t_data	*data)
 {
 	// qui mettere solo cose da inizializzare con valore, r-data inizializzato a 0 in main
