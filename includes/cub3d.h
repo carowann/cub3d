@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/19 18:41:48 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:13:55 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@
 # define RED	"\033[0;31m"
 # define GREEN	"\033[0;32m"
 # define RESET	"\033[0m"
-
-# define WINDOW_WIDTH	800
-# define WINDOW_HEIGHT	800
-
-# define TEXTURE_WIDTH	128
-# define TEXTURE_HEIGHT	128
 
 # define FRAME_TIME_SEC	0.01666667 // Approx 60 FPS
 
@@ -89,7 +83,7 @@
 # define MSG_MAP_FAIL_03	"\033[31mError ❌\nIssues with map: map could not be validated.\033[0m\n"
 # define MSG_MAP_FAIL_04	"\033[31mError ❌\nIssues with map: check elements.\033[0m\n"
 # define MSG_MAP_FAIL_05	"\033[31mError ❌\nIssues with map: cannot use tab!\033[0m\n"
-# define MSG_MAP_FAIL_06	"\033[31mError ❌\nIssues with map: missing player.\033[0m\n"
+# define MSG_MAP_FAIL_06	"\033[31mError ❌\nIssues with map: incorrect player count.\033[0m\n"
 // val ok mess
 # define MSG_MAP_COPY		"\033[32mMap copied successfully ✅ \033[0m\n"
 # define MSG_MAP_GRID		"\033[32mCreated map grid ✅ \033[0m\n"
@@ -235,7 +229,6 @@ int		check_input(int argc, char **argv);
 void	read_cub(t_data *data, int fd);
 void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
-void	test_map(t_data *data); // mappa hardcoded
 void	game_loop(t_data *data);
 int		cleanup_and_exit(t_data *data, int exit_code, char *msg);
 int		handle_close_window(t_data *data);
@@ -252,6 +245,7 @@ void	set_perpendicular_wall_distance(t_ray *ray, t_player *player);
 void	move_forward_or_backward(t_map *map, t_player *player, int direction);
 void	rotate_left_or_right(t_player *player, int direction);
 void	free_list(t_list *list);
+void	skip_spaces(char **line);
 
 
 // wip

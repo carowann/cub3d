@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/19 19:02:39 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:18:25 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static int	handle_keyrelease(int keysym, t_data *data)
 }
 
 //Sets up the main game loop and event handlers.
-//hook for key presses and releases in order to handle continuous movement smoothly.
+//hook for key presses and releases
 void	game_loop(t_data *data)
 {
 	mlx_hook(data->mlx->win, //Window to monitor for events
@@ -128,5 +128,3 @@ void	game_loop(t_data *data)
 	mlx_loop_hook(data->mlx->mlx, render_frame, data); // Register continuous rendering function (called every frame)
 	mlx_loop(data->mlx->mlx); // Start the infinite event loop (program runs here until exit)
 }
-
-

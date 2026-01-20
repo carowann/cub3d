@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:35:52 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/19 18:31:20 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:15:08 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,10 @@ double	get_current_time(t_data *data)
 	if (gettimeofday(&tv, NULL) != SUCCESS)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_TIME_FAIL);
 	return (tv.tv_sec + tv.tv_usec / 1000000.0);
+}
+
+void	skip_spaces(char **line)
+{
+	while (*line && **line && ft_isspace(**line))
+		(*line)++;
 }
