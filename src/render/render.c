@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/16 17:15:26 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/20 11:59:45 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,51 +33,59 @@ static void	get_line_to_draw(t_ray *ray, t_mlx *mlx)
 		ray->draw_end = mlx->screen_height - 1;
 }
 
-void	set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int x)
+static void	set_tex_x_coord(t_ray *ray, t_player *player, t_tex *tex)
 {
-	int		tex_id;
-	int		tex_x;
-	int		tex_y;
-	int		y;
-	int		color;
 	double	wall_x; //exact value where the wall was hit, not just the integer coordinates of the wall
-	double	step;
-	double	tex_pos;
-	t_tex	texture;
 
-	tex_id = ray->wall_side;
 	if (ray->wall_side == WEST || ray->wall_side == EAST)
 		wall_x = player->y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
 		wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
-	texture = mlx->tex[tex_id];
-	tex_x = wall_x * (double)texture.width;
+	tex->x = wall_x * (double)tex->width;
 	if (ray->wall_side == EAST)
-			tex_x = texture.width - tex_x - 1;
+			tex->x = tex->width - tex->x - 1;
 	else if (ray->wall_side == NORTH)
-			tex_x = texture.width - tex_x - 1;
-	get_line_to_draw(ray, mlx);
-	step = (double)texture.height/(double)ray->line_height;
-	tex_pos = (ray->draw_start - mlx->screen_height / 2 + ray->line_height / 2) * step;
+			tex->x = tex->width - tex->x - 1;
+}
+
+static void	draw_column(t_ray ray, t_data d, int x, t_tex tex)
+{
+	int		y;
+	int		color;
+
 	y = 0;
-	while (y < ray->draw_start) // draw ceiling
+	while (y < ray.draw_start) // draw ceiling
 	{
-		my_mlx_pixel_put(mlx, x, y, map->ceiling_color);
+		my_mlx_pixel_put(d.mlx, x, y, d.map->ceiling_color);
 		y++;
 	}
-	while (y < ray->draw_end) // draw walls
+	while (y < ray.draw_end) // draw walls
 	{
-		tex_y = (int)tex_pos & (texture.height - 1);
-		tex_pos += step;
-		color = mlx->tex[ray->wall_side].addr[texture.width * tex_y + tex_x];
+		tex.y = (int)tex.pos & (tex.height - 1);
+		tex.pos += tex.step;
+		color = d.mlx->tex[ray.wall_side].addr[tex.width * tex.y + tex.x];
 		//TODO: maybe add darker color if y side of wall was hit (lodev)
-		my_mlx_pixel_put(mlx, x, y, color);
+		my_mlx_pixel_put(d.mlx, x, y, color);
 		y++;
 	}
-	while (y < mlx->screen_height) // draw floor
+	while (y < d.mlx->screen_height) // draw floor
 	{
-		my_mlx_pixel_put(mlx, x, y, map->floor_color);
+		my_mlx_pixel_put(d.mlx, x, y, d.map->floor_color);
 		y++;
 	}
+}
+
+void	set_pixel_buffer(t_data *d, t_ray *ray, int x)
+{
+	int		tex_id;
+	t_tex	texture;
+
+	tex_id = ray->wall_side;
+	texture = d->mlx->tex[tex_id];
+	set_tex_x_coord(ray, d->player, &texture);
+	get_line_to_draw(ray, d->mlx);
+	texture.step = (double)texture.height/(double)ray->line_height;
+	texture.pos = (ray->draw_start - d->mlx->screen_height / 2 + ray->line_height / 2) * texture.step;
+	draw_column(*ray, *d, x, texture);
 }

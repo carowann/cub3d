@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:42:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/16 17:13:17 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:14:40 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	raycasting(t_data *data)
 		perform_dda(&ray, data->map);
 		// Calculate perpendicular distance to avoid fisheye effect
 		set_perpendicular_wall_distance(&ray, data->player);
-		set_pixel_buffer(data->mlx, &ray, data->map, data->player, x);
+		set_pixel_buffer(data, &ray, x);
 		x++;
 	}
 }
