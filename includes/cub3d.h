@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/20 14:38:04 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/20 18:40:19 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@
 # define DOWN	-1
 # define LEFT	-1
 # define RIGHT	1
-
-# define WALL_MARGIN	0.2
 
 # define DELTA_DIST_INFINITY	1e30
 
@@ -150,6 +148,8 @@ typedef struct s_player
 	int		key_s;
 	int		key_a;
 	int		key_d;
+	int		key_left;
+	int		key_right;
 } t_player;
 
 typedef struct s_map
@@ -253,7 +253,7 @@ void	skip_spaces(char **line);
 
 
 // wip
-size_t	validate_colours(t_data *data, char *colour);// return completely analysed value
+size_t	validate_colours(t_data data, char *colour);// return completely analysed value
 t_id	get_id_line(char *str);
 void	add_line(char *line, t_data *data);
 void	allocate_map(t_data *data, t_list *lines);

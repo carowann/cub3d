@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:19:16 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/21 15:58:38 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,9 @@
 
 bool	is_out_of_bounds(t_map *map, int y, int x)
 {
-	float	margin;
-
-	margin = 0; // remove wall_margin for incorrect behaviour - we can pt it back here
- 	if (x < margin || x >= map->width - margin ||
-		y < margin || y >= map->height - margin)
+	if (x < 0 || x >= map->width || y < 0 || y >= map->height)
 		return (false);
-	return (map->grid[(int)(y - margin)][(int)(x - margin)] == WALL ||
-		map->grid[(int)(y - margin)][(int)(x + margin)] == WALL ||
-		map->grid[(int)(y + margin)][(int)(x - margin)] == WALL ||
-		map->grid[(int)(y + margin)][(int)(x + margin)] == WALL);
+	return (map->grid[y][x] == WALL);
 }
 
 /*
@@ -56,11 +49,9 @@ bool	is_out_of_bounds(t_map *map, int y, int x)
 */
 void move_forward_or_backward(t_map *map, t_player *player, int direction)
 {
-	double new_x;
-	double new_y;
-	double margin;
+	double	new_x;
+	double	new_y;
 
-	margin = WALL_MARGIN; // Safety margin from walls
 	new_y = player->y;
 	new_x = player->x + player->dir_x * player->move_speed * direction;
 	if (is_out_of_bounds(map, new_y, new_x))
@@ -71,7 +62,6 @@ void move_forward_or_backward(t_map *map, t_player *player, int direction)
 	player->x = new_x;
 	player->y = new_y;
 }
-
 
 /*
 void move_forward_or_backward(t_map *map, t_player *player, int direction)
@@ -95,6 +85,21 @@ void move_forward_or_backward(t_map *map, t_player *player, int direction)
 	player->y = new_y;
 }
 */
+
+void	move_left_or_right(t_map *map, t_player *player, int direction)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = player->x + player->plane_x * player->move_speed * direction;
+	if (is_out_of_bounds(map, (int)player->y, (int)new_x))
+		new_x = player->x;
+	new_y = player->y + player->plane_y * player->move_speed * direction;
+	if (is_out_of_bounds(map, (int)new_y, (int)new_x))
+		new_y = player->y;
+	player->x = new_x;
+	player->y = new_y;
+}
 
 /*
 ** Rotates the player's view left or right.
@@ -144,7 +149,11 @@ void	handle_keyboard_input(t_data *data)
 	if (data->player->key_s == KEY_PRESSED)
 		move_forward_or_backward(data->map, data->player, DOWN);
 	if (data->player->key_a == KEY_PRESSED)
-		rotate_left_or_right(data->player, LEFT);
+		move_left_or_right(data->map, data->player, LEFT);
 	if (data->player->key_d == KEY_PRESSED)
+		move_left_or_right(data->map, data->player, RIGHT);
+	if (data->player->key_left == KEY_PRESSED)
+		rotate_left_or_right(data->player, LEFT);
+	if (data->player->key_right == KEY_PRESSED)
 		rotate_left_or_right(data->player, RIGHT);
 }

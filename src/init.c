@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:14:59 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:44:42 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void init_mlx(t_mlx *mlx, t_data *data)
 	if (!mlx->win)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_WINDOW_FAIL);
 	print_ok_mess(MSG_WIN_OK);
-	mlx->img = mlx_new_image(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx->img = mlx_new_image(mlx->mlx, mlx->screen_width, mlx->screen_height);
 	if (!mlx->img)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_IMG_FAIL);
 	print_ok_mess(MSG_IMG_OK);

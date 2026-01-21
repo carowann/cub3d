@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/20 14:17:50 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 18:10:21 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	line_is_map(char *s)
 	return (false);
 }
 
-size_t	validate_colours(t_data *data, char *colour) // analyse value
+size_t	validate_colours(t_data data, char *colour) // analyse value
 {
 	int		r;
 	int		g;
@@ -56,24 +56,23 @@ size_t	validate_colours(t_data *data, char *colour) // analyse value
 	char	**value;
 	int		i;
 
-	// TODO: DO NOT USE POINTERS PLEASE
 	i = 0;
 	while (!ft_isdigit(colour[i]))
 		i++;
 	value = ft_split(&colour[i], ',');
 	if (!value)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
+		cleanup_and_exit(&data, EXIT_FAILURE, MSG_MALL_FAIL);
 	row_count = 0;
 	while (value[row_count] != NULL)
 		row_count++;
 	if (row_count != 3)
-		return (free(colour), cleanup_and_exit(data, EXIT_FAILURE, MSG_COL_FAIL)); // TODO: fix this (leaking `line` from get_next_line)
+		return (free(colour), cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL)); // TODO: fix this (leaking `line` from get_next_line)
 	r = ft_atoi(value[0]);
 	g = ft_atoi(value[1]);
 	b = ft_atoi(value[2]);
 	free_matrix((void**)value);
 	if (r < 0 || r > 255 || (g < 0 || g > 255) || (b < 0 || b > 255))
-		return (free(colour), cleanup_and_exit(data, EXIT_FAILURE, MSG_COL_FAIL));
+		return (free(colour), cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL));
 	return ((r << 16) | (g << 8) | b);
 }
 
@@ -111,13 +110,13 @@ void	read_ids(t_data *data, char *line)
 		data->tex_path[EAST] = clean_path(data, line);
 	else if (line && ft_strncmp(line, "F", 1) == 0)
 	{
-		data->map->floor_color = validate_colours(data, line);
+		data->map->floor_color = validate_colours(*data, line);
 		print_ok_mess(MSG_F_OK);
 		data->map->floor_color_found = true;
 	}
 	else if (line && ft_strncmp(line, "C", 1) == 0)
 	{
-		data->map->ceiling_color = validate_colours(data, line);
+		data->map->ceiling_color = validate_colours(*data, line);
 		print_ok_mess(MSG_C_OK);
 		data->map->ceiling_color_found = true;
 	}
