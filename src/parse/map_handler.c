@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/20 14:18:04 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:50:14 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 static void	init_player_direction(t_data *data, char c)
 {
-	// Reset iniziale
-	data->player->dir_x = 0;
-	data->player->dir_y = 0;
-	data->player->plane_x = 0;
-	data->player->plane_y = 0;
-
 	if (c == 'N') {
 		data->player->dir_y = -1.0;  // Guarda su (Y negativa)
 		data->player->plane_x = 0.66; // Piano orizzontale

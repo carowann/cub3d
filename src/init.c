@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:44:42 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:53:08 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,14 @@
 
 void	init_data(t_data	*data)
 {
-	// qui mettere solo cose da inizializzare con valore, r-data inizializzato a 0 in main
+	//TODO: qui mettere solo cose da inizializzare con valore, r-data inizializzato a 0 in main
 	data->map = ft_calloc(1, sizeof(t_map));
 	data->player = ft_calloc(1, sizeof(t_player));
 	data->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!data->map || !data->player || !data->mlx)
 		cleanup_and_exit(data, EXIT_FAILURE, NULL);
-	data->player->x = 0.0;
-	data->player->y = 0.0;
-	data->player->dir_x = 0.0;
-	data->player->dir_y = 0.0;
-	data->player->plane_x = 0.0;
-	data->player->plane_y = 0.0;
+	data->finished_reading = false;
 	data->player->time_curr_frame = get_current_time(data);
-	data->player->time_last_frame = 0.0;
-	data->player->move_speed = 0.0;
-	data->player->rot_speed = 0.0;
-	data->map->width = 0;
-	data->map->height = 0;
-	data->tex_path[0] = NULL;
-	data->tex_path[1] = NULL;
-	data->tex_path[2] = NULL;
-	data->tex_path[3] = NULL;
 	print_ok_mess(MSG_DATA_OK);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/20 18:40:19 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:37:28 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ typedef struct s_data
 	t_map		*map;
 	t_player	*player;
 	char		*tex_path[4];
-
+	int			finished_reading;
 	int			fd;
 } t_data;
 
