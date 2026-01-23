@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/21 16:37:28 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/23 14:55:29 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,6 +251,8 @@ void	rotate_left_or_right(t_player *player, int direction);
 void	free_list(t_list *list);
 void	skip_spaces(char **line);
 
+
+void	kill_get_next_line(int fd);
 
 // wip
 size_t	validate_colours(t_data data, char *colour);// return completely analysed value

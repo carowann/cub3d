@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/22 12:54:19 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/23 14:49:31 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 bool	line_is_empty(char *s)
 {
-	// while (*s && ft_isspace(*s))
-	// 	return (true);
-	// return (false);
 	while (s && *s)
 	{
 		if (!ft_isspace(*s))
@@ -127,8 +124,8 @@ void	read_ids(t_data *data, char *line)
 
 void	read_cub(t_data *data, int fd)
 {
-	char *line;
-	int id;
+	char	*line;
+	int		id;
 
 	line = 0;
 	if (fd < 0 || !data || !data->map)

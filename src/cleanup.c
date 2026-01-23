@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/23 13:45:56 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/23 14:47:11 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ void	free_matrix(void **matrix)
 	}
 	free(matrix);
 }
-// TODO: remove me
-void	kill_get_next_line(int fd);
 
 int	cleanup_and_exit(t_data *data, int exit_code, char *msg)
 {

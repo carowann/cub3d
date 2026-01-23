@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/21 16:53:08 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/23 14:47:33 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_data(t_data	*data)
 {
-	//TODO: qui mettere solo cose da inizializzare con valore, r-data inizializzato a 0 in main
+	//TODO: r-data inizializzato a 0 in main
 	data->map = ft_calloc(1, sizeof(t_map));
 	data->player = ft_calloc(1, sizeof(t_player));
 	data->mlx = ft_calloc(1, sizeof(t_mlx));
