@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:42:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:32:47 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:43:22 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	raycasting(t_data *data)
 		perform_dda(&ray, data->map);
 		// Calculate perpendicular distance to avoid fisheye effect
 		set_perpendicular_wall_distance(&ray, data->player);
-		set_pixel_buffer(data->mlx, &ray, data->map, data->player, x);
+		set_pixel_buffer(data, &ray, x);
 		x++;
 	}
 }

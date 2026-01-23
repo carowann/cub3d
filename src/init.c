@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:30:51 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:11:40 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,14 @@
 // TODO: REMOVE. NORME: KO
 void	init_data(t_data	*data)
 {
-	// qui mettere solo cose da inizializzare con valore, r-data inizializzato a 0 in main
+	//TODO: qui mettere solo cose da inizializzare con valore, r-data inizializzato a 0 in main
 	data->map = ft_calloc(1, sizeof(t_map));
 	data->player = ft_calloc(1, sizeof(t_player));
 	data->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!data->map || !data->player || !data->mlx)
 		cleanup_and_exit(data, EXIT_FAILURE, NULL);
-	data->player->x = 0.0;
-	data->player->y = 0.0;
-	data->player->dir_x = 0.0;
-	data->player->dir_y = 0.0;
-	data->player->plane_x = 0.0;
-	data->player->plane_y = 0.0;
+	data->finished_reading = false;
 	data->player->time_curr_frame = get_current_time(data);
-	data->player->time_last_frame = 0.0;
-	data->player->move_speed = 0.0;
-	data->player->rot_speed = 0.0;
-	data->map->width = 0;
-	data->map->height = 0;
-	data->tex_path[0] = NULL;
-	data->tex_path[1] = NULL;
-	data->tex_path[2] = NULL;
-	data->tex_path[3] = NULL;
 	print_ok_mess(MSG_DATA_OK);
 }
 
@@ -59,7 +45,7 @@ void init_mlx(t_mlx *mlx, t_data *data)
 	if (!mlx->win)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_WINDOW_FAIL);
 	print_ok_mess(MSG_WIN_OK);
-	mlx->img = mlx_new_image(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx->img = mlx_new_image(mlx->mlx, mlx->screen_width, mlx->screen_height);
 	if (!mlx->img)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_IMG_FAIL);
 	print_ok_mess(MSG_IMG_OK);

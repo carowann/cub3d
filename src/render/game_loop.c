@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:32:25 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:30:41 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,21 @@ int	render_frame(t_data *data)
 	return (0);
 }
 
-// TODO: rotate with left/right arrow, move with WASD
 static int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		cleanup_and_exit(data, EXIT_SUCCESS, NULL);
-	else if (keysym == XK_w || keysym == XK_Up)
+	else if (keysym == XK_w)
 		data->player->key_w = KEY_PRESSED;
-	else if (keysym == XK_s || keysym == XK_Down)
+	else if (keysym == XK_s)
 		data->player->key_s = KEY_PRESSED;
-	else if (keysym == XK_a || keysym == XK_Left)
+	else if (keysym == XK_Left)
+		data->player->key_left = KEY_PRESSED;
+	else if (keysym == XK_Right)
+		data->player->key_right = KEY_PRESSED;
+	else if (keysym == XK_a)
 		data->player->key_a = KEY_PRESSED;
-	else if (keysym == XK_d || keysym == XK_Right)
+	else if (keysym == XK_d)
 		data->player->key_d = KEY_PRESSED;
 	render_frame(data);
 	return (0);
@@ -96,14 +99,18 @@ static int	handle_keypress(int keysym, t_data *data)
 
 static int	handle_keyrelease(int keysym, t_data *data)
 {
-	if (keysym == XK_w || keysym == XK_Up)
+	if (keysym == XK_w)
 		data->player->key_w = KEY_RELEASED;
-	else if (keysym == XK_s || keysym == XK_Down)
+	else if (keysym == XK_s)
 		data->player->key_s = KEY_RELEASED;
-	else if (keysym == XK_a || keysym == XK_Left)
+	else if (keysym == XK_a)
 		data->player->key_a = KEY_RELEASED;
-	else if (keysym == XK_d || keysym == XK_Right)
+	else if (keysym == XK_d)
 		data->player->key_d = KEY_RELEASED;
+	else if (keysym == XK_Left)
+		data->player->key_left = KEY_RELEASED;
+	else if (keysym == XK_Right)
+		data->player->key_right = KEY_RELEASED;
 	return (0);
 }
 

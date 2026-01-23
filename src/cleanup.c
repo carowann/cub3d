@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/20 14:32:09 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:09:49 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,14 @@ int	cleanup_and_exit(t_data *data, int exit_code, char *msg)
 {
 	int	i;
 
-	if (data->fd >= 0)
-		kill_get_next_line(data->fd);
+
 	i = 0;
 	if (msg)
 		print_err_mess(msg);
 	if (data)
 	{
+		if (data->fd >= 0)
+			kill_get_next_line(data->fd);
 		if (data->mlx)
 		free_mlx(data->mlx);
 		if (data->map)

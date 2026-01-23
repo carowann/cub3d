@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/20 14:13:55 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:37:28 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@
 # define DOWN	-1
 # define LEFT	-1
 # define RIGHT	1
-
-# define WALL_MARGIN	0.2
 
 # define DELTA_DIST_INFINITY	1e30
 
@@ -150,6 +148,8 @@ typedef struct s_player
 	int		key_s;
 	int		key_a;
 	int		key_d;
+	int		key_left;
+	int		key_right;
 } t_player;
 
 typedef struct s_map
@@ -173,6 +173,10 @@ typedef struct s_tex
 	int		endian;
 	int		width;
 	int		height;
+	int		x;
+	int		y;
+	double	pos;
+	double	step;
 }	t_tex;
 
 typedef struct s_mlx
@@ -195,7 +199,7 @@ typedef struct s_data
 	t_map		*map;
 	t_player	*player;
 	char		*tex_path[4];
-
+	int			finished_reading;
 	int			fd;
 } t_data;
 
@@ -249,7 +253,7 @@ void	skip_spaces(char **line);
 
 
 // wip
-size_t	validate_colours(t_data *data, char *colour);// return completely analysed value
+size_t	validate_colours(t_data data, char *colour);// return completely analysed value
 t_id	get_id_line(char *str);
 void	add_line(char *line, t_data *data);
 void	allocate_map(t_data *data, t_list *lines);
@@ -263,7 +267,7 @@ void	set_movement_and_rotation_speed(t_data *data, t_player *player);
 void	handle_keyboard_input(t_data *data);
 // void	set_tex_path(t_data *data);
 void	load_all_tex(t_data *data, t_mlx *mlx);
-void	set_pixel_buffer(t_mlx *mlx, t_ray *ray, t_map *map, t_player *player, int x);
+void	set_pixel_buffer(t_data *d, t_ray *ray, int x);
 
 
 #endif

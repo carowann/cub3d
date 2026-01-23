@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/20 14:46:50 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:42:34 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	allocate_map(t_data *data, t_list *lines)
 
 char	**copy_matrix(char **grid, int height)
 {
-	char **copy;
-	int    i;
+	char	**copy;
+	int		i;
 
 	i = 0;
 	copy = malloc(sizeof(char *) * (height + 1));
