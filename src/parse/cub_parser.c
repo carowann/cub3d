@@ -6,10 +6,11 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/23 14:49:31 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:52:02 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: REMOVE. NORME: KO
 #include "../../includes/cub3d.h"
 
 bool	line_is_empty(char *s)
@@ -44,7 +45,7 @@ bool	line_is_map(char *s)
 	return (false);
 }
 
-size_t	validate_colours(t_data data, char *colour) // analyse value
+size_t	validate_colours(t_data *data, char *colour) // analyse value
 {
 	int		r;
 	int		g;
@@ -53,23 +54,24 @@ size_t	validate_colours(t_data data, char *colour) // analyse value
 	char	**value;
 	int		i;
 
+	// TODO: DO NOT USE POINTERS PLEASE
 	i = 0;
 	while (!ft_isdigit(colour[i]))
 		i++;
 	value = ft_split(&colour[i], ',');
 	if (!value)
-		cleanup_and_exit(&data, EXIT_FAILURE, MSG_MALL_FAIL);
+		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
 	row_count = 0;
 	while (value[row_count] != NULL)
 		row_count++;
 	if (row_count != 3)
-		return (free(colour), cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL)); // TODO: fix this (leaking `line` from get_next_line)
+		return (free(colour), cleanup_and_exit(data, EXIT_FAILURE, MSG_COL_FAIL)); // TODO: fix this (leaking `line` from get_next_line)
 	r = ft_atoi(value[0]);
 	g = ft_atoi(value[1]);
 	b = ft_atoi(value[2]);
 	free_matrix((void**)value);
 	if (r < 0 || r > 255 || (g < 0 || g > 255) || (b < 0 || b > 255))
-		return (free(colour), cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL));
+		return (free(colour), cleanup_and_exit(data, EXIT_FAILURE, MSG_COL_FAIL));
 	return ((r << 16) | (g << 8) | b);
 }
 
@@ -130,7 +132,7 @@ void	read_cub(t_data *data, int fd)
 	line = 0;
 	if (fd < 0 || !data || !data->map)
 		return ;
-	id =  0;
+	id = 0;
 	while (1)
 	{
 		line = get_next_line(fd);

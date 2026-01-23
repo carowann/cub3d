@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/21 16:55:19 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:42:34 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: REMOVE. NORME: KO
 #include "../../includes/cub3d.h"
 
 void	add_line(char *line, t_data *data)
@@ -48,7 +49,7 @@ void	allocate_map(t_data *data, t_list *lines)
 		}
 		while (x < data->map->width)
 		{
-			data->map->grid[y][x] = ' '; // Padding con spazio
+			data->map->grid[y][x] = ' ';
 			x++;
 		}
 		data->map->grid[y][x] = '\0';

@@ -6,10 +6,11 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/23 14:47:11 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:51:29 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: REMOVE. NORME: KO
 #include "../includes/cub3d.h"
 
 void	free_list(t_list *list)

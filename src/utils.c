@@ -6,11 +6,23 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:35:52 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:15:08 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:56:31 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: REMOVE. NORME: KO
 #include "../includes/cub3d.h"
+
+bool	line_is_empty(char *s)
+{
+	while (s && *s)
+	{
+		if (!ft_isspace(*s))
+			return (false);
+		s++;
+	}
+	return (true);
+}
 
 void	print_err_mess(char *msg)
 {

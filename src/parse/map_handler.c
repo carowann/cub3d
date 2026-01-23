@@ -6,27 +6,38 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/23 14:59:56 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:52:06 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: REMOVE. NORME: KO
+// handle map - validate, check main issues with map
 #include "../../includes/cub3d.h"
 
 static void	init_player_direction(t_data *data, char c)
 {
-	if (c == 'N') {
+	data->player->dir_x = 0;
+	data->player->dir_y = 0;
+	data->player->plane_x = 0;
+	data->player->plane_y = 0;
+
+	if (c == 'N')
+	{
 		data->player->dir_y = -1.0;  // Guarda su (Y negativa)
 		data->player->plane_x = 0.66; // Piano orizzontale
 	}
-	else if (c == 'S') {
+	else if (c == 'S')
+	{
 		data->player->dir_y = 1.0;   // Guarda giù (Y positiva)
 		data->player->plane_x = -0.66;
 	}
-	else if (c == 'E') {
+	else if (c == 'E')
+	{
 		data->player->dir_x = 1.0;   // Guarda a destra (X positiva)
 		data->player->plane_y = 0.66; // Piano verticale
 	}
-	else if (c == 'W') {
+	else if (c == 'W')
+	{
 		data->player->dir_x = -1.0;  // Guarda a sinistra (X negativa)
 		data->player->plane_y = -0.66;
 	}
@@ -56,12 +67,11 @@ void	check_map_elements(t_data *data)
 				player_count++;
 				data->player->y = (double)y + 0.5; // +0.5 per metterlo al centro della cella
 				data->player->x = (double)x + 0.5;
-				init_player_direction(data, c); // <--- Chiamata qui
+				init_player_direction(data, c);
 				data->map->grid[y][x] = '0';
 				// print_ok_mess(MSG_COORD_OK);
-				ft_printfd(STDOUT_FILENO, GREEN "✅ Saved player coordinates y = %d, x = %d with orientation %c\n" RESET, y, x, c);
+				ft_printfd(STDOUT_FILENO, GREEN "Saved player coordinates y = %d, x = %d with orientation %c ✅\n" RESET, y, x, c);
 			}
-			// printf("player count %d in position %d %d with element %c\n", player_count, y, x, c);
 			x++;
 		}
 		y++;
@@ -70,12 +80,12 @@ void	check_map_elements(t_data *data)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_06);
 }
 
-void validate_map(t_data *data)
+void	validate_map(t_data *data)
 {
 	int		result;
 	char	**temp_grid;
 
-	check_map_elements(data);									 // prima scorri matrice e controlla elementi
+	check_map_elements(data); // prima scorri matrice e controlla elementi
 	temp_grid = copy_matrix(data->map->grid, data->map->height); // duplica per flood
 	if (!temp_grid)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);

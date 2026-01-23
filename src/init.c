@@ -6,12 +6,13 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/23 14:47:33 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:51:37 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+// TODO: REMOVE. NORME: KO
 void	init_data(t_data	*data)
 {
 	//TODO: r-data inizializzato a 0 in main

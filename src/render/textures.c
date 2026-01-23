@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 10:53:15 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/16 14:56:00 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:33:05 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// TODO: REMOVE. NORME: KO
 #include "../../includes/cub3d.h"
+
 static int	load_single_tex(t_tex *tex, t_mlx *mlx, char *tex_path)
 {
 	tex->img = mlx_xpm_file_to_image(mlx->mlx,
