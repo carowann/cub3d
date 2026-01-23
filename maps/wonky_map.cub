@@ -1,7 +1,7 @@
-NO ./room_pack/north.xpm
-SO ./room_pack/south.xpm
-WE ./room_pack/west.xpm
-EA ./room_pack/east.xpm
+NO ./text_packs/room_pack/north.xpm
+SO ./text_packs/room_pack/south.xpm
+WE ./text_packs/room_pack/west.xpm
+EA ./text_packs/room_pack/east.xpm
 F  104,79,72
 C  216,143,148
 

@@ -20,22 +20,22 @@
 ## ✅ CHECKLIST FINALE
 
 - [x] File .cub viene letto correttamente
-- [ ] Tutti e 6 gli identifiers sono estratti
-- [ ] Path textures sono salvati in array
-- [ ] Colori floor e ceiling sono convertiti in int RGB
-- [ ] Matrice mappa è allocata con dimensioni corrette
-- [ ] Matrice è popolata con padding quando necessario
-- [ ] Tutte le righe hanno stessa lunghezza
-- [ ] Mappa contiene esattamente 1 player
-- [ ] Mappa contiene solo caratteri validi
-- [ ] Mappa è chiusa (floodfill non trova buchi)
-- [ ] Posizione e orientamento player sono salvati
-- [ ] Nessun memory leak (test con valgrind)
-- [ ] Gestione errori con cleanup appropriato
+- [x] Tutti e 6 gli identifiers sono estratti
+- [x] Path textures sono salvati in array
+- [x] Colori floor e ceiling sono convertiti in int RGB
+- [x] Matrice mappa è allocata con dimensioni corrette
+- [x] Matrice è popolata con padding quando necessario
+- [x] Tutte le righe hanno stessa lunghezza
+- [x] Mappa contiene esattamente 1 player
+- [x] Mappa contiene solo caratteri validi
+- [x] Mappa è chiusa (floodfill non trova buchi)
+- [x] Posizione e orientamento player sono salvati
+- [x] Nessun memory leak (test con valgrind)
+- [x] Gestione errori con cleanup appropriato
 
 ## Da sistemare
 Error ❌
 Issues with map: maze leak. --- con righe vuote in mezzo, con spazi vuoti in mezzo. Apre window comunque --> fixed
 Issues with map: tab --> fixed
 glide: vettore x-y calcola prima x o y, se puoi andarci aggiorni prima uno o l'altro. es: x rimane fissa, si muove su y -> glida
-- leaks with esc button and x 
+- leaks with esc button and x

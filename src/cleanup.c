@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/19 18:31:13 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/23 13:45:56 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,14 @@ int	cleanup_and_exit(t_data *data, int exit_code, char *msg)
 {
 	int	i;
 
-	if (data->fd >= 0)
-		kill_get_next_line(data->fd);
+
 	i = 0;
 	if (msg)
 		print_err_mess(msg);
 	if (data)
 	{
+		if (data->fd >= 0)
+			kill_get_next_line(data->fd);
 		if (data->mlx)
 		free_mlx(data->mlx);
 		if (data->map)
