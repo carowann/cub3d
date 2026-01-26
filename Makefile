@@ -6,7 +6,7 @@
 #    By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2026/01/15 15:06:18 by cwannhed         ###   ########.fr        #
+#    Updated: 2026/01/26 11:32:52 by cwannhed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ INCLUDES = -I./includes -I./$(LIBFT_DIR)
 
 SRCS	= src/main.c \
 	src/parse/basic_parser.c \
+	src/parse/cub_parse_utils.c \
 	src/parse/cub_parser.c \
 	src/parse/map_parser.c \
 	src/parse/map_handler.c \

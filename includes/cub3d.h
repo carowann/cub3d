@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/23 14:55:29 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 11:35:30 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,6 +270,10 @@ void	handle_keyboard_input(t_data *data);
 // void	set_tex_path(t_data *data);
 void	load_all_tex(t_data *data, t_mlx *mlx);
 void	set_pixel_buffer(t_data *d, t_ray *ray, int x);
+bool	line_is_empty(char *s);
+char	*clean_path(t_data *data, char *s);
+bool	line_is_ids(char *s);
+bool	line_is_map(char *s);
 
 
 #endif
