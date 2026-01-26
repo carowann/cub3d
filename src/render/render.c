@@ -6,11 +6,10 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 12:40:18 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 12:56:56 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: REMOVE. NORME: KO
 #include "../../includes/cub3d.h"
 
 static void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
