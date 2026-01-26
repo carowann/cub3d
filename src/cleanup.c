@@ -5,33 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/23 15:51:29 by cwannhed         ###   ########.fr       */
+/*   Created: 2026/01/26 15:01:56 by cwannhed          #+#    #+#             */
+/*   Updated: 2026/01/26 15:11:48 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: REMOVE. NORME: KO
 #include "../includes/cub3d.h"
-
-void	free_list(t_list *list)
-{
-	t_list	*current;
-	t_list	*temp;
-	int		count;
-
-	if (!list)
-		return ;
-	current = list;
-	count = ft_lstsize(list);
-	while (current)
-	{
-		temp = current->next;
-		free(current->content);
-		free(current);
-		current = temp;
-	}
-	list = NULL;
-}
 
 static void	free_mlx(t_mlx *mlx)
 {
@@ -88,16 +67,15 @@ int	cleanup_and_exit(t_data *data, int exit_code, char *msg)
 {
 	int	i;
 
-
 	i = 0;
 	if (msg)
-		print_err_mess(msg);
+		print_mess(msg, FAILURE);
 	if (data)
 	{
 		if (data->fd >= 0)
 			kill_get_next_line(data->fd);
 		if (data->mlx)
-		free_mlx(data->mlx);
+			free_mlx(data->mlx);
 		if (data->map)
 			free_map(data->map);
 		if (data->player)

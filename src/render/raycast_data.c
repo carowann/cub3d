@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:08:54 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:32:36 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/26 14:53:07 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: REMOVE. NORME: KO
 #include "../includes/cub3d.h"
 
 /*
@@ -31,7 +30,7 @@
 **
 ** - If ray travels diagonally (ray_dir_x = 0.6, ray_dir_y = 0.8):
 **   delta_dist_x = 1/0.6 = 1.67 (travels 1.67 units to cross one vertical line)
-**   delta_dist_y = 1/0.8 = 1.25 (travels 1.25 units to cross one horizontal line)
+**   delta_dist_y = 1/0.8 = 1.25 (travels 1.25 units to cross one horiz line)
 **
 ** Special case:
 ** If ray_dir is 0 (ray perfectly horizontal/vertical), we use INFINITY
@@ -41,14 +40,12 @@
 */
 void	set_delta_distances(t_ray *ray)
 {
-	// Calculate x delta distance (distance to cross one vertical grid line)
 	if (ray->ray_dir_x == 0)
-		ray->delta_dist_x = DELTA_DIST_INFINITY; // Ray parallel to vertical lines
+		ray->delta_dist_x = DELTA_DIST_INFINITY;
 	else
 		ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
-	// Calculate y delta distance (distance to cross one horizontal grid line)
 	if (ray->ray_dir_y == 0)
-		ray->delta_dist_y = DELTA_DIST_INFINITY; // Ray parallel to horizontal lines
+		ray->delta_dist_y = DELTA_DIST_INFINITY;
 	else
 		ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 }
@@ -75,22 +72,22 @@ void	set_delta_distances(t_ray *ray)
 */
 void	set_step_and_initial_side_distances(t_ray *ray, t_player *player)
 {
-	if (ray->ray_dir_x < 0) //ray going to the left
+	if (ray->ray_dir_x < 0)
 	{
 		ray->step_x = STEP_X_LEFT;
 		ray->side_dist_x = (player->x - ray->map_x) * ray->delta_dist_x;
 	}
-	else //ray going to the right
+	else
 	{
 		ray->step_x = STEP_X_RIGHT;
 		ray->side_dist_x = (ray->map_x + 1.0 - player->x) * ray->delta_dist_x;
 	}
-	if (ray->ray_dir_y < 0) //ray going up
+	if (ray->ray_dir_y < 0)
 	{
 		ray->step_y = STEP_Y_UP;
 		ray->side_dist_y = (player->y - ray->map_y) * ray->delta_dist_y;
 	}
-	else //ray going down
+	else
 	{
 		ray->step_y = STEP_Y_DOWN;
 		ray->side_dist_y = (ray->map_y + 1.0 - player->y) * ray->delta_dist_y;
@@ -113,7 +110,7 @@ void	set_step_and_initial_side_distances(t_ray *ray, t_player *player)
 ** - Divides by ray direction to get perpendicular component
 **
 ** This distance is used to calculate wall height on screen:
-** taller walls = closer (small distance), shorter walls = farther (large distance)
+** taller walls = closer, shorter walls = farther
 */
 void	set_perpendicular_wall_distance(t_ray *ray, t_player *player)
 {

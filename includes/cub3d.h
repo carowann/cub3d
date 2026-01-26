@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/26 13:01:09 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:17:44 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,8 +237,7 @@ void	init_mlx(t_mlx *mlx, t_data *data);
 void	game_loop(t_data *data);
 int		cleanup_and_exit(t_data *data, int exit_code, char *msg);
 int		handle_close_window(t_data *data);
-void	print_err_mess(char *msg);
-void	print_ok_mess(char *msg);
+void	print_mess(char *msg, int code);
 
 
 void	raycasting(t_data *data);
@@ -249,7 +248,6 @@ void	set_step_and_initial_side_distances(t_ray *ray, t_player *player);
 void	set_perpendicular_wall_distance(t_ray *ray, t_player *player);
 void	move_forward_or_backward(t_map *map, t_player *player, int direction);
 void	rotate_left_or_right(t_player *player, int direction);
-void	free_list(t_list *list);
 void	skip_spaces(char **line);
 
 

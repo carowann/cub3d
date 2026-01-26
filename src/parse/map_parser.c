@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/23 15:42:34 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:18:18 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	allocate_map(t_data *data, t_list *lines)
 	}
 	data->map->grid[y] = NULL;
 	// print_map_debug(data, lines);
-	print_ok_mess(MSG_MAP_GRID);
-	free_list(lines);
+	print_mess(MSG_MAP_GRID, SUCCESS);
+	ft_lstclear(&lines, free);
 }
 
 char	**copy_matrix(char **grid, int height)
@@ -118,13 +118,17 @@ int	check_lines(int rows, int cols, char **map_mat)// change into count nodes*
 	i = 0;
 	if (rows <= 3 || cols <= 3)
 	{
-		return (print_err_mess(MSG_MAP_FAIL_00), 0);
+		print_mess(MSG_MAP_FAIL_00, FAILURE);
+		return (0);
 	}
 	while (i < rows)
 	{
 		row_len = ft_strlen(map_mat[i]);
 		if (cols != row_len)
-			return (print_err_mess(MSG_MAP_FAIL_02), 0);
+		{
+			print_mess(MSG_MAP_FAIL_02, FAILURE);
+			return (0);
+		}
 		i++;
 	}
 	return (1);

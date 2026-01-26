@@ -6,12 +6,11 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 11:56:48 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 14:51:03 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: REMOVE. NORME: KO
-# include "../../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 bool	is_out_of_bounds(t_map *map, int y, int x)
 {
@@ -48,7 +47,7 @@ bool	is_out_of_bounds(t_map *map, int y, int x)
 ** Boundary checks:
 ** Also prevents player from leaving the map bounds entirely.
 */
-void move_forward_or_backward(t_map *map, t_player *player, int direction)
+void	move_forward_or_backward(t_map *map, t_player *player, int direction)
 {
 	double	new_x;
 	double	new_y;

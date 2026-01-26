@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 13:02:08 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:01:32 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,3 +135,4 @@ void	game_loop(t_data *data)
 		data);
 	mlx_loop_hook(data->mlx->mlx, render_frame, data);
 	mlx_loop(data->mlx->mlx);
+}

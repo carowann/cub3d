@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:42:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 12:36:55 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 14:55:12 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,28 +96,21 @@ static void	perform_dda(t_ray *ray, t_map *map)
 void	raycasting(t_data *data)
 {
 	int		x;
-	t_ray	ray;
+	t_ray	r;
 
 	x = 0;
-	while (x < data->mlx->screen_width) // Cast one ray per screen column
+	while (x < data->mlx->screen_width)
 	{
-		ray.map_x = (int)(data->player->x); // Initialize ray starting position (player's current map square)
-		ray.map_y = (int)(data->player->y); // Initialize ray starting position (player's current map square)
-		// Convert screen x-coordinate to camera space [-1, 1]
-		// Left edge = -1, center = 0, right edge = 1
-		ray.camera_x = 2 * x / (double)data->mlx->screen_width - 1;
-		// Calculate ray direction by combining:
-		// - Player's direction vector (where they're facing)
-		// - Camera plane vector (FOV/field of view)
-		ray.ray_dir_x = data->player->dir_x + data->player->plane_x * ray.camera_x;
-		ray.ray_dir_y = data->player->dir_y + data->player->plane_y * ray.camera_x;
-		set_delta_distances(&ray);
-		set_step_and_initial_side_distances(&ray, data->player);
-		// Perform DDA: step through the map until hitting a wall
-		perform_dda(&ray, data->map);
-		// Calculate perpendicular distance to avoid fisheye effect
-		set_perpendicular_wall_distance(&ray, data->player);
-		set_pixel_buffer(data, &ray, x);
+		r.map_x = (int)(data->player->x);
+		r.map_y = (int)(data->player->y);
+		r.camera_x = 2 * x / (double)data->mlx->screen_width - 1;
+		r.ray_dir_x = data->player->dir_x + data->player->plane_x * r.camera_x;
+		r.ray_dir_y = data->player->dir_y + data->player->plane_y * r.camera_x;
+		set_delta_distances(&r);
+		set_step_and_initial_side_distances(&r, data->player);
+		perform_dda(&r, data->map);
+		set_perpendicular_wall_distance(&r, data->player);
+		set_pixel_buffer(data, &r, x);
 		x++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/23 15:50:58 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:13:27 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_input(int argc, char **argv)
 	fd_map = open(argv[1], O_RDONLY);
 	if (fd_map < 0)
 		cleanup_and_exit(NULL, EXIT_FAILURE, MSG_OPEN_FAIL);
-	print_ok_mess(MSG_INPUT_OK);
+	print_mess(MSG_INPUT_OK, SUCCESS);
 	return (fd_map);
 }
 

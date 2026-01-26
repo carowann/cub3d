@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/26 11:35:07 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:14:37 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	read_ids(t_data *data, char *line)
 	else if (line && ft_strncmp(line, "F", 1) == 0)
 	{
 		data->map->floor_color = validate_colours(*data, line);
-		print_ok_mess(MSG_F_OK);
+		print_mess(MSG_F_OK, SUCCESS);
 		data->map->floor_color_found = true;
 	}
 	else if (line && ft_strncmp(line, "C", 1) == 0)
 	{
 		data->map->ceiling_color = validate_colours(*data, line);
-		print_ok_mess(MSG_C_OK);
+		print_mess(MSG_C_OK, SUCCESS);
 		data->map->ceiling_color_found = true;
 	}
 	else
@@ -91,7 +91,7 @@ void	read_cub(t_data *data, int fd)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_01);
 	if (!data->map->floor_color_found || !data->map->ceiling_color_found)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_02);
-	print_ok_mess(MSG_CUB_OK);
+	print_mess(MSG_CUB_OK, SUCCESS);
 	allocate_map(data, data->map->lines);
 	validate_map(data);
 	close(fd);

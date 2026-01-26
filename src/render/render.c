@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 12:56:56 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 14:59:09 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,10 @@ static void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-static void get_line_to_draw(t_ray *ray, t_mlx *mlx)
+static void	get_line_to_draw(t_ray *ray, t_mlx *mlx)
 {
 	double	corrected_height;
 
-	// Correct for aspect ratio to maintain square wall proportions
-	// For 16:9 (1.778), walls need to be taller than on 4:3 (1.333)
-	// Formula: height * sqrt(aspect_ratio) gives proportional scaling
 	corrected_height = mlx->screen_height * sqrt(mlx->aspect_ratio);
 	ray->line_height = (int)(corrected_height / ray->perp_wall_dist);
 	ray->draw_start = -ray->line_height / 2 + mlx->screen_height / 2;
@@ -41,7 +38,7 @@ static void get_line_to_draw(t_ray *ray, t_mlx *mlx)
 
 static void	set_tex_x_coord(t_ray *ray, t_player *player, t_tex *tex)
 {
-	double	wall_x; //exact value where the wall was hit, not just the integer coordinates of the wall
+	double	wall_x;
 
 	if (ray->wall_side == WEST || ray->wall_side == EAST)
 		wall_x = player->y + ray->perp_wall_dist * ray->ray_dir_y;
@@ -50,9 +47,9 @@ static void	set_tex_x_coord(t_ray *ray, t_player *player, t_tex *tex)
 	wall_x -= floor(wall_x);
 	tex->x = wall_x * (double)tex->width;
 	if (ray->wall_side == EAST)
-			tex->x = tex->width - tex->x - 1;
+		tex->x = tex->width - tex->x - 1;
 	else if (ray->wall_side == NORTH)
-			tex->x = tex->width - tex->x - 1;
+		tex->x = tex->width - tex->x - 1;
 }
 
 static void	draw_column(t_ray ray, t_data d, int x, t_tex tex)
@@ -61,12 +58,12 @@ static void	draw_column(t_ray ray, t_data d, int x, t_tex tex)
 	int		color;
 
 	y = 0;
-	while (y < ray.draw_start) // draw ceiling
+	while (y < ray.draw_start)
 	{
 		my_mlx_pixel_put(d.mlx, x, y, d.map->ceiling_color);
 		y++;
 	}
-	while (y < ray.draw_end) // draw walls
+	while (y < ray.draw_end)
 	{
 		tex.y = (int)tex.pos & (tex.height - 1);
 		tex.pos += tex.step;
@@ -75,7 +72,7 @@ static void	draw_column(t_ray ray, t_data d, int x, t_tex tex)
 		my_mlx_pixel_put(d.mlx, x, y, color);
 		y++;
 	}
-	while (y < d.mlx->screen_height) // draw floor
+	while (y < d.mlx->screen_height)
 	{
 		my_mlx_pixel_put(d.mlx, x, y, d.map->floor_color);
 		y++;
@@ -85,13 +82,14 @@ static void	draw_column(t_ray ray, t_data d, int x, t_tex tex)
 void	set_pixel_buffer(t_data *d, t_ray *ray, int x)
 {
 	int		tex_id;
-	t_tex	texture;
+	t_tex	tex;
 
 	tex_id = ray->wall_side;
-	texture = d->mlx->tex[tex_id];
-	set_tex_x_coord(ray, d->player, &texture);
+	tex = d->mlx->tex[tex_id];
+	set_tex_x_coord(ray, d->player, &tex);
 	get_line_to_draw(ray, d->mlx);
-	texture.step = (double)texture.height/(double)ray->line_height;
-	texture.pos = (ray->draw_start - d->mlx->screen_height / 2 + ray->line_height / 2) * texture.step;
-	draw_column(*ray, *d, x, texture);
+	tex.step = (double)tex.height / (double)ray->line_height;
+	tex.pos = (ray->draw_start - d->mlx->screen_height / 2
+			+ ray->line_height / 2) * tex.step;
+	draw_column(*ray, *d, x, tex);
 }

@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:35:52 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/20 14:56:31 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:18:47 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: REMOVE. NORME: KO
 #include "../includes/cub3d.h"
 
 bool	line_is_empty(char *s)
@@ -24,14 +23,12 @@ bool	line_is_empty(char *s)
 	return (true);
 }
 
-void	print_err_mess(char *msg)
+void	print_mess(char *msg, int code)
 {
-	ft_printfd(STDERR_FILENO, RED "%s" RESET, msg);
-}
-
-void	print_ok_mess(char *msg)
-{
-	ft_printfd(STDOUT_FILENO, GREEN "%s" RESET, msg);
+	if (code == SUCCESS)
+		ft_printfd(STDOUT_FILENO, GREEN "%s" RESET, msg);
+	else if (code == FAILURE)
+		ft_printfd(STDERR_FILENO, RED "%s" RESET, msg);
 }
 
 void	kill_get_next_line(int fd)
