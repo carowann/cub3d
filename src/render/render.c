@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/23 15:12:20 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/26 12:40:18 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,15 @@ static void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-static void	get_line_to_draw(t_ray *ray, t_mlx *mlx)
+static void get_line_to_draw(t_ray *ray, t_mlx *mlx)
 {
-	ray->line_height = (int)(mlx->screen_height / ray->perp_wall_dist);
+	double	corrected_height;
+
+	// Correct for aspect ratio to maintain square wall proportions
+	// For 16:9 (1.778), walls need to be taller than on 4:3 (1.333)
+	// Formula: height * sqrt(aspect_ratio) gives proportional scaling
+	corrected_height = mlx->screen_height * sqrt(mlx->aspect_ratio);
+	ray->line_height = (int)(corrected_height / ray->perp_wall_dist);
 	ray->draw_start = -ray->line_height / 2 + mlx->screen_height / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/23 15:31:15 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/26 11:56:48 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,6 @@ void move_forward_or_backward(t_map *map, t_player *player, int direction)
 	player->x = new_x;
 	player->y = new_y;
 }
-
-/*
-void move_forward_or_backward(t_map *map, t_player *player, int direction)
-{
-	double	new_x;
-	double	new_y;
-	double	margin;
-
-	margin = WALL_MARGIN; // Safety margin from walls
-	new_x = player->x + player->dir_x * player->move_speed * direction;
-	new_y = player->y + player->dir_y * player->move_speed * direction;
-	if (new_x < margin || new_x >= map->width - margin
-		|| new_y < margin || new_y >= map->height - margin)
-		return ;
-	if (map->grid[(int)(new_y - margin)][(int)(new_x - margin)] == WALL
-		|| map->grid[(int)(new_y - margin)][(int)(new_x + margin)] == WALL
-		|| map->grid[(int)(new_y + margin)][(int)(new_x - margin)] == WALL
-		|| map->grid[(int)(new_y + margin)][(int)(new_x + margin)] == WALL)
-		return ;
-	player->x = new_x;
-	player->y = new_y;
-}
-*/
 
 void	move_left_or_right(t_map *map, t_player *player, int direction)
 {

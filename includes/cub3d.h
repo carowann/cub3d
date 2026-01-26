@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/26 11:35:30 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 12:19:33 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ typedef struct s_mlx
 	int		screen_width;
 	int		screen_height;
 	t_tex	tex[4]; //Array of 4 tex for walls
+	double	aspect_ratio;
 } t_mlx;
 
 typedef struct s_data

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/23 15:51:37 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 12:21:07 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void init_mlx(t_mlx *mlx, t_data *data)
 	print_ok_mess(MSG_MLX_INIT);
 	mlx_get_screen_size(mlx->mlx, &mlx->screen_width, &mlx->screen_height);
 	ft_printfd(STDOUT_FILENO, GREEN "✅ Screen size = %d x %d\n" RESET, mlx->screen_width, mlx->screen_height);
+	mlx->aspect_ratio = (double)mlx->screen_width/(double)mlx->screen_height;
 	mlx->win = mlx_new_window(mlx->mlx, mlx->screen_width, mlx->screen_height, "Cub3D");
 	if (!mlx->win)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_WINDOW_FAIL);
