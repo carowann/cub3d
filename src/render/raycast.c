@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:42:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 14:55:12 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:04:11 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static void	update_dda_variables(t_ray *ray)
 }
 
 /*
-** Performs the DDA (Digital Differential Analysis) algorithm.
-**
 ** DDA steps through the map grid square by square until hitting a wall.
 ** At each step, it chooses whether to cross a vertical or horizontal grid line
 ** based on which is closer.
@@ -54,9 +52,6 @@ static void	update_dda_variables(t_ray *ray)
 ** - NS_WALL_SIDE: Hit a North/South wall (vertical line crossed)
 ** - EW_WALL_SIDE: Hit an East/West wall (horizontal line crossed)
 ** - Used later for coloring walls differently based on orientation
-**
-** Safety check:
-** If ray goes outside map bounds, we treat it as a wall hit to prevent crashes.
 */
 static void	perform_dda(t_ray *ray, t_map *map)
 {
@@ -78,20 +73,12 @@ static void	perform_dda(t_ray *ray, t_map *map)
 /*
 ** Main raycasting function - casts one ray per screen column.
 **
-** Raycasting algorithm overview:
 ** For each vertical column of the screen (x = 0 to data->mlx->screen_width):
 **   1. Calculate the ray direction for that column
 **   2. Use DDA to find which wall the ray hits
 **   3. Calculate the distance to that wall
 **   4. Calculate how tall the wall should appear on screen
 **   5. Draw a vertical line representing that wall slice
-**
-** This creates a 3D perspective from a 2D map by:
-** - Casting rays from the player's position
-** - Drawing walls taller when they're closer, shorter when far
-** - Using different colors based on which wall side was hit
-**
-** Key concept: Each screen column = one ray = one vertical line
 */
 void	raycasting(t_data *data)
 {

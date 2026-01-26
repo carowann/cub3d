@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 14:59:09 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:53:10 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ static void	set_tex_x_coord(t_ray *ray, t_player *player, t_tex *tex)
 	else
 		wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
-	tex->x = wall_x * (double)tex->width;
-	if (ray->wall_side == EAST)
-		tex->x = tex->width - tex->x - 1;
-	else if (ray->wall_side == NORTH)
+	tex->x = (int)(wall_x * (double)tex->width);
+	if (tex->x < 0)
+		tex->x = 0;
+	if (tex->x >= tex->width)
+		tex->x = tex->width - 1;
+	if (ray->wall_side == EAST || ray->wall_side == NORTH)
 		tex->x = tex->width - tex->x - 1;
 }
 
@@ -56,7 +58,8 @@ static void	draw_column(t_ray ray, t_data d, int x, t_tex tex)
 {
 	int		y;
 	int		color;
-
+	int		tex_index;
+	
 	y = 0;
 	while (y < ray.draw_start)
 	{
@@ -65,9 +68,17 @@ static void	draw_column(t_ray ray, t_data d, int x, t_tex tex)
 	}
 	while (y < ray.draw_end)
 	{
-		tex.y = (int)tex.pos & (tex.height - 1);
+		tex.y = (int)tex.pos % tex.height;
+		if (tex.y < 0)
+			tex.y = 0;
+		if (tex.y >= tex.height)
+			tex.y = tex.height - 1;
 		tex.pos += tex.step;
-		color = d.mlx->tex[ray.wall_side].addr[tex.width * tex.y + tex.x];
+		tex_index = tex.width * tex.y + tex.x;
+		if (tex_index >= 0 && tex_index < tex.width * tex.height)
+			color = d.mlx->tex[ray.wall_side].addr[tex_index];
+		else
+			color = 0xFF00FF; // Magenta = error color
 		//TODO: maybe add darker color if y side of wall was hit (lodev)
 		my_mlx_pixel_put(d.mlx, x, y, color);
 		y++;

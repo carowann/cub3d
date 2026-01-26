@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:08:54 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 14:53:07 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:07:04 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@
 ** Special case:
 ** If ray_dir is 0 (ray perfectly horizontal/vertical), we use INFINITY
 ** to avoid division by zero. This means "never crosses that axis".
-**
-** Used by: perform_dda() to step through the map efficiently
 */
 void	set_delta_distances(t_ray *ray)
 {

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:17:07 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/26 15:08:12 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:20:23 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,9 @@
 int	main(int argc, char *argv[])
 {
 	t_data	data;
-	int		fd_map;
 
 	data = (t_data){0};
-	fd_map = check_input(argc, argv);
-	data.fd = fd_map;
+	data.fd = check_input(argc, argv);
 	init_data(&data);
 	read_cub(&data, data.fd);
 	init_mlx(data.mlx, &data);

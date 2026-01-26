@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 14:51:03 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:05:40 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,6 @@ bool	is_out_of_bounds(t_map *map, int y, int x)
 
 /*
 ** Moves the player forward or backward along their current direction.
-**
-** Movement calculation:
-** new_position = current_position + direction_vector * speed * direction
-** - direction_vector (dir_x, dir_y): where player is facing
-** - speed: calculated based on frame time (consistent across all FPS)
-** - direction: +1 for forward (W/Up), -1 for backward (S/Down)
-**
-** Collision detection with safety margin:
-** Instead of checking just the player's exact position, we check a small
-** area around them (margin) to prevent getting too close to walls.
-**
-** We check 4 corners around the player:
-** 1. Top-left:     (new_x - margin, new_y - margin)
-** 2. Top-right:    (new_x + margin, new_y - margin)
-** 3. Bottom-left:  (new_x - margin, new_y + margin)
-** 4. Bottom-right: (new_x + margin, new_y + margin)
 **
 ** If ANY corner would enter a wall, movement is blocked.
 ** This creates a "collision box" around the player, preventing:

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 15:01:32 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:04:42 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 **
 ** Why frame time matters:
 ** Different computers run at different speeds (30 FPS, 60 FPS, 144 FPS, etc.)
-** Without frame time compensation:
-** - Fast computer: player moves super fast (bad!)
-** - Slow computer: player moves in slow motion (bad!)
 **
 ** Solution: Delta time (frame time)
 ** Speed = base_speed * time_elapsed_since_last_frame
