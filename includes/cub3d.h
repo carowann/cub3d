@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/26 15:17:44 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:56:00 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define RED	"\033[0;31m"
 # define GREEN	"\033[0;32m"
 # define RESET	"\033[0m"
+# define MAGENTA	0xFF00FF;
 
 # define FRAME_TIME_SEC	0.01666667 // Approx 60 FPS
 

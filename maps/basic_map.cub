@@ -3,15 +3,16 @@ WE ./text_packs/gem_pack/west.xpm
 SO ./text_packs/gem_pack/south.xpm
 EA ./text_packs/gem_pack/east.xpm
 F  81,48,94
- C  253,253,183
+ C  253,253,183,
 
+# segfault con + di 3 val separati da , (253,253,183,2)
+# amche con (253,253,183 , 2 o 253,253,183,)
+# errore con col es "23 4," prende colre a caso
 
-111
-11
+    111111
+110000
+11111
 101
-101
-
-
 1S1
 101
 111

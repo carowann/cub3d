@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 16:53:10 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:56:32 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	draw_column(t_ray ray, t_data d, int x, t_tex tex)
 	int		y;
 	int		color;
 	int		tex_index;
-	
+
 	y = 0;
 	while (y < ray.draw_start)
 	{
@@ -78,7 +78,7 @@ static void	draw_column(t_ray ray, t_data d, int x, t_tex tex)
 		if (tex_index >= 0 && tex_index < tex.width * tex.height)
 			color = d.mlx->tex[ray.wall_side].addr[tex_index];
 		else
-			color = 0xFF00FF; // Magenta = error color
+			color = MAGENTA; // Magenta = error color
 		//TODO: maybe add darker color if y side of wall was hit (lodev)
 		my_mlx_pixel_put(d.mlx, x, y, color);
 		y++;
