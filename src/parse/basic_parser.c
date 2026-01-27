@@ -5,15 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/26 16:17:26 by cwannhed         ###   ########.fr       */
+/*   Created: 2026/01/27 18:05:57 by cwannhed          #+#    #+#             */
+/*   Updated: 2026/01/27 18:06:24 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// TODO: REMOVE. NORME:ok
-// check basic stuff - input, file extension, handle ids
 static int	is_cub_file(char *filename)
 {
 	int	len;
