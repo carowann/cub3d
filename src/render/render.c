@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 16:56:32 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:05:46 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ static void	draw_column(t_ray ray, t_data d, int x, t_tex tex)
 		my_mlx_pixel_put(d.mlx, x, y, d.map->ceiling_color);
 		y++;
 	}
-	while (y < ray.draw_end)
+	while (y <= ray.draw_end)
 	{
-		tex.y = (int)tex.pos % tex.height;
+		tex.y = (int)tex.pos;
 		if (tex.y < 0)
 			tex.y = 0;
 		if (tex.y >= tex.height)
@@ -102,5 +102,7 @@ void	set_pixel_buffer(t_data *d, t_ray *ray, int x)
 	tex.step = (double)tex.height / (double)ray->line_height;
 	tex.pos = (ray->draw_start - d->mlx->screen_height / 2
 			+ ray->line_height / 2) * tex.step;
+	if (tex.pos < 0.0)
+		tex.pos = 0.0;
 	draw_column(*ray, *d, x, tex);
 }

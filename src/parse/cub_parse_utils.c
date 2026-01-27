@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:49:45 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/27 15:07:35 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/27 15:41:19 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ size_t	validate_colours(t_data data, char *colour) // analyse value
 	int		b;
 	int		row_count;
 	char	**value;// TODO: FIX too many variables norme issue
+
 	i = 0;
 	while (!ft_isdigit(colour[i]))
 		i++;
@@ -76,8 +77,8 @@ size_t	validate_colours(t_data data, char *colour) // analyse value
 	row_count = 0;
 	while (value[row_count] != NULL)
 		row_count++;
-	if (row_count != 3)	// TODO: fix this (leaking `line` from get_next_line)
-		return (free(colour), cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL));
+	if (row_count != 3)
+		return (free_matrix((void **)value), free(colour), cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL));
 	check_colour_value(&data, value);
 	r = ft_atoi(value[0]);
 	g = ft_atoi(value[1]);
@@ -101,9 +102,5 @@ char	*clean_path(t_data *data, char *s)
 	temp = path;
 	if (!path)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
-	// path = ft_strtrim(temp, "\n");
-	// free(temp);
-	// if (!path)
-	// 	cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
 	return (path);
 }

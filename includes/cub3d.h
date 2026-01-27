@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/26 16:56:00 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/27 15:43:07 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ typedef struct s_player
 	int		key_d;
 	int		key_left;
 	int		key_right;
+	double	last_render_time;
 } t_player;
 
 typedef struct s_map

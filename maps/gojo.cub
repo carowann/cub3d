@@ -6,9 +6,6 @@ EA ./gojo.xpm
 C  253,253,183,
 F  81,48,94
 
-## 146 bytes in 6 blocks are definitely lost - C  253,253,183, (also fix virgola) F  81,48,94
-## 145 bytes in 6 blocks are definitely lost - con value normale C  253,253,183 F  81,48,94
-## 118 bytes in 4 blocks are definitely lost - C  253,253,183,23 F  81,48,94 // C  253,253,
 ## still reachable C  253,253,18 3 F  81,48,94
 11111111111111111111111111
 10000000000000000000000001

@@ -6,12 +6,13 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 16:04:42 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:12:41 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // TODO: REMOVE. NORME: KO
 #include "../../includes/cub3d.h"
+#include <stdio.h>
 
 /*
 ** Calculates frame-time-dependent movement and rotation speeds.
@@ -66,6 +67,19 @@ void	set_movement_and_rotation_speed(t_data *data, t_player *player)
 */
 int	render_frame(t_data *data)
 {
+	double	current_time;
+	double	elapsed;
+
+	current_time = get_current_time(data);
+	if (data->player->last_render_time == 0.0)
+	{
+		data->player->last_render_time = current_time;
+		return (0);
+	}
+	elapsed = current_time - data->player->last_render_time;
+	if (elapsed < FRAME_TIME_SEC)
+		return (0);
+	data->player->last_render_time = current_time;
 	handle_keyboard_input(data);
 	raycasting(data);
 	mlx_put_image_to_window(data->mlx->mlx,
@@ -90,7 +104,6 @@ static int	handle_keypress(int keysym, t_data *data)
 		data->player->key_a = KEY_PRESSED;
 	else if (keysym == XK_d)
 		data->player->key_d = KEY_PRESSED;
-	render_frame(data);
 	return (0);
 }
 
