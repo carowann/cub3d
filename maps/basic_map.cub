@@ -1,14 +1,10 @@
 WE ./text_packs/gem_pack/west.xpm
- NO ./text_packs/gem_pack/north.xpm
+NO ./text_packs/gem_pack/north.xpm
 SO ./text_packs/gem_pack/south.xpm
 EA ./text_packs/gem_pack/east.xpm
 F  81,48,94
- C  253,253,183,
+C  253,253,183
 
-# fix validate colours - controlli dopo split
-# segfault con + di 3 val separati da , (253,253,183,2) (invalid free)
-# amche con (253,253,183 , 2 o 253,253,183,)
-# errore con col es "23 4," prende colre a caso
 
     111111
 110000
