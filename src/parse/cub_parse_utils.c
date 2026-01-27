@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parse_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:49:45 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/27 12:38:40 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/27 15:07:35 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,17 @@ bool	line_is_map(char *s)
 	return (false);
 }
 
-// C  253,253,183
-// F  81,48,94
 static void	check_colour_value(t_data *data, char **value)
 {
-	int i; // row_count
-	int j; // single char
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	// while (i < 3)
 	while (value[i])
 	{
 		j = 0;
 		while (value[i] && value[i][j])
-		// while (j < 3)
 		{
 			printf("current: %c\n", value[i][j]);
 			if (ft_isspace(value[i][j]))

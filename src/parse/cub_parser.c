@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/27 12:46:30 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/27 15:09:01 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,24 @@
 
 void	read_ids(t_data *data, char *line)
 {
-	char	*value;
-
-	value = NULL;
 	skip_spaces(&line);
-	if (line)
+	if (line && ft_strncmp(line, "NO", 2) == 0)
+		data->tex_path[NORTH] = clean_path(data, line);
+	else if (line && ft_strncmp(line, "SO", 2) == 0)
+		data->tex_path[SOUTH] = clean_path(data, line);
+	else if (line && ft_strncmp(line, "WE", 2) == 0)
+		data->tex_path[WEST] = clean_path(data, line);
+	else if (line && ft_strncmp(line, "EA", 2) == 0)
+		data->tex_path[EAST] = clean_path(data, line);
+	else if (line && ft_strncmp(line, "F", 1) == 0)
 	{
-		value = ft_strtrim(line, "\n");
-		// free(line);
-		if (!value)
-		{
-			free(line);
-			cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
-		}
-	}
-	if (value && ft_strncmp(value, "NO", 2) == 0)
-		data->tex_path[NORTH] = clean_path(data, value);
-	else if (value && ft_strncmp(value, "SO", 2) == 0)
-		data->tex_path[SOUTH] = clean_path(data, value);
-	else if (value && ft_strncmp(value, "WE", 2) == 0)
-		data->tex_path[WEST] = clean_path(data, value);
-	else if (value && ft_strncmp(value, "EA", 2) == 0)
-		data->tex_path[EAST] = clean_path(data, value);
-	else if (value && ft_strncmp(value, "F", 1) == 0)
-	{
-		data->map->floor_color = validate_colours(*data, value);
+		data->map->floor_color = validate_colours(*data, line);
 		print_mess(MSG_F_OK, SUCCESS);
 		data->map->floor_color_found = true;
 	}
-	else if (value && ft_strncmp(value, "C", 1) == 0)
+	else if (line && ft_strncmp(line, "C", 1) == 0)
 	{
-		data->map->ceiling_color = validate_colours(*data, value);
+		data->map->ceiling_color = validate_colours(*data, line);
 		print_mess(MSG_C_OK, SUCCESS);
 		data->map->ceiling_color_found = true;
 	}
@@ -58,7 +45,7 @@ void	read_cub(t_data *data, int fd)
 	char	*line;
 	int		id;
 
-	line = 0;
+	// line = 0;
 	if (fd < 0 || !data || !data->map)
 		return ;
 	id = 0;
@@ -70,8 +57,8 @@ void	read_cub(t_data *data, int fd)
 			data->finished_reading = true;
 			break;
 		}
-		// if (ft_strchr(line, '\n'))
-		// 	*ft_strchr(line, '\n') = '\0';
+		if (ft_strchr(line, '\n'))
+			*ft_strchr(line, '\n') = '\0';
 		if (line_is_empty(line) && id < 6)
 		{
 			free(line);
