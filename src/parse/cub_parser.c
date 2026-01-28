@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/27 15:09:01 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/28 18:41:06 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,34 @@ void	read_ids(t_data *data, char *line)
 	return ;
 }
 
-void	read_cub(t_data *data, int fd)
+static void handle_line(t_data *data, char *line, int *id)
 {
-	char	*line;
-	int		id;
-
-	// line = 0;
-	if (fd < 0 || !data || !data->map)
+	if (line_is_empty(line) && *id < 6)
 		return ;
+	if (line_is_ids(line))
+	{
+		if (*id >= 6)
+		{
+			free(line);
+			cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_03);
+		}
+		read_ids(data, line);
+		(*id)++;
+	}
+	else if (*id < 6)
+	{
+		free(line);
+		cleanup_and_exit(data, EXIT_FAILURE, "id cacca\n");
+	}
+	else if (*id == 6 && line_is_map(line))
+		add_line(line, data);
+}
+
+static void	handle_cub(t_data *data, int fd)
+{
+	int		id;
+	char	*line;
+
 	id = 0;
 	while (1)
 	{
@@ -55,38 +75,20 @@ void	read_cub(t_data *data, int fd)
 		if (!line)
 		{
 			data->finished_reading = true;
-			break;
+			break ;
 		}
 		if (ft_strchr(line, '\n'))
 			*ft_strchr(line, '\n') = '\0';
-		if (line_is_empty(line) && id < 6)
-		{
-			free(line);
-			continue ;
-		}
-		if (line_is_ids(line))
-		{
-			if (id >= 6)
-			{
-				while (line)
-				{
-					free(line);
-					line = get_next_line(fd);
-				}
-				cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_03);
-			}
-			read_ids(data, line);
-			id++;
-		}
-		else if (id < 6 && !line_is_ids(line))
-		{
-			free(line);
-			cleanup_and_exit(data, EXIT_FAILURE, "id cacca\n"); //se text dentro mappa o dopo o mancante
-		}
-		else if (id == 6 && line_is_map(line))
-			add_line(line, data);
+		handle_line(data, line, &id);
 		free(line);
 	}
+}
+
+void	read_cub(t_data *data, int fd)
+{
+	if (fd < 0 || !data || !data->map)
+		return ;
+	handle_cub(data, fd);
 	if (!data->tex_path[0] || !data->tex_path[1] || !data->tex_path[2] || !data->tex_path[3])
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_01);
 	if (!data->map->floor_color_found || !data->map->ceiling_color_found)

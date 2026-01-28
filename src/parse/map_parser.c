@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/26 15:18:18 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/28 18:45:20 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,100 +17,85 @@ void	add_line(char *line, t_data *data)
 {
 	t_list	*new_node;
 
-	new_node = ft_lstnew(ft_strtrim(line, "\n")); //trim line then save
+	new_node = ft_lstnew(ft_strtrim(line, "\n"));
 	if (!new_node)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
-	if ((int)ft_strlen(new_node->content) >= data->map->width) // find max length
-		data->map->width = ft_strlen(new_node->content); // becomes redundant if in alloc?
+	if ((int)ft_strlen(new_node->content) >= data->map->width)
+		data->map->width = ft_strlen(new_node->content);
 	ft_lstadd_back(&data->map->lines, new_node);
 	data->map->height++;
 	return ;
 }
+
+static char	*fill_grid_line(char *content, int width)
+{
+	char	*line;
+	int		i;
+	int		len;
+
+	line = malloc(sizeof(char) * (width + 1));
+	if (!line)
+		return (NULL);
+	len = ft_strlen(content);
+	i = 0;
+	while (i < width)
+	{
+		if (i < len)
+			line[i] = content[i];
+		else
+			line[i] = ' ';
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
 void	allocate_map(t_data *data, t_list *lines)
 {
-	int		x;
 	int		y;
-	int		len;
 	t_list	*tmp;
 
-	tmp = lines;
 	data->map->grid = malloc(sizeof(char *) * (data->map->height + 1));
+	if (!data->map->grid)
+		return ;
+	tmp = lines;
 	y = 0;
 	while (tmp)
 	{
-		x = 0;
-		char *content = (char *)tmp->content;
-		len = ft_strlen(content);
-		data->map->grid[y] = malloc(sizeof(char) * (data->map->width + 1));
-		while (x < len)
-		{
-			data->map->grid[y][x] = content[x];
-			x++;
-		}
-		while (x < data->map->width)
-		{
-			data->map->grid[y][x] = ' ';
-			x++;
-		}
-		data->map->grid[y][x] = '\0';
+		data->map->grid[y] = fill_grid_line((char *)tmp->content,
+				data->map->width);
 		tmp = tmp->next;
 		y++;
 	}
 	data->map->grid[y] = NULL;
-	// print_map_debug(data, lines);
 	print_mess(MSG_MAP_GRID, SUCCESS);
 	ft_lstclear(&lines, free);
 }
 
-char	**copy_matrix(char **grid, int height)
+int	maze_fill(char **map, int x, int y, int max_x, int max_y) //diocane
 {
-	char	**copy;
-	int		i;
+	char	pos;
 
-	i = 0;
-	copy = malloc(sizeof(char *) * (height + 1));
-	if (!copy)
-		return (NULL);
-	while (i < height)
-	{
-		copy[i] = ft_strdup(grid[i]);
-		if (!copy[i])
-		{
-			while (--i >= 0)// Libera se strdup fallisce - chat sugg
-				free(copy[i]);
-			free(copy);
-			return (NULL);
-		}
-		i++;
-	}
-	copy[i] = NULL;
-	return (copy);
-}
-
-// Requires passing integer coordinates (x, y) and map dimensions (max_x, max_y)
-int	maze_fill(char **map, int x, int y, int max_x, int max_y)
-{
 	if (x < 0 || y < 0 || x >= max_x || y >= max_y)
-		return (0); // out of bound
-
-	char pos = map[y][x];
+		return (0);
+	pos = map[y][x];
 	if (pos == '1' || pos == 'V')
-		return (1); // visiting ALL spaces
+		return (1);
 	if (pos == ' ')
-		return (0); // leaked space
-	map[y][x] = 'V'; // Visited
-	if (!maze_fill(map, x, y - 1, max_x, max_y)) // North
 		return (0);
-	if (!maze_fill(map, x, y + 1, max_x, max_y)) // South
+	map[y][x] = 'V';
+	if (!maze_fill(map, x, y - 1, max_x, max_y))
 		return (0);
-	if (!maze_fill(map, x - 1, y, max_x, max_y)) // West
+	if (!maze_fill(map, x, y + 1, max_x, max_y))
 		return (0);
-	if (!maze_fill(map, x + 1, y, max_x, max_y)) // East
+	if (!maze_fill(map, x - 1, y, max_x, max_y))
 		return (0);
-	return (1); // Success
+	if (!maze_fill(map, x + 1, y, max_x, max_y))
+		return (0);
+	return (1);
 }
 
-int	check_lines(int rows, int cols, char **map_mat)// change into count nodes*
+int	check_lines(int rows, int cols, char **map_mat)
 {
 	int	i;
 	int	row_len;

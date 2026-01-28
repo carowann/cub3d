@@ -3,7 +3,7 @@ SO ./text_packs/gem_pack/south.xpm
 WE ./text_packs/gem_pack/west.xpm
 EA ./gojo.xpm
 
-C  253,253,183,
+C  253,2 53,183,
 F  81,48,94
 
 ## still reachable C  253,253,18 3 F  81,48,94

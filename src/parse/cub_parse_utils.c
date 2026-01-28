@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parse_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:49:45 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/27 18:15:44 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/28 18:49:40 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ size_t	validate_colours(t_data data, char *colour)
 	char	**value;
 
 	i = 0;
-	while (!ft_isdigit(colour[i])) //TODO: F 104,79,72 lo passa
+	while (!ft_isdigit(colour[i]))
 		i++;
 	value = ft_split(&colour[i], ',');
 	if (!value)
@@ -76,7 +76,8 @@ size_t	validate_colours(t_data data, char *colour)
 	while (value[row_count] != NULL)
 		row_count++;
 	if (row_count != 3)
-		return (free_matrix((void **)value), free(colour), cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL));
+		return (free_matrix((void **)value), free(colour),
+			cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL));
 	check_colour_value(&data, value);
 	rgb[0] = ft_atoi(value[0]);
 	rgb[1] = ft_atoi(value[1]);
