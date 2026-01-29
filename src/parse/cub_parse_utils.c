@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:49:45 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 10:34:17 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 11:47:31 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	line_is_map(char *s)
 	return (false);
 }
 
-static void	check_colour_value(t_data *data, char **value)
+static bool	ok_colour_value(char **value)
 {
 	int	i;
 	int	j;
@@ -48,15 +48,13 @@ static void	check_colour_value(t_data *data, char **value)
 		j = 0;
 		while (value[i] && value[i][j])
 		{
-			printf("current: %c\n", value[i][j]);
-			if (ft_isspace(value[i][j]))
-				printf("cacca in %d e % d", i, j);
 			if (!ft_isdigit(value[i][j]))
-				cleanup_and_exit(data, EXIT_FAILURE, MSG_COL_FAIL);
+				return (false);
 			j++;
 		}
 		i++;
 	}
+	return (true);
 }
 
 size_t	validate_colours(t_data data, char *colour)
@@ -71,14 +69,15 @@ size_t	validate_colours(t_data data, char *colour)
 		i++;
 	value = ft_split(&colour[i], ',');
 	if (!value)
-		cleanup_and_exit(&data, EXIT_FAILURE, MSG_MALL_FAIL);
+		return (free(colour), cleanup_and_exit(&data, EXIT_FAILURE, MSG_MALL_FAIL));
 	row_count = 0;
 	while (value[row_count] != NULL)
-		row_count++; 
+		row_count++;
 	if (row_count != 3)
 		return (free_matrix((void **)value), free(colour),
 			cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL));
-	check_colour_value(&data, value);
+	if (!ok_colour_value(value))
+		return(free_matrix((void **)value), free(colour), cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL));
 	rgb[0] = ft_atoi(value[0]);
 	rgb[1] = ft_atoi(value[1]);
 	rgb[2] = ft_atoi(value[2]);

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 10:34:46 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 11:42:57 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	handle_line(t_data *data, char *line, int *id)
 		add_line(line, data);
 }
 
-static void	handle_cub(t_data *data, int fd)
+static void	handle_cub(t_data *data)
 {
 	int		id;
 	char	*line;
@@ -71,7 +71,7 @@ static void	handle_cub(t_data *data, int fd)
 	id = 0;
 	while (1)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(data->fd);
 		if (!line)
 		{
 			data->finished_reading = true;
@@ -84,11 +84,11 @@ static void	handle_cub(t_data *data, int fd)
 	}
 }
 
-void	read_cub(t_data *data, int fd)
+void	read_cub(t_data *data)
 {
-	if (fd < 0 || !data || !data->map)
+	if (data->fd < 0 || !data || !data->map)
 		return ;
-	handle_cub(data, fd);
+	handle_cub(data);
 	if (!data->tex_path[0] || !data->tex_path[1]
 		|| !data->tex_path[2] || !data->tex_path[3])
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_01);
@@ -97,5 +97,5 @@ void	read_cub(t_data *data, int fd)
 	print_mess(MSG_CUB_OK, SUCCESS);
 	allocate_map(data, data->map->lines);
 	validate_map(data);
-	close(fd);
+	close(data->fd);
 }

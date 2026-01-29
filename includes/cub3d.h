@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2026/01/27 15:43:07 by cwannhed         ###   ########.fr       */
+/*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
+/*   Updated: 2026/01/29 11:42:20 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -25,7 +24,6 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include "../minilibx-linux/mlx_int.h"
-
 
 /* ========================= */
 /*         DEFINES           */
@@ -125,10 +123,10 @@ enum e_wall_side
 
 typedef enum e_id
 {
-	ID_NO, // North
-	ID_SO, // South
-	ID_WE, // West
-	ID_EA, // East
+	ID_NO,
+	ID_SO,
+	ID_WE,
+	ID_EA,
 	ID_FL,
 	ID_CE
 } t_id;
@@ -233,14 +231,13 @@ typedef struct s_ray
 
 int		check_input(int argc, char **argv);
 // int		read_map(t_data *data, int fd);
-void	read_cub(t_data *data, int fd);
+void	read_cub(t_data *data);
 void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
 void	game_loop(t_data *data);
 int		cleanup_and_exit(t_data *data, int exit_code, char *msg);
 int		handle_close_window(t_data *data);
 void	print_mess(char *msg, int code);
-
 
 void	raycasting(t_data *data);
 void	free_matrix(void **matrix);
@@ -251,7 +248,6 @@ void	set_perpendicular_wall_distance(t_ray *ray, t_player *player);
 void	move_forward_or_backward(t_map *map, t_player *player, int direction);
 void	rotate_left_or_right(t_player *player, int direction);
 void	skip_spaces(char **line);
-
 
 void	kill_get_next_line(int fd);
 
@@ -275,6 +271,5 @@ bool	line_is_empty(char *s);
 char	*clean_path(t_data *data, char *s);
 bool	line_is_ids(char *s);
 bool	line_is_map(char *s);
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:17:07 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/26 16:20:23 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 11:42:34 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char *argv[])
 	data = (t_data){0};
 	data.fd = check_input(argc, argv);
 	init_data(&data);
-	read_cub(&data, data.fd);
+	read_cub(&data);
 	init_mlx(data.mlx, &data);
 	load_all_tex(&data, data.mlx);
 	game_loop(&data);
