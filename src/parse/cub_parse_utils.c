@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parse_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:49:45 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/28 18:49:40 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/29 10:34:17 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ size_t	validate_colours(t_data data, char *colour)
 		cleanup_and_exit(&data, EXIT_FAILURE, MSG_MALL_FAIL);
 	row_count = 0;
 	while (value[row_count] != NULL)
-		row_count++;
+		row_count++; 
 	if (row_count != 3)
 		return (free_matrix((void **)value), free(colour),
 			cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL));

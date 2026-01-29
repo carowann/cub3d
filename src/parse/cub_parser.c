@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/28 18:41:06 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/29 10:34:46 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	read_ids(t_data *data, char *line)
 	return ;
 }
 
-static void handle_line(t_data *data, char *line, int *id)
+static void	handle_line(t_data *data, char *line, int *id)
 {
 	if (line_is_empty(line) && *id < 6)
 		return ;
@@ -89,7 +89,8 @@ void	read_cub(t_data *data, int fd)
 	if (fd < 0 || !data || !data->map)
 		return ;
 	handle_cub(data, fd);
-	if (!data->tex_path[0] || !data->tex_path[1] || !data->tex_path[2] || !data->tex_path[3])
+	if (!data->tex_path[0] || !data->tex_path[1]
+		|| !data->tex_path[2] || !data->tex_path[3])
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_01);
 	if (!data->map->floor_color_found || !data->map->ceiling_color_found)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_02);

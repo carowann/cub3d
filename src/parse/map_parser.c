@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/28 18:45:20 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/29 10:35:47 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	allocate_map(t_data *data, t_list *lines)
 	ft_lstclear(&lines, free);
 }
 
-int	maze_fill(char **map, int x, int y, int max_x, int max_y) //diocane
+int	maze_fill(char **map, int x, int y, int max_x, int max_y) //perbacco
 {
 	char	pos;
 
