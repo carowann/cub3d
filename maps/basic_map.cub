@@ -1,12 +1,12 @@
 WE ./text_packs/gem_pack/west.xpm
 NO ./text_packs/gem_pack/north.xpm
-SO ./text_packs/gem_pack/south.xp
+SO ./text_packs/gem_pack/south.xpm
 EA ./text_packs/gem_pack/east.xpm
 F  81,48,94
 C  253,253,183
 
 1111111
-1100001
+110z001
 1111111
 1000001
 1000001

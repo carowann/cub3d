@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:49:45 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 14:56:46 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:04:27 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ size_t	validate_colours(t_data d, char *colour)
 char	*clean_path(t_data *data, char *s)
 {
 	int		i;
-	int		fd;
 	char	*path;
 	char	*temp;
 
@@ -95,13 +94,5 @@ char	*clean_path(t_data *data, char *s)
 	temp = path;
 	if (!path)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
-	fd = open(s, O_RDONLY);
-	if (fd < 0)
-	{
-		free(s);
-		free(path);
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_FAIL_LOAD_TEX);
-	}
-	close (fd);
 	return (path);
 }
