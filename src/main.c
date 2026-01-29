@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:17:07 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 14:28:36 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:17:26 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char *argv[])
 	read_cub(&data);
 	init_mlx(data.mlx, &data);
 	load_all_tex(&data, data.mlx);
+	start_mlx(data);
 	game_loop(&data);
 	return (0);
 }

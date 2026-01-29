@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/29 14:12:45 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:17:56 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,7 @@ void	game_loop(t_data *data);
 int		cleanup_and_exit(t_data *data, int exit_code, char *msg);
 int		handle_close_window(t_data *data);
 void	print_mess(char *msg, int code);
+void	start_mlx(t_data d);
 
 void	raycasting(t_data *data);
 void	free_matrix(void **matrix);

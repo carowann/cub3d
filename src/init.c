@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/29 14:27:26 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:19:43 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,30 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 	if (!mlx->mlx)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_INIT_MLX);
 	print_mess(MSG_MLX_INIT, SUCCESS);
-	mlx_get_screen_size(mlx->mlx, &mlx->screen_width, &mlx->screen_height);
+}
+
+void	start_mlx(t_data d)
+{
+	mlx_get_screen_size(d.mlx->mlx, &d.mlx->screen_width,
+		&d.mlx->screen_height);
 	ft_printfd(STDOUT_FILENO, GREEN "✅ Screen size = %d x %d\n" RESET,
-		mlx->screen_width, mlx->screen_height);
-	mlx->aspect_ratio = (double)mlx->screen_width / (double)mlx->screen_height;
-	mlx->win = mlx_new_window(mlx->mlx, mlx->screen_width, mlx->screen_height,
-			"Cub3D");
-	if (!mlx->win)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_WINDOW_FAIL);
+		d.mlx->screen_width, d.mlx->screen_height);
+	d.mlx->aspect_ratio = (double)d.mlx->screen_width
+		/ (double)d.mlx->screen_height;
+	d.mlx->win = mlx_new_window(d.mlx->mlx, d.mlx->screen_width,
+			d.mlx->screen_height, "Cub3D");
+	if (!d.mlx->win)
+		cleanup_and_exit(&d, EXIT_FAILURE, MSG_WINDOW_FAIL);
 	print_mess(MSG_WIN_OK, SUCCESS);
-	mlx->img = mlx_new_image(mlx->mlx, mlx->screen_width, mlx->screen_height);
-	if (!mlx->img)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_IMG_FAIL);
+	d.mlx->img = mlx_new_image(d.mlx->mlx, d.mlx->screen_width,
+			d.mlx->screen_height);
+	if (!d.mlx->img)
+		cleanup_and_exit(&d, EXIT_FAILURE, MSG_IMG_FAIL);
 	print_mess(MSG_IMG_OK, SUCCESS);
-	mlx->addr = mlx_get_data_addr(mlx->img,
-			&mlx->bits_per_pixel,
-			&mlx->line_length,
-			&mlx->endian);
-	if (!mlx->addr)
-		cleanup_and_exit(data, EXIT_FAILURE, MSG_ADDR_FAIL);
+	d.mlx->addr = mlx_get_data_addr(d.mlx->img,
+			&d.mlx->bits_per_pixel,
+			&d.mlx->line_length,
+			&d.mlx->endian);
+	if (!d.mlx->addr)
+		cleanup_and_exit(&d, EXIT_FAILURE, MSG_ADDR_FAIL);
 }
