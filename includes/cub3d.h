@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/29 12:43:31 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 12:56:58 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,74 +34,60 @@
 # define RED	"\033[0;31m"
 # define GREEN	"\033[0;32m"
 # define RESET	"\033[0m"
-# define MAGENTA	0xFF00FF;
 
 # define FRAME_TIME_SEC	0.01666667 // Approx 60 FPS
-
 # define MOVEMENT_SPEED_MULTIPLIER	3.0
 # define ROTATION_SPEED_MULTIPLIER	2.0
-
 # define WALL	'1'
 # define EMPTY	'0'
-
 # define UP		1
 # define DOWN	-1
 # define LEFT	-1
 # define RIGHT	1
-
 # define DELTA_DIST_INFINITY	1e30
-
 # define STEP_X_LEFT	-1
 # define STEP_X_RIGHT	1
 # define STEP_Y_UP		-1
 # define STEP_Y_DOWN	1
-
-# define MSG_N_ARGS			"\033[31mError ❌\nInvalid number of arguments.\033[0m\n"
-# define MSG_CUB_EXT		"\033[31mError ❌\nInvalid file extension. Expected .cub\033[0m\n"
-# define MSG_INIT_MLX		"\033[31mError ❌\nFailed to initialize MLX.\033[0m\n"
-# define MSG_WINDOW_FAIL	"\033[31mError ❌\nFailed to create window.\033[0m\n"
-# define MSG_IMG_FAIL		"\033[31mError ❌\nFailed to create image.\033[0m\n"
-# define MSG_ADDR_FAIL		"\033[31mError ❌\nFailed to get image address.\033[0m\n"
-# define MSG_TIME_FAIL		"\033[31mError ❌\nFailed to get current time. \033[0m\n"
-# define MSG_OPEN_FAIL		"\033[31mError ❌\nFailed to open file.\033[0m\n"
-# define MSG_IS_DIR			"\033[31mError ❌\nFile isn't filing. Is directoring.\033[0m\n"
-# define MSG_MALL_FAIL		"\033[31mError ❌\nFailed to allocate memory.\033[0m\n"
-# define MSG_FAIL_LOAD_TEX	"\033[31mError ❌\nFailed to load textures.\033[0m\n"
-// cub err mess
-# define MSG_CUB_FAIL_00	"\033[31mError ❌\nIssues with CUB file: invalid ids.\033[0m\n"
-# define MSG_CUB_FAIL_01	"\033[31mError ❌\nIssues with CUB file: missing textures.\033[0m\n"
-# define MSG_CUB_FAIL_02	"\033[31mError ❌\nIssues with CUB file: missing colours.\033[0m\n"
-# define MSG_CUB_FAIL_03	"\033[31mError ❌\nIssues with CUB file: too many ids.\033[0m\n"
-// map err mess
-# define MSG_COL_FAIL		"\033[31mError ❌\nWrong color format.\033[0m\n"
-# define MSG_MAP_FAIL_00	"\033[31mError ❌\nIssues with map: map too small.\033[0m\n"
-# define MSG_MAP_FAIL_01	"\033[31mError ❌\nIssues with map: maze leak.\033[0m\n"
-# define MSG_MAP_FAIL_02	"\033[31mError ❌\nIssues with map: wrong rows.\033[0m\n"
-# define MSG_MAP_FAIL_03	"\033[31mError ❌\nIssues with map: map could not be validated.\033[0m\n"
-# define MSG_MAP_FAIL_04	"\033[31mError ❌\nIssues with map: check elements.\033[0m\n"
-# define MSG_MAP_FAIL_05	"\033[31mError ❌\nIssues with map: cannot use tab!\033[0m\n"
-# define MSG_MAP_FAIL_06	"\033[31mError ❌\nIssues with map: incorrect player count.\033[0m\n"
-// val ok mess
-# define MSG_MAP_COPY		"\033[32mMap copied successfully ✅ \033[0m\n"
-# define MSG_MAP_GRID		"\033[32mCreated map grid ✅ \033[0m\n"
-# define MSG_MLX_INIT		"\033[32mMLX initialised successfully ✅ \033[0m\n"
-# define MSG_INPUT_OK		"\033[32mValid input ✅\033[0m\n"
-# define MSG_DATA_OK		"\033[32mInitialised data  ✅\033[0m\n"
-# define MSG_F_OK			"\033[32mValidated floor color ✅\033[0m\n"
-# define MSG_C_OK			"\033[32mValidated ceiling color ✅\033[0m\n"
-# define MSG_CUB_OK			"\033[32mRead .cub file ✅\033[0m\n"
-// # define MSG_COORD_OK		"\033[32mSaved player coordinates y = %d, x = %d with orientation %c\n", y, x, c  ✅\033[0m\n"
-# define MSG_WIN_OK			"\033[32mCreated new window  ✅\033[0m\n"
-# define MSG_IMG_OK			"\033[32mCreated new image ✅\033[0m\n"
-# define MSG_T0_OK			"\033[32mCreated mlx image for ./text_packs/gem_pack/north.xpm ✅\033[0m\n"
-# define MSG_T1_OK			"\033[32mCreated mlx image for ./text_packs/gem_pack/south.xpm ✅\033[0m\n"
-# define MSG_T2_OK			"\033[32mCreated mlx image for ./text_packs/gem_pack/west.xpm ✅\033[0m\n"
-# define MSG_T3_OK			"\033[32mCreated mlx image for ./text_packs/gem_pack/east.xpm ✅\033[0m\n"
-// # define MSG_	"\033[32m ____ \033[0m\n"
-// # define MSG_	"\033[32m ____ \033[0m\n"
-
 # define KEY_PRESSED	1
 # define KEY_RELEASED	0
+
+# define MSG_N_ARGS			"Invalid number of arguments.\n"
+# define MSG_CUB_EXT		"Invalid file extension. Expected .cub\n"
+# define MSG_INIT_MLX		"Failed to initialize MLX.\n"
+# define MSG_WINDOW_FAIL	"Failed to create window.\n"
+# define MSG_IMG_FAIL		"Failed to create image.\n"
+# define MSG_ADDR_FAIL		"Failed to get image address.\n"
+# define MSG_TIME_FAIL		"Failed to get current time.\n"
+# define MSG_OPEN_FAIL		"Failed to open file.\n"
+# define MSG_IS_DIR			"File isn't filing. Is directoring.\n"
+# define MSG_MALL_FAIL		"Failed to allocate memory.\n"
+# define MSG_FAIL_LOAD_TEX	"Failed to load textures.\n"
+// cub err mess
+# define MSG_CUB_FAIL_00	"Issues with CUB file: invalid ids.\n"
+# define MSG_CUB_FAIL_01	"Issues with CUB file: missing textures.\n"
+# define MSG_CUB_FAIL_02	"Issues with CUB file: missing colours.\n"
+# define MSG_CUB_FAIL_03	"Issues with CUB file: too many ids.\n"
+// map err mess
+# define MSG_COL_FAIL		"Wrong color format.\n"
+# define MSG_MAP_FAIL_00	"Issues with map: map too small.\n"
+# define MSG_MAP_FAIL_01	"Issues with map: maze leak.\n"
+# define MSG_MAP_FAIL_02	"Issues with map: wrong rows.\n"
+# define MSG_MAP_FAIL_03	"Issues with map: map could not be validated.\n"
+# define MSG_MAP_FAIL_04	"Issues with map: check elements.\n"
+# define MSG_MAP_FAIL_05	"Issues with map: cannot use tab!\n"
+# define MSG_MAP_FAIL_06	"Issues with map: incorrect player count.\n"
+// val ok mess
+# define MSG_MAP_COPY		"✅ Map copied successfully\n"
+# define MSG_MAP_GRID		"✅ Created map grid\n"
+# define MSG_MLX_INIT		"✅ MLX initialised successfully\n"
+# define MSG_INPUT_OK		"✅ Valid input\n"
+# define MSG_DATA_OK		"✅ Initialised data\n"
+# define MSG_F_OK			"✅ Validated floor color\n"
+# define MSG_C_OK			"✅ Validated ceiling color\n"
+# define MSG_CUB_OK			"✅ Read .cub file\n"
+# define MSG_WIN_OK			"✅ Created new window\n"
+# define MSG_IMG_OK			"✅ Created new image\n"
 
 /* ========================= */
 /*        STRUCTURES         */
@@ -129,7 +115,7 @@ typedef enum e_id
 	ID_EA,
 	ID_FL,
 	ID_CE
-} t_id;
+}	t_id;
 
 typedef struct s_player
 {
@@ -150,7 +136,7 @@ typedef struct s_player
 	int		key_left;
 	int		key_right;
 	double	last_render_time;
-} t_player;
+}	t_player;
 
 typedef struct s_map
 {
@@ -162,7 +148,7 @@ typedef struct s_map
 	size_t		ceiling_color;
 	bool		floor_color_found;
 	bool		ceiling_color_found;
-} t_map;
+}	t_map;
 
 typedef struct s_tex
 {
@@ -181,18 +167,18 @@ typedef struct s_tex
 
 typedef struct s_mlx
 {
-	void	*mlx; //The MLX connection/instance (required for all MLX operations)
-	void	*win; //The window where graphics are displayed
-	t_img	*img; //The image buffer where we draw each frame
-	char	*addr; //Pointer to the raw pixel data of the image
-	int		bits_per_pixel; //Number of bits used to represent each pixel
-	int		line_length; //Bytes per row in the image (used to calculate pixel positions)
-	int		endian; //Byte order (big/little endian) for color encoding
+	void	*mlx;
+	void	*win;
+	t_img	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	int		screen_width;
 	int		screen_height;
-	t_tex	tex[4]; //Array of 4 tex for walls
+	t_tex	tex[4];
 	double	aspect_ratio;
-} t_mlx;
+}	t_mlx;
 
 typedef struct s_data
 {
@@ -202,7 +188,7 @@ typedef struct s_data
 	char		*tex_path[4];
 	int			finished_reading;
 	int			fd;
-} t_data;
+}	t_data;
 
 typedef struct s_ray
 {
@@ -223,7 +209,7 @@ typedef struct s_ray
 	double	delta_dist_x; //length of ray from one x-side to next x-side
 	double	delta_dist_y; //length of ray from one y-side to next y-side
 	double	perp_wall_dist; //perpendicular distance to the wall
-} t_ray;
+}	t_ray;
 
 /* ========================= */
 /*       FUNCTIONS           */
@@ -252,7 +238,7 @@ void	skip_spaces(char **line);
 void	kill_get_next_line(int fd);
 
 // wip
-size_t	validate_colours(t_data data, char *colour);// return completely analysed value
+size_t	validate_colours(t_data data, char *colour);
 t_id	get_id_line(char *str);
 void	add_line(char *line, t_data *data);
 void	allocate_map(t_data *data, t_list *lines);
