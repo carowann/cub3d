@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/29 15:17:56 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:57:15 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,8 +232,6 @@ double	get_current_time(t_data *data);
 void	set_delta_distances(t_ray *ray);
 void	set_step_and_initial_side_distances(t_ray *ray, t_player *player);
 void	set_perpendicular_wall_distance(t_ray *ray, t_player *player);
-void	move_forward_or_backward(t_map *map, t_player *player, int direction);
-void	rotate_left_or_right(t_player *player, int direction);
 void	skip_spaces(char **line);
 
 void	kill_get_next_line(int fd);
@@ -243,9 +241,7 @@ size_t	validate_colours(t_data data, char *colour);
 t_id	get_id_line(char *str);
 void	add_line(char *line, t_data *data);
 void	allocate_map(t_data *data, t_list *lines);
-void	check_map_elements(t_data *data);
 void	validate_map(t_data *data);
-char	**copy_matrix(char **grid, int height);
 int		maze_fill(char **map, int x, int y, t_data d);
 void	set_movement_and_rotation_speed(t_data *data, t_player *player);
 void	handle_keyboard_input(t_data *data);

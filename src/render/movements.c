@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 16:05:40 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:58:32 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	move_left_or_right(t_map *map, t_player *player, int direction)
 ** The rotation_angle is already scaled by frame time (rot_speed),
 ** ensuring smooth, consistent rotation regardless of FPS.
 */
-void	rotate_left_or_right(t_player *player, int direction)
+static void	rotate_left_or_right(t_player *player, int direction)
 {
 	double	old_dir_x;
 	double	old_plane_x;

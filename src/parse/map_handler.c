@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 14:27:45 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:57:08 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	init_player_direction(t_data *data, char c)
 	}
 }
 
-char	**copy_matrix(char **grid, int height)
+static char	**copy_matrix(char **grid, int height)
 {
 	char	**copy;
 	int		i;
@@ -84,7 +84,7 @@ static void	check_char(t_data *data, int y, int x, int *player_count)
 	}
 }
 
-void	check_map_elements(t_data *data)
+static void	check_map_elements(t_data *data)
 {
 	int	y;
 	int	x;
