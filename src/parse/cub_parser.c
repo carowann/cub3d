@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 11:42:57 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 14:36:17 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	read_ids(t_data *data, char *line)
 	}
 	else
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_00);
-	return ;
 }
 
 static void	handle_line(t_data *data, char *line, int *id)
@@ -57,7 +56,7 @@ static void	handle_line(t_data *data, char *line, int *id)
 	else if (*id < 6)
 	{
 		free(line);
-		cleanup_and_exit(data, EXIT_FAILURE, "id cacca\n");
+		cleanup_and_exit(data, EXIT_FAILURE, MSG_CUB_FAIL_04);
 	}
 	else if (*id == 6 && line_is_map(line))
 		add_line(line, data);

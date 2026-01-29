@@ -6,11 +6,10 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 12:43:40 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 14:27:51 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: REMOVE. NORME: KO
 #include "../../includes/cub3d.h"
 
 void	add_line(char *line, t_data *data)

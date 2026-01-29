@@ -6,11 +6,10 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:42:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 16:04:11 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 14:28:11 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: REMOVE. NORME: KO
 #include "../../includes/cub3d.h"
 
 static void	update_dda_variables(t_ray *ray)

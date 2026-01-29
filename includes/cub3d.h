@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/29 12:56:58 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 14:12:45 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@
 # define MSG_CUB_FAIL_01	"Issues with CUB file: missing textures.\n"
 # define MSG_CUB_FAIL_02	"Issues with CUB file: missing colours.\n"
 # define MSG_CUB_FAIL_03	"Issues with CUB file: too many ids.\n"
+# define MSG_CUB_FAIL_04	"Issues with CUB file: wrong configuration.\n"
 // map err mess
 # define MSG_COL_FAIL		"Wrong color format.\n"
 # define MSG_MAP_FAIL_00	"Issues with map: map too small.\n"
@@ -142,8 +143,8 @@ typedef struct s_map
 {
 	t_list		*lines;
 	char		**grid;
-	int			width; // strlen
-	int			height; // node count
+	int			width;
+	int			height;
 	size_t		floor_color;
 	size_t		ceiling_color;
 	bool		floor_color_found;
@@ -216,7 +217,6 @@ typedef struct s_ray
 /* ========================= */
 
 int		check_input(int argc, char **argv);
-// int		read_map(t_data *data, int fd);
 void	read_cub(t_data *data);
 void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
@@ -242,14 +242,12 @@ size_t	validate_colours(t_data data, char *colour);
 t_id	get_id_line(char *str);
 void	add_line(char *line, t_data *data);
 void	allocate_map(t_data *data, t_list *lines);
-void	print_map_debug(t_data *data, t_list *lines);
 void	check_map_elements(t_data *data);
 void	validate_map(t_data *data);
 char	**copy_matrix(char **grid, int height);
 int		maze_fill(char **map, int x, int y, t_data d);
 void	set_movement_and_rotation_speed(t_data *data, t_player *player);
 void	handle_keyboard_input(t_data *data);
-// void	set_tex_path(t_data *data);
 void	load_all_tex(t_data *data, t_mlx *mlx);
 void	set_pixel_buffer(t_data *d, t_ray *ray, int x);
 bool	line_is_empty(char *s);

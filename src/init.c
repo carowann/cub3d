@@ -6,13 +6,12 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/29 11:53:00 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 14:27:26 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-// TODO: REMOVE. NORME: KO
 void	init_data(t_data	*data)
 {
 	data->map = ft_calloc(1, sizeof(t_map));

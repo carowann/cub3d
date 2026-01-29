@@ -6,13 +6,11 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/27 17:12:41 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 14:27:57 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: REMOVE. NORME: KO
 #include "../../includes/cub3d.h"
-#include <stdio.h>
 
 /*
 ** Calculates frame-time-dependent movement and rotation speeds.

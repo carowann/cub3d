@@ -6,11 +6,10 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 12:43:49 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 14:27:45 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO: REMOVE. NORME: ok
 #include "../../includes/cub3d.h"
 
 static void	init_player_direction(t_data *data, char c)

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:35:52 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/29 12:48:00 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 14:20:43 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_mess(char *msg, int code)
 		ft_printfd(STDOUT_FILENO, GREEN "%s" RESET, msg);
 	else if (code == FAILURE)
 	{
-		ft_printfd(STDERR_FILENO, RED "Error ❌\n");
+		ft_printfd(STDERR_FILENO, RED "❌ Error\n");
 		ft_printfd(STDERR_FILENO, "%s" RESET, msg);
 	}
 }
