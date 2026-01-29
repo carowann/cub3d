@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/28 18:45:10 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/01/29 12:43:49 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	validate_map(t_data *data)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
 	print_mess(MSG_MAP_COPY, SUCCESS);
 	result = maze_fill(temp_grid, data->player->x, data->player->y,
-			data->map->width, data->map->height);
+			*data);
 	free_matrix((void **)temp_grid);
 	if (result != 1)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MAP_FAIL_01);

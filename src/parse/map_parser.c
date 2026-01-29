@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 10:35:47 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 12:43:40 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ void	allocate_map(t_data *data, t_list *lines)
 	ft_lstclear(&lines, free);
 }
 
-int	maze_fill(char **map, int x, int y, int max_x, int max_y) //perbacco
+int	maze_fill(char **map, int x, int y, t_data d)
 {
 	char	pos;
 
-	if (x < 0 || y < 0 || x >= max_x || y >= max_y)
+	if (x < 0 || y < 0 || x >= d.map->width || y >= d.map->height)
 		return (0);
 	pos = map[y][x];
 	if (pos == '1' || pos == 'V')
@@ -84,13 +84,13 @@ int	maze_fill(char **map, int x, int y, int max_x, int max_y) //perbacco
 	if (pos == ' ')
 		return (0);
 	map[y][x] = 'V';
-	if (!maze_fill(map, x, y - 1, max_x, max_y))
+	if (!maze_fill(map, x, y - 1, d))
 		return (0);
-	if (!maze_fill(map, x, y + 1, max_x, max_y))
+	if (!maze_fill(map, x, y + 1, d))
 		return (0);
-	if (!maze_fill(map, x - 1, y, max_x, max_y))
+	if (!maze_fill(map, x - 1, y, d))
 		return (0);
-	if (!maze_fill(map, x + 1, y, max_x, max_y))
+	if (!maze_fill(map, x + 1, y, d))
 		return (0);
 	return (1);
 }

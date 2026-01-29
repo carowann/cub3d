@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:49:45 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 11:47:31 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 12:39:29 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,8 @@ bool	line_is_ids(char *s)
 
 bool	line_is_map(char *s)
 {
-	int	i;
-
-	i = 0;
-	while (s[i] && ft_isspace(s[i]))
-		i++;
-	if (ft_strchr("01NSEW ", s[i]))
+	skip_spaces(&s);
+	if (ft_strchr("01NSEW ", *s))
 		return (true);
 	return (false);
 }
@@ -57,11 +53,10 @@ static bool	ok_colour_value(char **value)
 	return (true);
 }
 
-size_t	validate_colours(t_data data, char *colour)
+size_t	validate_colours(t_data d, char *colour)
 {
 	int		i;
 	int		rgb[3];
-	int		row_count;
 	char	**value;
 
 	i = 0;
@@ -69,21 +64,21 @@ size_t	validate_colours(t_data data, char *colour)
 		i++;
 	value = ft_split(&colour[i], ',');
 	if (!value)
-		return (free(colour), cleanup_and_exit(&data, EXIT_FAILURE, MSG_MALL_FAIL));
-	row_count = 0;
-	while (value[row_count] != NULL)
-		row_count++;
-	if (row_count != 3)
+		return (free(colour),
+			cleanup_and_exit(&d, EXIT_FAILURE, MSG_MALL_FAIL));
+	i = 0;
+	while (value[i] != NULL)
+		i++;
+	if (i != 3 || !ok_colour_value(value))
 		return (free_matrix((void **)value), free(colour),
-			cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL));
-	if (!ok_colour_value(value))
-		return(free_matrix((void **)value), free(colour), cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL));
+			cleanup_and_exit(&d, EXIT_FAILURE, MSG_COL_FAIL));
 	rgb[0] = ft_atoi(value[0]);
 	rgb[1] = ft_atoi(value[1]);
 	rgb[2] = ft_atoi(value[2]);
 	free_matrix((void **)value);
-	if (rgb[0] < 0 || rgb[0] > 255 || (rgb[1] < 0 || rgb[1] > 255) || (rgb[2] < 0 || rgb[2] > 255))
-		return (free(colour), cleanup_and_exit(&data, EXIT_FAILURE, MSG_COL_FAIL));
+	if (rgb[0] < 0 || rgb[0] > 255 || (rgb[1] < 0
+			|| rgb[1] > 255) || (rgb[2] < 0 || rgb[2] > 255))
+		return (free(colour), cleanup_and_exit(&d, EXIT_FAILURE, MSG_COL_FAIL));
 	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 

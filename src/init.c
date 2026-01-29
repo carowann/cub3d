@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/27 17:09:35 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 11:53:00 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 // TODO: REMOVE. NORME: KO
 void	init_data(t_data	*data)
 {
-	//TODO: r-data inizializzato a 0 in main
 	data->map = ft_calloc(1, sizeof(t_map));
 	data->player = ft_calloc(1, sizeof(t_player));
 	data->mlx = ft_calloc(1, sizeof(t_mlx));
 	if (!data->map || !data->player || !data->mlx)
 		cleanup_and_exit(data, EXIT_FAILURE, NULL);
-	data->finished_reading = false;
 	data->player->time_curr_frame = get_current_time(data);
 	print_mess(MSG_DATA_OK, SUCCESS);
 }

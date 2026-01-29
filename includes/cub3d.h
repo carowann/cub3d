@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/29 11:42:20 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/29 12:43:31 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,8 +260,7 @@ void	print_map_debug(t_data *data, t_list *lines);
 void	check_map_elements(t_data *data);
 void	validate_map(t_data *data);
 char	**copy_matrix(char **grid, int height);
-int		maze_fill(char **map, int x, int y, int max_x, int max_y);
-
+int		maze_fill(char **map, int x, int y, t_data d);
 void	set_movement_and_rotation_speed(t_data *data, t_player *player);
 void	handle_keyboard_input(t_data *data);
 // void	set_tex_path(t_data *data);
