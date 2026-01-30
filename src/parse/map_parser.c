@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 14:01:42 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 15:57:31 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/30 09:24:45 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,29 +91,5 @@ int	maze_fill(char **map, int x, int y, t_data d)
 		return (0);
 	if (!maze_fill(map, x + 1, y, d))
 		return (0);
-	return (1);
-}
-
-int	check_lines(int rows, int cols, char **map_mat)
-{
-	int	i;
-	int	row_len;
-
-	i = 0;
-	if (rows <= 3 || cols <= 3)
-	{
-		print_mess(MSG_MAP_FAIL_00, FAILURE);
-		return (0);
-	}
-	while (i < rows)
-	{
-		row_len = ft_strlen(map_mat[i]);
-		if (cols != row_len)
-		{
-			print_mess(MSG_MAP_FAIL_02, FAILURE);
-			return (0);
-		}
-		i++;
-	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:49:45 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 15:04:27 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/30 09:24:15 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,11 @@ char	*clean_path(t_data *data, char *s)
 {
 	int		i;
 	char	*path;
-	char	*temp;
 
 	i = 2;
 	while (s[i] && ft_isspace(s[i]))
 		i++;
 	path = ft_strdup(&s[i]);
-	temp = path;
 	if (!path)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_MALL_FAIL);
 	return (path);

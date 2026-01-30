@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:55:24 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 14:36:17 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/30 09:28:48 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,7 @@ static void	handle_cub(t_data *data)
 	{
 		line = get_next_line(data->fd);
 		if (!line)
-		{
-			data->finished_reading = true;
 			break ;
-		}
 		if (ft_strchr(line, '\n'))
 			*ft_strchr(line, '\n') = '\0';
 		handle_line(data, line, &id);

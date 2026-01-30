@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 15:01:56 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/26 15:11:48 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/30 09:26:23 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,12 @@ int	cleanup_and_exit(t_data *data, int exit_code, char *msg)
 			free_map(data->map);
 		if (data->player)
 			free(data->player);
-		if (data->tex_path[0])
-			free(data->tex_path[0]);
-		if (data->tex_path[1])
-			free(data->tex_path[1]);
-		if (data->tex_path[2])
-			free(data->tex_path[2]);
-		if (data->tex_path[3])
-			free(data->tex_path[3]);
+		while (i < 4)
+		{
+			if (data->tex_path[i])
+				free(data->tex_path[i]);
+			i++;
+		}
 	}
 	exit(exit_code);
 }
