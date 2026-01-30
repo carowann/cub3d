@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/30 09:27:06 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/30 17:48:36 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@
 # define RED	"\033[0;31m"
 # define GREEN	"\033[0;32m"
 # define RESET	"\033[0m"
+
+//minimap?
+#define MM_TILE_SIZE 10  // Ogni cubo della mappa sarà 10x10 pixel
+#define MM_COLOR_WALL 0x00C9C9C9 // Bianco
+#define MM_COLOR_FLOOR 0x002A2A2A // Nero
+#define MM_COLOR_PLAYER 0x00FFFFFF // Rosso
+
 
 # define FRAME_TIME_SEC	0.01666667 // Approx 60 FPS
 # define MOVEMENT_SPEED_MULTIPLIER	3.0
@@ -250,5 +257,10 @@ bool	line_is_empty(char *s);
 char	*clean_path(t_data *data, char *s);
 bool	line_is_ids(char *s);
 bool	line_is_map(char *s);
+///temp
+void	draw_minimap_tile(t_data *data, int x, int y, int color);
+void	draw_minimap(t_data *data);
+int	render_mm_frame(t_data *data);
+
 
 #endif

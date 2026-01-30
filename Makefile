@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+         #
+#    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2026/01/26 11:32:52 by cwannhed         ###   ########.fr        #
+#    Updated: 2026/01/30 17:19:16 by giomastr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS	= src/main.c \
 	src/parse/cub_parser.c \
 	src/parse/map_parser.c \
 	src/parse/map_handler.c \
+	src/parse/minimap.c \
 	src/init.c \
 	src/cleanup.c \
 	src/utils.c \

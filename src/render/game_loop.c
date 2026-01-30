@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/29 14:27:57 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/30 17:30:48 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	render_frame(t_data *data)
 	data->player->last_render_time = current_time;
 	handle_keyboard_input(data);
 	raycasting(data);
+	draw_minimap(data); //TODO: maybe remove
 	mlx_put_image_to_window(data->mlx->mlx,
 		data->mlx->win,
 		data->mlx->img, 0, 0);
