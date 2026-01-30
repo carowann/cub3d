@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/29 10:31:00 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/30 10:08:25 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	set_tex_x_coord(t_ray *ray, t_player *player, t_tex *tex)
 		wall_x = player->x + ray->perp_wall_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
 	tex->x = (int)(wall_x * (double)tex->width);
-	if (ray->wall_side == EAST || ray->wall_side == NORTH)
+	if (ray->wall_side == WEST || ray->wall_side == SOUTH)
 		tex->x = tex->width - tex->x - 1;
 }
 

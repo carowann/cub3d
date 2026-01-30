@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:42:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/29 14:28:11 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/01/30 10:06:07 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ static void	update_dda_variables(t_ray *ray)
 		ray->side_dist_x += ray->delta_dist_x;
 		ray->map_x += ray->step_x;
 		if (ray->step_x > 0)
-			ray->wall_side = WEST;
-		else
 			ray->wall_side = EAST;
+		else
+			ray->wall_side = WEST;
 	}
 	else
 	{
 		ray->side_dist_y += ray->delta_dist_y;
 		ray->map_y += ray->step_y;
 		if (ray->step_y > 0)
-			ray->wall_side = NORTH;
-		else
 			ray->wall_side = SOUTH;
+		else
+			ray->wall_side = NORTH;
 	}
 }
 
