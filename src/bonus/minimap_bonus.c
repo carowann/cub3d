@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 16:42:47 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/30 18:27:28 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/02/02 11:49:30 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,24 @@ void	draw_minimap(t_data *data)
 
 int	render_mm_frame(t_data *data)
 {
+	double	current_time;
+	double	elapsed;
+
+	current_time = get_current_time(data);
+	if (data->player->last_render_time == 0.0)
+	{
+		data->player->last_render_time = current_time;
+		return (0);
+	}
+	elapsed = current_time - data->player->last_render_time;
+	if (elapsed < FRAME_TIME_SEC)
+		return (0);
+	data->player->last_render_time = current_time;
+	handle_keyboard_input(data);
 	raycasting(data);
-	draw_minimap(data);
+	draw_minimap(data); //TODO: maybe remove
 	mlx_put_image_to_window(data->mlx->mlx,
-		data->mlx->win, data->mlx->img, 0, 0);
+		data->mlx->win,
+		data->mlx->img, 0, 0);
 	return (0);
 }

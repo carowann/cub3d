@@ -3,16 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
+#    By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2026/01/30 17:19:16 by giomastr         ###   ########.fr        #
+#    Created: 2026/02/02 11:35:54 by cwannhed          #+#    #+#              #
+#    Updated: 2026/02/02 13:01:55 by cwannhed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
 MAKEFLAGS += --no-print-directory
-NAME		= cub3D
+NAME = cub3D
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -29,12 +28,28 @@ SRCS	= src/main.c \
 	src/parse/cub_parser.c \
 	src/parse/map_parser.c \
 	src/parse/map_handler.c \
-	src/parse/minimap.c \
 	src/init.c \
 	src/cleanup.c \
 	src/utils.c \
 	src/render/raycast.c \
 	src/render/game_loop.c \
+	src/render/render.c \
+	src/render/raycast_data.c \
+	src/render/movements.c \
+	src/render/textures.c
+
+BONUS_SRCS = src/bonus/minimap_bonus.c \
+	src/bonus/game_loop_bonus.c \
+	src/main.c \
+	src/parse/basic_parser.c \
+	src/parse/cub_parse_utils.c \
+	src/parse/cub_parser.c \
+	src/parse/map_parser.c \
+	src/parse/map_handler.c \
+	src/init.c \
+	src/cleanup.c \
+	src/utils.c \
+	src/render/raycast.c \
 	src/render/render.c \
 	src/render/raycast_data.c \
 	src/render/movements.c \
@@ -65,6 +80,11 @@ $(NAME): $(LIBFT) $(SRCS)
 	@$(MAKE) text
 	@$(MAKE) luna
 
+bonus: $(LIBFT) $(BONUS_SRCS)
+	@cc $(BONUS_SRCS) $(INCLUDES) $(CFLAGS) $(LIBFT) $(MLX_LIBS) -o $(NAME)
+	@$(MAKE) text_bonus
+	@$(MAKE) luna
+
 clean:
 	@make -C $(LIBFT_DIR) clean
 	@$(MAKE) txtcln
@@ -79,9 +99,11 @@ re: fclean all
 .PHONY: all clean fclean re mlx_setup
 .SILENT:
 
-
 text:
 	@echo -e '\033[1;95m🌙 In the name of the moon, compile $(NAME) ✨\033[0m'
+
+text_bonus:
+	@echo -e '\033[1;95m🌙 In the name of the moon, compile $(NAME) bonus ✨\033[0m'
 
 txtcln:
 	@echo -e '\033[1;94mPartially cleaned $(NAME)🧼 \033[0m'
@@ -114,11 +136,3 @@ luna:
 	@echo "\033[38;2;235;150;255m⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀\033[0m"
 	@echo "\033[38;2;235;150;255m⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\033[0m"
 	@echo "\033[38;2;235;150;255m⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠛⠛⠛⠛⠛⠛⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\033[0m"
-
-
-err_art:
-	@echo -e '\033[38;2;139;0;0m	Something went wrong! \033[0m'
-	@echo -e '\033[38;2;139;0;0m	▄▖▄▖▖  ▖▄▖▄▖▖ ▄▖▄▖▄▖▄▖▖ ▖  ▖▖▄▖ \033[0m'
-	@echo -e '\033[38;2;139;0;0m	▌ ▌▌▛▖▞▌▙▌▐ ▌ ▌▌▐ ▐ ▌▌▛▖▌  ▙▘▌▌ \033[0m'
-	@echo -e '\033[38;2;139;0;0m	▙▖▙▌▌▝ ▌▌ ▟▖▙▖▛▌▐ ▟▖▙▌▌▝▌  ▌▌▙▌ \033[0m'
-
