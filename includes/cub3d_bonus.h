@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/02 14:56:14 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/02/02 15:43:40 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@
 # define RED	"\033[0;31m"
 # define GREEN	"\033[0;32m"
 # define RESET	"\033[0m"
+
+// Minimap defines
+# define MM_TILE_SIZE 10  // Ogni cubo della mappa sarà 10x10 pixel
+# define MM_COLOR_WALL 0x00C9C9C9 // grigio
+# define MM_COLOR_FLOOR 0x002A2A2A // 42,42,42 hehe
+# define MM_COLOR_PLAYER 0x00FFFFFF // bianco
+# define MM_COLOR_GRID 0x00000000 // nero
+// # define MM_COLOR_GRID 0x002A2A2A // verde
+
+
 
 # define FRAME_TIME_SEC	0.01666667 // Approx 60 FPS
 # define MOVEMENT_SPEED_MULTIPLIER	3.0
@@ -250,5 +260,13 @@ bool	line_is_empty(char *s);
 char	*clean_path(t_data *data, char *s);
 bool	line_is_ids(char *s);
 bool	line_is_map(char *s);
+
+// bonus - minimap
+void	draw_minimap_tile(t_data *data, int x, int y, int color);
+void	draw_minimap(t_data *data);
+int		render_mm_frame(t_data *data);
+// bonus - mouse
+int		mouse_handler(int x, int y, t_data *data);
+void	rotate_left_or_right(t_player *player, double direction);
 
 #endif

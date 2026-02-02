@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:42:37 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/02 11:43:01 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/02 15:58:55 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 /*
 ** Calculates frame-time-dependent movement and rotation speeds.
@@ -142,6 +142,8 @@ void	game_loop(t_data *data)
 		SubstructureNotifyMask,
 		handle_close_window,
 		data);
+	// mlx_mouse_hide(data->mlx->mlx, data->mlx->win); //
+	// mlx_hook(data->mlx->win, 6, (1L << 6), mouse_handler, data); //
 	mlx_loop_hook(data->mlx->mlx, render_mm_frame, data);
 	mlx_loop(data->mlx->mlx);
 }

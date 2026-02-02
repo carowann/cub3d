@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+         #
+#    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/02 11:35:54 by cwannhed          #+#    #+#              #
-#    Updated: 2026/02/02 13:01:55 by cwannhed         ###   ########.fr        #
+#    Updated: 2026/02/02 15:55:00 by giomastr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,9 @@ SRCS	= src/main.c \
 
 BONUS_SRCS = src/bonus/minimap_bonus.c \
 	src/bonus/game_loop_bonus.c \
+	src/bonus/movements_bonus.c \
+	src/bonus/minimap_bonus.c \
+	src/bonus/mouse_events_bonus.c \
 	src/main.c \
 	src/parse/basic_parser.c \
 	src/parse/cub_parse_utils.c \

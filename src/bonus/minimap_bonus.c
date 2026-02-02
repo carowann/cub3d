@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 16:42:47 by giomastr          #+#    #+#             */
-/*   Updated: 2026/02/02 11:49:30 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/02 15:59:16 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 static	void	my_pix_put(t_mlx *mlx, int x, int y, int color)
 {
@@ -107,7 +107,7 @@ int	render_mm_frame(t_data *data)
 	data->player->last_render_time = current_time;
 	handle_keyboard_input(data);
 	raycasting(data);
-	draw_minimap(data); //TODO: maybe remove
+	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx->mlx,
 		data->mlx->win,
 		data->mlx->img, 0, 0);
