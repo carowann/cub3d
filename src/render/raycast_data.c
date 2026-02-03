@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:08:54 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/30 17:54:56 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:56:07 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	set_delta_distances(t_ray *ray)
 	if (ray->ray_dir_x == 0)
 		ray->delta_dist_x = DELTA_DIST_INFINITY;
 	else
-		ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
+		ray->delta_dist_x = fabs(1 / ray->ray_dir_x); //fabs valore assoluto di double
 	if (ray->ray_dir_y == 0)
 		ray->delta_dist_y = DELTA_DIST_INFINITY;
 	else
