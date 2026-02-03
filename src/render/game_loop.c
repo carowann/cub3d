@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/02 13:08:35 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:12:32 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,6 @@
 
 /*
 ** Calculates frame-time-dependent movement and rotation speeds.
-**
-** Why frame time matters:
-** Different computers run at different speeds (30 FPS, 60 FPS, 144 FPS, etc.)
-**
-** Solution: Delta time (frame time)
-** Speed = base_speed * time_elapsed_since_last_frame
-** This ensures consistent movement speed regardless of FPS.
-**
-** Special case:
-** On the very first frame (time_last_frame = 0), we don't have a previous
-** frame to compare with, so we use a default frame time (FRAME_TIME_SEC).
 **
 ** The multipliers:
 ** - MOVEMENT_SPEED_MULTIPLIER: Controls how fast player walks (units/second)
@@ -53,15 +42,6 @@ void	set_movement_and_rotation_speed(t_data *data, t_player *player)
 **                              it into the image buffer (mlx->addr)
 ** 2. mlx_put_image_to_window:  Displays the completed image buffer
 **                              on the actual window
-**
-** Why two steps?
-** - Drawing directly to the window pixel-by-pixel is SLOW
-** - Instead, we draw everything to an off-screen buffer (mlx->img)
-** - Then display the entire image at once (much faster, no flickering)
-**
-** This technique is called "double buffering" and ensures smooth graphics.
-**
-** Return: 0 (required by mlx_loop_hook)
 */
 int	render_frame(t_data *data)
 {
