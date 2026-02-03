@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/03 10:56:51 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:49:49 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ void	init_data(t_data	*data)
 	print_mess(MSG_DATA_OK, SUCCESS);
 }
 
-/*
-** Initializes all MLX components needed for graphics rendering.
-** Sets up the MLX instance, creates a window, and prepares an image buffer.
-** The addr pointer is crucial: it's where we write pixel colors directly.
-** Instead of using slow mlx_pixel_put for each pixel, we modify addr directly
-** and then display the entire image at once with mlx_put_image_to_window.
-*/
 void	init_mlx(t_mlx *mlx, t_data *data)
 {
 	mlx->mlx = mlx_init();

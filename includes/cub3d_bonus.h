@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/02 15:43:40 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:45:21 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@
 # define STEP_Y_DOWN	1
 # define KEY_PRESSED	1
 # define KEY_RELEASED	0
+# define MOUSE_DPI	0.0005
+
 
 # define MSG_N_ARGS			"Invalid number of arguments.\n"
 # define MSG_CUB_EXT		"Invalid file extension. Expected .cub\n"
@@ -267,6 +269,6 @@ void	draw_minimap(t_data *data);
 int		render_mm_frame(t_data *data);
 // bonus - mouse
 int		mouse_handler(int x, int y, t_data *data);
-void	rotate_left_or_right(t_player *player, double direction);
+void	rotate_player(t_data *data, double angle_speed);
 
 #endif

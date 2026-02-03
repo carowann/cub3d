@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/03 11:02:31 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:47:38 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,6 @@ bool	is_out_of_bounds(t_map *map, int y, int x)
 	return (map->grid[y][x] == WALL);
 }
 
-/*
-** Moves the player forward or backward along their current direction.
-**
-** If ANY corner would enter a wall, movement is blocked.
-** This creates a "collision box" around the player, preventing:
-** - Clipping through walls
-** - Getting stuck in corners
-** - Walking too close to walls (sliding effect)
-**
-** Boundary checks:
-** Also prevents player from leaving the map bounds entirely.
-*/
 void	move_forward_or_backward(t_map *map, t_player *player, int direction)
 {
 	double	new_x;
@@ -62,44 +50,19 @@ void	move_left_or_right(t_map *map, t_player *player, int direction)
 	player->y = new_y;
 }
 
-/*
-** Rotates the player's view left or right.
-**
-** We need to rotate TWO vectors:
-** 1. Direction vector (dir_x, dir_y):  where player is looking
-** 2. Camera plane (plane_x, plane_y):  defines the field of view (FOV)
-**
-** Both must rotate together to maintain correct perspective!
-**
-** 2D Rotation matrix formula:
-** Given a point (x, y) and angle θ:
-** new_x = x * cos(θ) - y * sin(θ)
-** new_y = x * sin(θ) + y * cos(θ)
-**
-** Direction parameter:
-** - LEFT  (A key): direction = -1 → negative angle (counterclockwise)
-** - RIGHT (D key): direction = +1 → positive angle (clockwise)
-**
-** The rotation_angle is already scaled by frame time (rot_speed),
-** ensuring smooth, consistent rotation regardless of FPS.
-*/
-void	rotate_left_or_right(t_player *player, double direction) // messo a double cosi' non si muove scattoso
+void	rotate_player(t_data *data, double angle_speed)
 {
-	double	old_dir_x;
-	double	old_plane_x;
-	double	rotation_angle;
+	t_player	*p;
+	double		old_dir_x;
+	double		old_plane_x;
 
-	rotation_angle = player->rot_speed * direction;
-	old_dir_x = player->dir_x;
-	player->dir_x = player->dir_x * cos(rotation_angle)
-		- player->dir_y * sin(rotation_angle);
-	player->dir_y = old_dir_x * sin(rotation_angle)
-		+ player->dir_y * cos(rotation_angle);
-	old_plane_x = player->plane_x;
-	player->plane_x = player->plane_x * cos(rotation_angle)
-		- player->plane_y * sin(rotation_angle);
-	player->plane_y = old_plane_x * sin(rotation_angle)
-		+ player->plane_y * cos(rotation_angle);
+	p = data->player;
+	old_dir_x = p->dir_x;
+	old_plane_x = p->plane_x;
+	p->dir_x = p->dir_x * cos(angle_speed) - p->dir_y * sin(angle_speed);
+	p->dir_y = old_dir_x * sin(angle_speed) + p->dir_y * cos(angle_speed);
+	p->plane_x = p->plane_x * cos(angle_speed) - p->plane_y * sin(angle_speed);
+	p->plane_y = old_plane_x * sin(angle_speed) + p->plane_y * cos(angle_speed);
 }
 
 void	handle_keyboard_input(t_data *data)
@@ -114,7 +77,7 @@ void	handle_keyboard_input(t_data *data)
 	if (data->player->key_d == KEY_PRESSED)
 		move_left_or_right(data->map, data->player, RIGHT);
 	if (data->player->key_left == KEY_PRESSED)
-		rotate_left_or_right(data->player, -1.0); // smooth mouse movement
+		rotate_player(data, -1.0);
 	if (data->player->key_right == KEY_PRESSED)
-		rotate_left_or_right(data->player, 1.0);
+		rotate_player(data, 1.0);
 }
