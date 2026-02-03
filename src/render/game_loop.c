@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/03 12:12:32 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/03 15:46:29 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,6 @@ int	render_frame(t_data *data)
 	double	elapsed;
 
 	current_time = get_current_time(data);
-	if (data->player->last_render_time == 0.0)
-	{
-		data->player->last_render_time = current_time;
-		return (0);
-	}
 	elapsed = current_time - data->player->last_render_time;
 	if (elapsed < FRAME_TIME_SEC)
 		return (0);
