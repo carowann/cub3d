@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 16:42:47 by giomastr          #+#    #+#             */
-/*   Updated: 2026/02/02 15:59:16 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:02:24 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d_bonus.h"
+#include "../includes/cub3d_bonus.h"
 
 static	void	my_pix_put(t_mlx *mlx, int x, int y, int color)
 {

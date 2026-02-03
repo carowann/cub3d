@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+         #
+#    By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/02 11:35:54 by cwannhed          #+#    #+#              #
-#    Updated: 2026/02/02 15:55:00 by giomastr         ###   ########.fr        #
+#    Updated: 2026/02/03 11:06:11 by cwannhed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,25 +38,23 @@ SRCS	= src/main.c \
 	src/render/movements.c \
 	src/render/textures.c
 
-BONUS_SRCS = src/bonus/minimap_bonus.c \
-	src/bonus/game_loop_bonus.c \
-	src/bonus/movements_bonus.c \
-	src/bonus/minimap_bonus.c \
-	src/bonus/mouse_events_bonus.c \
-	src/main.c \
-	src/parse/basic_parser.c \
-	src/parse/cub_parse_utils.c \
-	src/parse/cub_parser.c \
-	src/parse/map_parser.c \
-	src/parse/map_handler.c \
-	src/init.c \
-	src/cleanup.c \
-	src/utils.c \
-	src/render/raycast.c \
-	src/render/render.c \
-	src/render/raycast_data.c \
-	src/render/movements.c \
-	src/render/textures.c
+BONUS_SRCS = src_bonus/minimap_bonus.c \
+	src_bonus/game_loop_bonus.c \
+	src_bonus/mouse_events_bonus.c \
+	src_bonus/main_bonus.c \
+	src_bonus/parse/basic_parser_bonus.c \
+	src_bonus/parse/cub_parse_utils_bonus.c \
+	src_bonus/parse/cub_parser_bonus.c \
+	src_bonus/parse/map_parser_bonus.c \
+	src_bonus/parse/map_handler_bonus.c \
+	src_bonus/init_bonus.c \
+	src_bonus/cleanup_bonus.c \
+	src_bonus/utils_bonus.c \
+	src_bonus/render/raycast_bonus.c \
+	src_bonus/render/render_bonus.c \
+	src_bonus/render/raycast_data_bonus.c \
+	src_bonus/movements_bonus.c \
+	src_bonus/render/textures_bonus.c
 
 CFLAGS = -g -Wall -Werror -Wextra
 

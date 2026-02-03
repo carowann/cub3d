@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   movements_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/02 16:03:24 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:02:31 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d_bonus.h"
+#include "../includes/cub3d_bonus.h"
 
 bool	is_out_of_bounds(t_map *map, int y, int x)
 {

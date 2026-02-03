@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_events_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 14:35:09 by giomastr          #+#    #+#             */
-/*   Updated: 2026/02/02 16:00:10 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:02:28 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d_bonus.h"
+#include "../includes/cub3d_bonus.h"
 
 int	mouse_handler(int x, int y, t_data *data)
 {
     static int last_x = -1; // Per gestire il primo movimento
     int diff_x;
     (void)y;
-    
+
     if (last_x == -1)  // Inizializziamo last_x al centro se è la prima volta
         last_x = data->mlx->screen_width / 2;
     if (x == data->mlx->screen_width / 2 && y == data->mlx->screen_height / 2)
