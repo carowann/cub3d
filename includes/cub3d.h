@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 11:42:18 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 12:17:17 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@
 # define GREEN	"\033[0;32m"
 # define RESET	"\033[0m"
 
-# define FRAME_TIME_SEC	0.01666667 // Approx 60 FPS
+# define FRAME_TIME_SEC				0.01666667 // Approx 60 FPS
 # define MOVEMENT_SPEED_MULTIPLIER	3.0
 # define ROTATION_SPEED_MULTIPLIER	2.0
-# define WALL	'1'
-# define EMPTY	'0'
-# define UP		1
-# define DOWN	-1
-# define LEFT	-1
-# define RIGHT	1
-# define DELTA_DIST_INFINITY	1e30
-# define KEY_PRESSED	1
-# define KEY_RELEASED	0
+# define WALL						'1'
+# define EMPTY						'0'
+# define UP							1
+# define DOWN						-1
+# define LEFT						-1
+# define RIGHT						1
+# define KEY_PRESSED				1
+# define KEY_RELEASED				0
+# define FOV_FACTOR					0.66
 
 # define MSG_N_ARGS			"Invalid number of arguments.\n"
 # define MSG_CUB_EXT		"Invalid file extension. Expected .cub\n"

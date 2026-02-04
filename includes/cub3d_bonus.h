@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/02 15:43:40 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/02/04 12:17:37 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,18 @@
 # define MM_COLOR_GRID 0x00000000 // nero
 // # define MM_COLOR_GRID 0x002A2A2A // verde
 
-
-
-# define FRAME_TIME_SEC	0.01666667 // Approx 60 FPS
+# define FRAME_TIME_SEC				0.01666667 // Approx 60 FPS
 # define MOVEMENT_SPEED_MULTIPLIER	3.0
 # define ROTATION_SPEED_MULTIPLIER	2.0
-# define WALL	'1'
-# define EMPTY	'0'
-# define UP		1
-# define DOWN	-1
-# define LEFT	-1
-# define RIGHT	1
-# define DELTA_DIST_INFINITY	1e30
-# define STEP_X_LEFT	-1
-# define STEP_X_RIGHT	1
-# define STEP_Y_UP		-1
-# define STEP_Y_DOWN	1
-# define KEY_PRESSED	1
-# define KEY_RELEASED	0
+# define WALL						'1'
+# define EMPTY						'0'
+# define UP							1
+# define DOWN						-1
+# define LEFT						-1
+# define RIGHT						1
+# define KEY_PRESSED				1
+# define KEY_RELEASED				0
+# define FOV_FACTOR					0.66
 
 # define MSG_N_ARGS			"Invalid number of arguments.\n"
 # define MSG_CUB_EXT		"Invalid file extension. Expected .cub\n"

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:08:54 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 11:42:05 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 12:09:41 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@
 */
 void	set_delta_distances(t_ray *ray)
 {
-	if (ray->ray_dir_x == 0)
-		ray->delta_dist_x = DELTA_DIST_INFINITY;
+	if (ray->ray_dir_x == 0) //raggio perfettamente verticale
+		ray->delta_dist_x = INFINITY; //non attraversa mai linee verticali
 	else
 		ray->delta_dist_x = fabs(1 / ray->ray_dir_x); //fabs valore assoluto di double
 	if (ray->ray_dir_y == 0)
-		ray->delta_dist_y = DELTA_DIST_INFINITY;
+		ray->delta_dist_y = INFINITY;
 	else
-		ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
+		ray->delta_dist_y = fabs(1 / ray->ray_dir_y); //dist per attraversare una cella in y
 }
 
 /*
@@ -70,25 +70,25 @@ void	set_delta_distances(t_ray *ray)
 */
 void	set_step_and_initial_side_distances(t_ray *ray, t_player *player)
 {
-	if (ray->ray_dir_x < 0)
+	if (ray->ray_dir_x < 0) //raggio verso sx
 	{
-		ray->step_x = -1;
-		ray->side_dist_x = (player->x - ray->map_x) * ray->delta_dist_x;
+		ray->step_x = -1; //decrement nel dda
+		ray->side_dist_x = (player->x - ray->map_x) * ray->delta_dist_x; //dist alla prima linea vert  sx
 	}
-	else
+	else //raggio verso dx
 	{
-		ray->step_x = 1;
-		ray->side_dist_x = (ray->map_x + 1.0 - player->x) * ray->delta_dist_x;
+		ray->step_x = 1; //incr x nel dda
+		ray->side_dist_x = (ray->map_x + 1.0 - player->x) * ray->delta_dist_x; //dist alla prima linea vert a dx
 	}
-	if (ray->ray_dir_y < 0)
+	if (ray->ray_dir_y < 0) //raggio verso su
 	{
-		ray->step_y = -1;
-		ray->side_dist_y = (player->y - ray->map_y) * ray->delta_dist_y;
+		ray->step_y = -1; //decr y nel dda
+		ray->side_dist_y = (player->y - ray->map_y) * ray->delta_dist_y; //dist alla prima riga oriz verso su
 	}
-	else
+	else //raggio verso il basso
 	{
-		ray->step_y = 1;
-		ray->side_dist_y = (ray->map_y + 1.0 - player->y) * ray->delta_dist_y;
+		ray->step_y = 1; //incr y nel dda
+		ray->side_dist_y = (ray->map_y + 1.0 - player->y) * ray->delta_dist_y; //dist alla prossima riga oriz verso basso
 	}
 }
 
