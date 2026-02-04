@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:35:52 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/03 12:06:52 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:24:44 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ double	get_current_time(t_data *data)
 
 	if (gettimeofday(&tv, NULL) != SUCCESS)
 		cleanup_and_exit(data, EXIT_FAILURE, MSG_TIME_FAIL);
-	return (tv.tv_sec + tv.tv_usec / 1000000.0);
+	return (tv.tv_sec + tv.tv_usec / 1000000.0);  // Converte in secondi con precisione microsecondo (es: 1732800123.456789)
 }
 
 void	skip_spaces(char **line)

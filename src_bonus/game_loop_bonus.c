@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:42:37 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/03 11:02:16 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 15:44:16 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,8 @@ void	game_loop(t_data *data)
 		SubstructureNotifyMask,
 		handle_close_window,
 		data);
-	// mlx_mouse_hide(data->mlx->mlx, data->mlx->win); //
-	// mlx_hook(data->mlx->win, 6, (1L << 6), mouse_handler, data); //
+	mlx_mouse_hide(data->mlx->mlx, data->mlx->win);
+	mlx_hook(data->mlx->win, 6, (1L << 6), mouse_handler, data);
 	mlx_loop_hook(data->mlx->mlx, render_mm_frame, data);
 	mlx_loop(data->mlx->mlx);
 }

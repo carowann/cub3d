@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:08:54 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 12:09:41 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 15:34:52 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,11 @@ void	set_step_and_initial_side_distances(t_ray *ray, t_player *player)
 */
 void	set_perpendicular_wall_distance(t_ray *ray, t_player *player)
 {
-	if (ray->wall_side == WEST || ray->wall_side == EAST)
+	if (ray->wall_side == WEST || ray->wall_side == EAST)  // Muro verticale colpito
 		ray->perp_wall_dist = (ray->map_x - player->x
-				+ (1 - ray->step_x) / 2) / ray->ray_dir_x;
-	else
+				+ (1 - ray->step_x) / 2) / ray->ray_dir_x;  // Distanza perpendicolare (evita fisheye): (posizione_muro - player) / direzione_raggio
+	else  // Muro orizzontale colpito (NORTH o SOUTH)
 		ray->perp_wall_dist = (ray->map_y - player->y
-				+ (1 - ray->step_y) / 2) / ray->ray_dir_y;
+				+ (1 - ray->step_y) / 2) / ray->ray_dir_y;  // Stesso calcolo ma su asse Y
+	// (1 - step) / 2: corregge quale faccia del quadrato è stata colpita (0 se step=1, 1 se step=-1)
 }

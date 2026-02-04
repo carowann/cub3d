@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/03 16:07:44 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:22:11 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ int	render_frame(t_data *data)
 	double	current_time;
 	double	elapsed;
 
-	current_time = get_current_time(data);
-	elapsed = current_time - data->player->last_render_time;
-	if (elapsed < FRAME_TIME_SEC)
-		return (0);
+	current_time = get_current_time(data);  //secondi
+	elapsed = current_time - data->player->last_render_time;  //tempo elapsed since last frame
+	if (elapsed < FRAME_TIME_SEC)  // Se non è passato abbastanza tempo (< 16.6ms)
+		return (0);  // Salta questo frame (frame limiting a ~60 FPS)
 	data->player->last_render_time = current_time;
-	handle_keyboard_input(data);
-	raycasting(data);
+	handle_keyboard_input(data);  // Processa input tastiera e aggiorna posizione/direzione giocatore
+	raycasting(data);  // Calcola e disegna tutto nel buffer immagine (raycasting + texturing)
 	mlx_put_image_to_window(data->mlx->mlx,
 		data->mlx->win,
-		data->mlx->img, 0, 0);
-	return (0);
+		data->mlx->img, 0, 0);  // Visualizza il buffer sulla finestra (double buffering)
+	return (0);  // Richiesto dalla firma di mlx_loop_hook
 }
 
 static int	handle_keypress(int keysym, t_data *data)
@@ -99,10 +99,6 @@ static int	handle_keyrelease(int keysym, t_data *data)
 
 //Sets up the main game loop and event handlers.
 //hook for key presses and releases
-//mlx_hook è reattivo:
-//registra una funzione che viene chiamata solo quando succede un evento specifico.
-//3:39 PMmlx_hook è reattivo:
-// registra una funzione che viene chiamata solo quando succede un evento specifico.
 void	game_loop(t_data *data)
 {
 	mlx_hook(data->mlx->win,
@@ -120,6 +116,6 @@ void	game_loop(t_data *data)
 		SubstructureNotifyMask,
 		handle_close_window,
 		data);
-	mlx_loop_hook(data->mlx->mlx, render_frame, data);
-	mlx_loop(data->mlx->mlx);
+	mlx_loop_hook(data->mlx->mlx, render_frame, data);  // Registra funzione chiamata continuamente (ogni iterazione del loop)
+	mlx_loop(data->mlx->mlx);  // Avvia loop infinito eventi (non torna mai)
 }

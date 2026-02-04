@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:42:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/03 16:14:11 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:59:49 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 static void	update_dda_variables(t_ray *ray)
 {
-	if (ray->side_dist_x < ray->side_dist_y)
+	if (ray->side_dist_x < ray->side_dist_y)  // Linea verticale più vicina della orizzontale
 	{
-		ray->side_dist_x += ray->delta_dist_x;
-		ray->map_x += ray->step_x;
-		if (ray->step_x > 0)
-			ray->wall_side = EAST;
-		else
-			ray->wall_side = WEST;
+		ray->side_dist_x += ray->delta_dist_x;  // Avanza alla prossima linea verticale
+		ray->map_x += ray->step_x;  // Cambia cella in x (-1 o +1)
+		if (ray->step_x > 0)  // Se vai verso destra
+			ray->wall_side = EAST;  // Hai colpito un muro Est
+		else  // Se vai verso sinistra
+			ray->wall_side = WEST;  // Hai colpito un muro Ovest
 	}
-	else
+	else  // Linea orizzontale più vicina (o uguale)
 	{
-		ray->side_dist_y += ray->delta_dist_y;
-		ray->map_y += ray->step_y;
-		if (ray->step_y > 0)
-			ray->wall_side = SOUTH;
-		else
-			ray->wall_side = NORTH;
+		ray->side_dist_y += ray->delta_dist_y;  // Avanza alla prossima linea orizzontale
+		ray->map_y += ray->step_y;  // Cambia cella in y (-1 o +1)
+		if (ray->step_y > 0)  // Se vai verso il basso
+			ray->wall_side = SOUTH;  // Hai colpito un muro Sud
+		else  // Se vai verso l'alto
+			ray->wall_side = NORTH;  // Hai colpito un muro Nord
 	}
 }
 
@@ -55,17 +55,17 @@ static void	update_dda_variables(t_ray *ray)
 static void	perform_dda(t_ray *ray, t_map *map)
 {
 	ray->hit = EMPTY;
-	while (ray->hit == EMPTY)
+	while (ray->hit == EMPTY)  // Continua finché non trovi un muro
 	{
-		update_dda_variables(ray);
+		update_dda_variables(ray);  // Avanza alla prossima linea della griglia (x o y)
 		if (ray->map_x < 0 || ray->map_x >= map->width
-			|| ray->map_y < 0 || ray->map_y >= map->height)
+			|| ray->map_y < 0 || ray->map_y >= map->height)  // Se il raggio esce dai limiti della mappa
 		{
-			ray->hit = WALL;
+			ray->hit = WALL;  // Tratta come muro per evitare segfault
 			break ;
 		}
-		if (map->grid[ray->map_y][ray->map_x] == WALL)
-			ray->hit = WALL;
+		if (map->grid[ray->map_y][ray->map_x] == WALL)  // Se la cella corrente è un muro
+			ray->hit = WALL;  // Segna come colpito e termina loop
 	}
 }
 

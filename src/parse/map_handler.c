@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/02/04 12:57:43 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 14:09:48 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,26 @@
 */
 static void	init_player_direction(t_data *data, char c)
 {
-	data->player->dir_x = 0;  // Reset direzione x
-	data->player->dir_y = 0;  // Reset direzione y
-	data->player->plane_x = 0;  // Reset piano camera x
-	data->player->plane_y = 0;  // Reset piano camera y
-	if (c == 'N')  // Giocatore guarda a Nord
+	data->player->dir_x = 0;
+	data->player->dir_y = 0;
+	data->player->plane_x = 0;
+	data->player->plane_y = 0;
+	if (c == 'N')
 	{
 		data->player->dir_y = -1.0;  // Direzione verso l'alto (Y negativo)
 		data->player->plane_x = FOV_FACTOR;  // Piano orizzontale (perpendicolare a dir_y)
 	}
-	else if (c == 'S')  // Giocatore guarda a Sud
+	else if (c == 'S')
 	{
 		data->player->dir_y = 1.0;  // Direzione verso il basso (Y positivo)
 		data->player->plane_x = -FOV_FACTOR;  // Piano invertito per orientare FOV avanti
 	}
-	else if (c == 'E')  // Giocatore guarda a Est
+	else if (c == 'E')
 	{
 		data->player->dir_x = 1.0;  // Direzione verso destra (X positivo)
 		data->player->plane_y = FOV_FACTOR;  // Piano verticale (perpendicolare a dir_x)
 	}
-	else if (c == 'W')  // Giocatore guarda a Ovest
+	else if (c == 'W') 
 	{
 		data->player->dir_x = -1.0;  // Direzione verso sinistra (X negativo)
 		data->player->plane_y = -FOV_FACTOR;  // Piano invertito per orientare FOV avanti

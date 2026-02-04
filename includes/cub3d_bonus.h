@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 12:51:17 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 16:00:16 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,5 +263,6 @@ int		render_mm_frame(t_data *data);
 // bonus - mouse
 int		mouse_handler(int x, int y, t_data *data);
 void	rotate_left_or_right(t_player *player, double direction);
+void	rotate_player(t_data *data, double angle_speed);
 
 #endif
