@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/30 10:08:59 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:57:11 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,22 @@ bool	is_out_of_bounds(t_map *map, int y, int x)
 ** Boundary checks:
 ** Also prevents player from leaving the map bounds entirely.
 */
+// Controllo separato per X e Y permette "sliding" lungo i muri invece di bloccarsi completamente
+
 void	move_forward_or_backward(t_map *map, t_player *player, int direction)
 {
 	double	new_x;
 	double	new_y;
 
-	new_y = player->y;
-	new_x = player->x + player->dir_x * player->move_speed * direction;
-	if (is_out_of_bounds(map, new_y, new_x))
-		new_x = player->x;
-	new_y = player->y + player->dir_y * player->move_speed * direction;
-	if (is_out_of_bounds(map, new_y, new_x))
-		new_y = player->y;
-	player->x = new_x;
-	player->y = new_y;
+	new_y = player->y;  // Mantieni Y corrente temporaneamente
+	new_x = player->x + player->dir_x * player->move_speed * direction; //posizione + direzione * velocità * direzione (1=avanti, -1=indietro)
+	if (is_out_of_bounds(map, new_y, new_x))  // Se la nuova X entrerebbe in un muro
+		new_x = player->x;  // Annulla movimento in X
+	new_y = player->y + player->dir_y * player->move_speed * direction;  //posizione + direzione * velocità * direzione
+	if (is_out_of_bounds(map, new_y, new_x))  // Se la nuova Y entrerebbe in un muro
+		new_y = player->y;  // Annulla movimento in Y
+	player->x = new_x;  // Applica nuova posizione X (valida)
+	player->y = new_y;  // Applica nuova posizione Y (valida)
 }
 
 void	move_left_or_right(t_map *map, t_player *player, int direction)
