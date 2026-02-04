@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 16:00:16 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:33:04 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,14 +146,14 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	t_list		*lines;
-	char		**grid;
-	int			width;
-	int			height;
-	size_t		floor_color;
-	size_t		ceiling_color;
-	bool		floor_color_found;
-	bool		ceiling_color_found;
+	t_list	*lines;
+	char	**grid;
+	int		width;
+	int		height;
+	size_t	floor_color;
+	size_t	ceiling_color;
+	bool	floor_color_found;
+	bool	ceiling_color_found;
 }	t_map;
 
 typedef struct s_tex

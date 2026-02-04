@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:14:22 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 14:15:37 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:36:35 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_data(t_data	*data)
 		cleanup_and_exit(data, EXIT_FAILURE, NULL);
 	data->player->time_curr_frame = get_current_time(data);
 	data->player->last_render_time = get_current_time(data);
+	data->player->time_last_frame = get_current_time(data);
 	print_mess(MSG_DATA_OK, SUCCESS);
 }
 

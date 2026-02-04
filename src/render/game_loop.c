@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 14:22:11 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:37:18 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,11 @@ void	set_movement_and_rotation_speed(t_data *data, t_player *player)
 	double	new_time;
 	double	frame_time;
 
-	new_time = get_current_time(data);
-	if (player->time_last_frame == 0.0)
-		frame_time = FRAME_TIME_SEC;
-	else
-		frame_time = new_time - player->time_last_frame;
-	player->time_last_frame = new_time;
-	player->move_speed = frame_time * MOVEMENT_SPEED_MULTIPLIER;
-	player->rot_speed = frame_time * ROTATION_SPEED_MULTIPLIER;
+	new_time = get_current_time(data);  // Tempo attuale in secondi
+	frame_time = new_time - player->time_last_frame;  // Delta time: tempo trascorso dall'ultimo frame
+	player->time_last_frame = new_time;  // Aggiorna timestamp per il prossimo frame
+	player->move_speed = frame_time * MOVEMENT_SPEED_MULTIPLIER;  // Velocità movimento = tempo * moltiplicatore (movimento indipendente da FPS)
+	player->rot_speed = frame_time * ROTATION_SPEED_MULTIPLIER;  // Velocità rotazione = tempo * moltiplicatore (rotazione indipendente da FPS)
 }
 
 /*
