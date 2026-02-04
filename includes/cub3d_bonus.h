@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 12:17:37 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 12:51:17 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 # define KEY_PRESSED				1
 # define KEY_RELEASED				0
 # define FOV_FACTOR					0.66
+# define MOUSE_DPI					0.0005
 
 # define MSG_N_ARGS			"Invalid number of arguments.\n"
 # define MSG_CUB_EXT		"Invalid file extension. Expected .cub\n"
