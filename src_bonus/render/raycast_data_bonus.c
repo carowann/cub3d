@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_data.c                                     :+:      :+:    :+:   */
+/*   raycast_data_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:08:54 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/03 10:56:51 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 11:44:33 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,22 @@ void	set_step_and_initial_side_distances(t_ray *ray, t_player *player)
 {
 	if (ray->ray_dir_x < 0)
 	{
-		ray->step_x = STEP_X_LEFT;
+		ray->step_x = -1;
 		ray->side_dist_x = (player->x - ray->map_x) * ray->delta_dist_x;
 	}
 	else
 	{
-		ray->step_x = STEP_X_RIGHT;
+		ray->step_x = 1;
 		ray->side_dist_x = (ray->map_x + 1.0 - player->x) * ray->delta_dist_x;
 	}
 	if (ray->ray_dir_y < 0)
 	{
-		ray->step_y = STEP_Y_UP;
+		ray->step_y = -1;
 		ray->side_dist_y = (player->y - ray->map_y) * ray->delta_dist_y;
 	}
 	else
 	{
-		ray->step_y = STEP_Y_DOWN;
+		ray->step_y = 1;
 		ray->side_dist_y = (ray->map_y + 1.0 - player->y) * ray->delta_dist_y;
 	}
 }

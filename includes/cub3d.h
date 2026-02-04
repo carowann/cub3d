@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/02 14:56:14 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/02/04 11:45:23 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@
 # define LEFT	-1
 # define RIGHT	1
 # define DELTA_DIST_INFINITY	1e30
-# define STEP_X_LEFT	-1
-# define STEP_X_RIGHT	1
-# define STEP_Y_UP		-1
-# define STEP_Y_DOWN	1
 # define KEY_PRESSED	1
 # define KEY_RELEASED	0
 
