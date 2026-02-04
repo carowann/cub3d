@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:44:40 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/03 15:46:29 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:07:44 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,10 @@ static int	handle_keyrelease(int keysym, t_data *data)
 
 //Sets up the main game loop and event handlers.
 //hook for key presses and releases
+//mlx_hook è reattivo:
+//registra una funzione che viene chiamata solo quando succede un evento specifico.
+//3:39 PMmlx_hook è reattivo:
+// registra una funzione che viene chiamata solo quando succede un evento specifico.
 void	game_loop(t_data *data)
 {
 	mlx_hook(data->mlx->win,

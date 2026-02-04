@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/01/29 15:57:08 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 12:10:51 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ static void	init_player_direction(t_data *data, char c)
 	if (c == 'N')
 	{
 		data->player->dir_y = -1.0;
-		data->player->plane_x = 0.66;
+		data->player->plane_x = FOV_FACTOR;
 	}
 	else if (c == 'S')
 	{
 		data->player->dir_y = 1.0;
-		data->player->plane_x = -0.66;
+		data->player->plane_x = -FOV_FACTOR;
 	}
 	else if (c == 'E')
 	{
 		data->player->dir_x = 1.0;
-		data->player->plane_y = 0.66;
+		data->player->plane_y = FOV_FACTOR;
 	}
 	else if (c == 'W')
 	{
 		data->player->dir_x = -1.0;
-		data->player->plane_y = -0.66;
+		data->player->plane_y = -FOV_FACTOR;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:42:45 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/30 10:06:07 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/03 16:14:11 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,21 @@ static void	perform_dda(t_ray *ray, t_map *map)
 void	raycasting(t_data *data)
 {
 	int		x;
-	t_ray	r;
+	t_ray	r; //tutti i dati di un singolo raggio
 
 	x = 0;
 	while (x < data->mlx->screen_width)
 	{
-		r.map_x = (int)(data->player->x);
+		r.map_x = (int)(data->player->x); //coord della cella della griglia in cui si trova p (partenza raggio)
 		r.map_y = (int)(data->player->y);
-		r.camera_x = 2 * x / (double)data->mlx->screen_width - 1;
-		r.ray_dir_x = data->player->dir_x + data->player->plane_x * r.camera_x;
+		r.camera_x = 2 * x / (double)data->mlx->screen_width - 1; //mappa x(colonna) nell'intervallo -1, 1
+		r.ray_dir_x = data->player->dir_x + data->player->plane_x * r.camera_x; //dir raggio per questa col
 		r.ray_dir_y = data->player->dir_y + data->player->plane_y * r.camera_x;
-		set_delta_distances(&r);
-		set_step_and_initial_side_distances(&r, data->player);
-		perform_dda(&r, data->map);
-		set_perpendicular_wall_distance(&r, data->player);
-		set_pixel_buffer(data, &r, x);
+		set_delta_distances(&r); //quanto deve viaggiare un ray attaverso una cella (x, y)
+		set_step_and_initial_side_distances(&r, data->player); //dir di step e quanto manca alla prima linea della griglia
+		perform_dda(&r, data->map); //marcia nella griglia fino a trovare un muro
+		set_perpendicular_wall_distance(&r, data->player); //distanza corretta al muro senza fisheye
+		set_pixel_buffer(data, &r, x); //date le info raccolte, disegna colonna
 		x++;
 	}
 }
