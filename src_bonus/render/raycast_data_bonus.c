@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:08:54 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 11:43:24 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 12:34:57 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@
 void	set_delta_distances(t_ray *ray)
 {
 	if (ray->ray_dir_x == 0)
-		ray->delta_dist_x = DELTA_DIST_INFINITY;
+		ray->delta_dist_x = INFINITY;
 	else
 		ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
 	if (ray->ray_dir_y == 0)
-		ray->delta_dist_y = DELTA_DIST_INFINITY;
+		ray->delta_dist_y = INFINITY;
 	else
 		ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 }
