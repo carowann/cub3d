@@ -6,37 +6,47 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:56:30 by giomastr          #+#    #+#             */
-/*   Updated: 2026/02/04 12:10:51 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 12:57:43 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+/*
+** Sistema di coordinate: origine (0,0) in alto a sinistra
+** X cresce verso destra, Y cresce verso il basso
+** Nord = Y negativo, Sud = Y positivo, Est = X positivo, Ovest = X negativo
+**
+** dir deve essere normalizzato (lunghezza = 1) per i calcoli del raycasting
+** plane deve essere perpendicolare a dir, la sua lunghezza determina il FOV
+** FOV_FACTOR = 0.66 → circa 66° di campo visivo (formula: 2*arctan(0.66/1))
+** Il segno di plane orienta il FOV davanti al giocatore
+*/
 static void	init_player_direction(t_data *data, char c)
 {
-	data->player->dir_x = 0;
-	data->player->dir_y = 0;
-	data->player->plane_x = 0;
-	data->player->plane_y = 0;
-	if (c == 'N')
+	data->player->dir_x = 0;  // Reset direzione x
+	data->player->dir_y = 0;  // Reset direzione y
+	data->player->plane_x = 0;  // Reset piano camera x
+	data->player->plane_y = 0;  // Reset piano camera y
+	if (c == 'N')  // Giocatore guarda a Nord
 	{
-		data->player->dir_y = -1.0;
-		data->player->plane_x = FOV_FACTOR;
+		data->player->dir_y = -1.0;  // Direzione verso l'alto (Y negativo)
+		data->player->plane_x = FOV_FACTOR;  // Piano orizzontale (perpendicolare a dir_y)
 	}
-	else if (c == 'S')
+	else if (c == 'S')  // Giocatore guarda a Sud
 	{
-		data->player->dir_y = 1.0;
-		data->player->plane_x = -FOV_FACTOR;
+		data->player->dir_y = 1.0;  // Direzione verso il basso (Y positivo)
+		data->player->plane_x = -FOV_FACTOR;  // Piano invertito per orientare FOV avanti
 	}
-	else if (c == 'E')
+	else if (c == 'E')  // Giocatore guarda a Est
 	{
-		data->player->dir_x = 1.0;
-		data->player->plane_y = FOV_FACTOR;
+		data->player->dir_x = 1.0;  // Direzione verso destra (X positivo)
+		data->player->plane_y = FOV_FACTOR;  // Piano verticale (perpendicolare a dir_x)
 	}
-	else if (c == 'W')
+	else if (c == 'W')  // Giocatore guarda a Ovest
 	{
-		data->player->dir_x = -1.0;
-		data->player->plane_y = -FOV_FACTOR;
+		data->player->dir_x = -1.0;  // Direzione verso sinistra (X negativo)
+		data->player->plane_y = -FOV_FACTOR;  // Piano invertito per orientare FOV avanti
 	}
 }
 
