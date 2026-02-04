@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:42:37 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 15:44:16 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:45:49 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	set_movement_and_rotation_speed(t_data *data, t_player *player)
 	double	frame_time;
 
 	new_time = get_current_time(data);
-	if (player->time_last_frame == 0.0)
-		frame_time = FRAME_TIME_SEC;
-	else
-		frame_time = new_time - player->time_last_frame;
+	frame_time = new_time - player->time_last_frame;
 	player->time_last_frame = new_time;
 	player->move_speed = frame_time * MOVEMENT_SPEED_MULTIPLIER;
 	player->rot_speed = frame_time * ROTATION_SPEED_MULTIPLIER;
@@ -69,11 +66,6 @@ int	render_frame(t_data *data)
 	double	elapsed;
 
 	current_time = get_current_time(data);
-	if (data->player->last_render_time == 0.0)
-	{
-		data->player->last_render_time = current_time;
-		return (0);
-	}
 	elapsed = current_time - data->player->last_render_time;
 	if (elapsed < FRAME_TIME_SEC)
 		return (0);
