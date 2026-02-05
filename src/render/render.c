@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 15:13:30 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/01/30 10:08:25 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/05 15:21:52 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static void	set_tex_x_coord(t_ray *ray, t_player *player, t_tex *tex)
 		tex->x = tex->width - tex->x - 1;
 }
 
-//TODO: maybe add darker color if y side of wall was hit (lodev)
 static void	draw_column(t_ray ray, t_data d, int x, t_tex tex)
 {
 	int		y;

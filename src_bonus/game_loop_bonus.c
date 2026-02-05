@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:42:37 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 17:48:35 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/05 15:23:30 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	render_frame(t_data *data)
 	handle_keyboard_input(data);
 	raycasting(data);
 	draw_minimap(data);
-	mlx_put_image_to_window(data->mlx->mlx,-pi
+	mlx_put_image_to_window(data->mlx->mlx,
 		data->mlx->win,
 		data->mlx->img, 0, 0);
 	return (0);

@@ -6,12 +6,12 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 17:48:48 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/05 15:22:36 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # define _GNU_SOURCE
 # include "../libft/libft.h"
