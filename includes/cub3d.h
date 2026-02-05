@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 12:17:17 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/05 14:59:47 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,6 @@ void	skip_spaces(char **line);
 
 void	kill_get_next_line(int fd);
 
-// wip
 size_t	validate_colours(t_data data, char *colour);
 t_id	get_id_line(char *str);
 void	add_line(char *line, t_data *data);

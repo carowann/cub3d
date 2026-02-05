@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 17:57:11 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/05 15:03:05 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,21 @@ void	move_forward_or_backward(t_map *map, t_player *player, int direction)
 	player->y = new_y;  // Applica nuova posizione Y (valida)
 }
 
+// Usa plane invece di dir perché lo strafe è perpendicolare alla direzione (A=sinistra, D=destra)
+// direction: 1=destra, -1=sinistra
 void	move_left_or_right(t_map *map, t_player *player, int direction)
 {
 	double	new_x;
 	double	new_y;
 
-	new_x = player->x + player->plane_x * player->move_speed * direction;
-	if (is_out_of_bounds(map, (int)player->y, (int)new_x))
-		new_x = player->x;
-	new_y = player->y + player->plane_y * player->move_speed * direction;
-	if (is_out_of_bounds(map, (int)new_y, (int)new_x))
-		new_y = player->y;
-	player->x = new_x;
-	player->y = new_y;
+	new_x = player->x + player->plane_x * player->move_speed * direction;  // Calcola nuova X usando piano camera (perpendicolare a dove guardi)
+	if (is_out_of_bounds(map, (int)player->y, (int)new_x))  // Se la nuova X entrerebbe in un muro
+		new_x = player->x;  // Annulla movimento in X
+	new_y = player->y + player->plane_y * player->move_speed * direction;  // Calcola nuova Y usando piano camera
+	if (is_out_of_bounds(map, (int)new_y, (int)new_x))  // Se la nuova Y entrerebbe in un muro
+		new_y = player->y;  // Annulla movimento in Y
+	player->x = new_x;  // Applica nuova posizione X
+	player->y = new_y;  // Applica nuova posizione Y
 }
 
 /*
