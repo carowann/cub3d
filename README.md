@@ -1,15 +1,27 @@
 # Cub3D
 
-A 3D maze exploration game inspired by the legendary Wolfenstein 3D, built as part of the 42 School curriculum. This project implements raycasting to create a pseudo-3D perspective from a 2D map.
+> *A 3D maze exploration game inspired by the legendary Wolfenstein 3D*
 
-## About
+<div align="center">
 
-Cub3D is a graphical project that introduces fundamental concepts of raycasting and 3D rendering. The player navigates through a maze in first-person view, with textured walls, floor and ceiling colors, and smooth movement controls.
+![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
-This project was a fascinating dive into how early 3D games created immersive experiences with limited computational resources. It covers mathematical concepts like trigonometry and vector operations, along with practical graphics programming using the MiniLibX library.
+**Part of the 42 School curriculum**
+
+</div>
+
+---
+
+## 📖 About
+
+**Cub3D** is a graphical project that introduces fundamental concepts of raycasting and 3D rendering. The player navigates through a maze in first-person view, with textured walls, floor and ceiling colors, and smooth movement controls.
+
+This project was a fascinating dive into how early 3D games created immersive experiences with limited computational resources. It covers mathematical concepts like trigonometry and vector operations, along with practical graphics programming using the **MiniLibX** library.
 
 ## Features
 
+### Mandatory
 - **First-person 3D perspective** using raycasting algorithms
 - **Textured walls** with different textures for each cardinal direction (North, South, East, West)
 - **Customizable floor and ceiling colors**
@@ -17,12 +29,11 @@ This project was a fascinating dive into how early 3D games created immersive ex
 - **Map validation** to ensure playable maze configurations
 - **`.cub` file parsing** for custom map and texture definitions
 
-### Bonus Features
-
+### Bonus
 - **Minimap** displaying the player's position and surroundings
 - **Mouse controls** for camera rotation
 
-## Installation
+## 🚀 Installation
 
 ### Prerequisites
 
@@ -33,35 +44,38 @@ This project was a fascinating dive into how early 3D games created immersive ex
 
 ### Building
 ```bash
+# Clone the repository with submodules
 git clone --recursive https://github.com/carowann/cub3d.git
 cd cub3d
+
+# Build mandatory version
 make
-```
 
-The `--recursive` flag ensures the libft submodule is cloned properly.
-
-For bonus features (minimap and mouse controls):
-```bash
+# Or build with bonus features (minimap + mouse controls)
 make bonus
 ```
 
+> **Note:** The `--recursive` flag ensures the libft submodule is cloned properly.
+
 ## Usage
+
+### Running the Game
 ```bash
 ./cub3D maps/example.cub
 ```
 
-You can create your own `.cub` files following the format described in the subject.
+You can create your own `.cub` files following the format described below.
 
 ### Controls
 
-**Mandatory:**
-- **W/A/S/D** or **Arrow keys**: Move forward/left/backward/right
-- **Left/Right arrows**: Rotate camera
-- **ESC** or **close window**: Exit the game
-
-**Bonus:**
-- **Mouse movement**: Rotate camera
-- **Minimap**: Displayed in the top-left corner
+| Action | Mandatory | Bonus |
+|--------|-----------|-------|
+| Move forward/backward | `W` / `S` or `↑` / `↓` | ✓ |
+| Strafe left/right | `A` / `D` | ✓ |
+| Rotate camera | `←` / `→` | ✓ |
+| Rotate camera (mouse) | - | `Mouse movement` |
+| Exit game | `ESC` or close window | ✓ |
+| View minimap | - | Top-left corner |
 
 ## Map Configuration
 
@@ -91,12 +105,16 @@ C 135,206,235
 11111111 1111111 111111111111
 ```
 
-- `NO`, `SO`, `WE`, `EA`: Texture paths for each wall direction
-- `F`, `C`: RGB colors for floor and ceiling (0-255)
-- Map characters:
-  - `0`: Empty space
-  - `1`: Wall
-  - `N/S/E/W`: Player starting position and orientation
+### Configuration Elements
+
+| Element | Description |
+|---------|-------------|
+| `NO`, `SO`, `WE`, `EA` | Texture paths for North, South, West, East walls |
+| `F` | Floor color in RGB format (0-255) |
+| `C` | Ceiling color in RGB format (0-255) |
+| `0` | Empty space (walkable) |
+| `1` | Wall |
+| `N/S/E/W` | Player starting position and orientation |
 
 ## Technical Highlights
 
@@ -104,11 +122,12 @@ C 135,206,235
 - **Texture mapping** with proper scaling and alignment
 - **Player movement and collision detection**
 - Robust **error handling** for invalid maps and configurations
-- Memory-safe implementation with no leaks
+- **Memory-safe** implementation with no leaks
 
 ## Learning Outcomes
 
 This project solidified my understanding of:
+
 - Low-level graphics programming
 - Mathematical concepts in game development (vectors, trigonometry)
 - Event handling and game loops
@@ -116,14 +135,41 @@ This project solidified my understanding of:
 - Working with external graphics libraries
 - Collaborative development and task distribution
 
-## Collaboration
+## 👥 Collaboration
 
-This project was developed in collaboration with [gimass](https://github.com/giomastr) (giomastr on Intra 42). She primarily handled the parsing system and bonus features implementation, while I (cwannhed on Intra 42) focused on the core raycasting engine and rendering. This collaboration was an excellent opportunity to learn about code integration, communication, and working as a team on a complex technical project.
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/carowann">
+        <img src="https://github.com/carowann.png" width="100px;" alt="Caroline"/><br />
+        <sub><b>Caroline</b></sub>
+      </a><br />
+      <sub>cwannhed (Intra 42)</sub><br />
+      <sub>Raycasting & Rendering</sub>
+    </td>
+    <td align="center">
+      <a href="https://github.com/gimasss">
+        <img src="https://github.com/gimasss.png" width="100px;" alt="Giorgia"/><br />
+        <sub><b>Giorgia</b></sub>
+      </a><br />
+      <sub>giomastr (Intra 42)</sub><br />
+      <sub>Parsing & Bonus Features</sub>
+    </td>
+  </tr>
+</table>
+
+This collaboration was an excellent opportunity to learn about code integration, communication, and working as a team on a complex technical project.
 
 ## Acknowledgments
 
-Built as part of the 42 School curriculum. The project subject and constraints were designed to teach fundamental computer graphics concepts through hands-on implementation.
+Built as part of the **42 School curriculum**. The project subject and constraints were designed to teach fundamental computer graphics concepts through hands-on implementation.
 
 ---
 
+<div align="center">
+
 *This project represents my growing proficiency in C programming and systems-level development, building on the foundations established in previous 42 projects.*
+
+**[🔗 My 42 Profile](https://profile.intra.42.fr/users/cwannhed)**
+
+</div>
