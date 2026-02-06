@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:38:03 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/05 15:22:36 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/05 17:11:04 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@
 # define MM_TILE_SIZE 10  // Ogni cubo della mappa sarà 10x10 pixel
 # define MM_COLOR_WALL 0x00C9C9C9 // grigio
 # define MM_COLOR_FLOOR 0x002A2A2A // 42,42,42 hehe
-# define MM_COLOR_PLAYER 0x00FFFFFF // bianco
+# define MM_COLOR_PLAYER 0x00d588b8 // bianco
 # define MM_COLOR_GRID 0x00000000 // nero
 // # define MM_COLOR_GRID 0x002A2A2A // verde
 
 # define FRAME_TIME_SEC				0.01666667 // Approx 60 FPS
 # define MOVEMENT_SPEED_MULTIPLIER	3.0
-# define ROTATION_SPEED_MULTIPLIER	2.0
+# define ROTATION_SPEED_MULTIPLIER	0.0005
 # define WALL						'1'
 # define EMPTY						'0'
 # define UP							1

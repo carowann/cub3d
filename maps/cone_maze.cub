@@ -1,10 +1,10 @@
-WE ./text_packs/jjk_pack/north.xpm
-NO ./text_packs/jjk_pack/south.xpm
-SO ./text_packs/jjk_pack/east.xpm
-EA ./text_packs/jjk_pack/west.xpm
+WE ./text_packs/trees/bluepinkneon.xpm
+NO ./text_packs/trees/bluepinkneon.xpm
+SO ./text_packs/trees/bluepinkneon.xpm
+EA ./text_packs/trees/bluepinkneon.xpm
 
 C 0,0,0
-F 33,31,29
+F 0,0,0
 
 
 1111111111111111111

@@ -33,9 +33,9 @@
 - [x] Nessun memory leak (test con valgrind)
 - [x] Gestione errori con cleanup appropriato
 
-## Da sistemare
-Error ❌
-Issues with map: maze leak. --- con righe vuote in mezzo, con spazi vuoti in mezzo. Apre window comunque --> fixed
-Issues with map: tab --> fixed
-glide: vettore x-y calcola prima x o y, se puoi andarci aggiorni prima uno o l'altro. es: x rimane fissa, si muove su y -> glida
-- leaks with esc button and x
+## MAPPE
+
+// tiles - labirintico
+// mappa base con elementi di dimensioni diverse
+// alberi - sparsi, caotico, grande
+// jjk domain expansion?
