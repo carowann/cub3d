@@ -6,7 +6,7 @@
 /*   By: cwannhed <cwannhed@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:24 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/04 11:47:47 by cwannhed         ###   ########.fr       */
+/*   Updated: 2026/02/09 10:32:47 by cwannhed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	move_left_or_right(t_map *map, t_player *player, int direction)
 	player->y = new_y;
 }
 
-//TODO: fix rotation speed with arrow keys
 void	rotate_player(t_data *data, double angle_speed)
 {
 	t_player	*p;
