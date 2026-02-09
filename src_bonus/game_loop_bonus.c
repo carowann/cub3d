@@ -6,7 +6,7 @@
 /*   By: giomastr <giomastr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 11:42:37 by cwannhed          #+#    #+#             */
-/*   Updated: 2026/02/05 20:02:33 by giomastr         ###   ########.fr       */
+/*   Updated: 2026/02/09 11:02:11 by giomastr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@ void	set_movement_and_rotation_speed(t_data *data, t_player *player)
 	else
 		frame_time = new_time - player->time_last_frame;
 	player->time_last_frame = new_time;
-	//player->move_speed = frame_time * MOVEMENT_SPEED_MULTIPLIER;
-	player->move_speed = 0.05;
-	player->rot_speed = 0.003;
-
-//	player->rot_speed = frame_time * ROTATION_SPEED_MULTIPLIER;
+	player->move_speed = frame_time * MOVEMENT_SPEED_MULTIPLIER;
+	player->rot_speed = frame_time * ROTATION_SPEED_MULTIPLIER;
 }
 
 int	render_frame(t_data *data)

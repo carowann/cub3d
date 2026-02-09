@@ -1,10 +1,10 @@
-WE ./text_packs/trees/bluepinkneon.xpm
-NO ./text_packs/trees/bluepinkneon.xpm
-SO ./text_packs/trees/bluepinkneon.xpm
-EA ./text_packs/trees/bluepinkneon.xpm
+WE ./text_packs/textures/neon.xpm
+NO ./text_packs/textures/neon.xpm
+SO ./text_packs/textures/neon.xpm
+EA ./text_packs/textures/neon.xpm
 
-C 0,0,0
-F 0,0,0
+C 9,1,52
+F 10,0,52
 
 
 1111111111111111111
